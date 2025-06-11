@@ -1,0 +1,48 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    # platform: linux/amd64
+    container_name: sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Test_Password@123
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "127.0.0.1", "-U", "SA", "-P", "Test_Password@123", "-Q", "SELECT 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  
+  vehicleregistrationapi:
+    build:
+      context: ./VehicleRegistrationAPI
+      dockerfile: Dockerfile
+    container_name: vehicleregistrationapi
+    ports:
+      - "5059:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings_DefaultConnection=Server=sqlserver;Database=VehicleRegistrationDB;User Id=SA;Password=Test_Password@123;Encrypt=True;TrustServerCertificate=True;
+    # depends_on:
+    #   sqlserver:
+    #     condition: service_healthy
+  
+  insuranceapi:
+    build:
+      context: ./InsuranceAPI
+      dockerfile: Dockerfile
+    container_name: insuranceapi
+    ports:
+      - "5084:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings_DefaultConnection=Server=sqlserver;Database=InsuranceDB;User Id=SA;Password=Test_Password@123;Encrypt=True;TrustServerCertificate=True;
+    # depends_on:
+    #   sqlserver:
+    #     condition: service_healthy
+
+volumes:
+  sqlserverdata:
