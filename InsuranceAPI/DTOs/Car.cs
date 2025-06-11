@@ -8,4 +8,11 @@ public record Car(string Name,
     string Color,
     DateTime RegistrationDate,
     string Owner,
-    Guid OwnerId);
+    Guid OwnerId)
+{
+    public static implicit operator bool(Car v)
+    {
+        throw new NotImplementedException();
+    }
+}
+

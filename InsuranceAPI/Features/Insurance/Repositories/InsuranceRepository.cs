@@ -1,6 +1,7 @@
 using InsuranceAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using InsuranceAPI.Features.Insurance.Entities;
+using InsuranceAPI.HttpClients;
 
 namespace InsuranceAPI.Features.Insurance.Repositories;
 

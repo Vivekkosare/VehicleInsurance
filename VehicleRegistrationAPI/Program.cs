@@ -16,7 +16,7 @@ builder.Services.AddOpenApi();
 //Register the DbContext with SQL Server
 builder.Services.AddDbContext<VehicleRegistrationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 //Register repositories and services

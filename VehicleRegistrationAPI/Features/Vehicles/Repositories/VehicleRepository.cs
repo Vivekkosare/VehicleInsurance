@@ -41,7 +41,8 @@ public class VehicleRepository(VehicleRegistrationDbContext dbContext) : IVehicl
 
     public async Task<IEnumerable<Vehicle>> GetAllVehiclesAsync()
     {
-        var vehicles = await dbContext.Vehicles.ToListAsync();
+        var vehicles = await dbContext.Vehicles
+                        .Include(v => v.Owner).ToListAsync();
         return vehicles ?? new List<Vehicle>();
     }
 
@@ -52,7 +53,8 @@ public class VehicleRepository(VehicleRegistrationDbContext dbContext) : IVehicl
             throw new ArgumentException("Vehicle ID cannot be empty.", nameof(vehicleId));
         }
 
-        var vehicle = await dbContext.Vehicles.FirstOrDefaultAsync(v => v.Id == vehicleId);
+        var vehicle = await dbContext.Vehicles
+                .Include(v => v.Owner).FirstOrDefaultAsync(v => v.Id == vehicleId);
         if (vehicle == null)
         {
             throw new KeyNotFoundException($"Vehicle with ID {vehicleId} not found.");
@@ -69,6 +71,7 @@ public class VehicleRepository(VehicleRegistrationDbContext dbContext) : IVehicl
         }
 
         var vehicle = await dbContext.Vehicles
+                        .Include(v => v.Owner)
                         .FirstOrDefaultAsync(v => v.RegistrationNumber == registrationNumber);
         if (vehicle == null)
         {

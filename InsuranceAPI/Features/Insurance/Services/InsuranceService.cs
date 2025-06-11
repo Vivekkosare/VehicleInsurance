@@ -13,6 +13,11 @@ CarRegistrationAPIClient _apiClient) : IInsuranceService
         {
             throw new ArgumentNullException(nameof(insurance), "Insurance cannot be null.");
         }
+        var carDetails = await _apiClient.GetCarRegistrationAsync(insurance.PersonalIdentificationNumber);
+        if (carDetails == null)
+        {
+            throw new InvalidOperationException("Car details not found for the provided personal identification number.");
+        }
 
         var newInsurance = await _insuranceRepo.AddInsuranceAsync(insurance);
         return newInsurance;

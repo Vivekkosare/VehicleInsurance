@@ -2,8 +2,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VehicleRegistrationAPI.Data;
 
 #nullable disable
@@ -17,46 +17,46 @@ namespace VehicleRegistrationAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("ProductVersion", "9.0.2")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("VehicleRegistrationAPI.Entities.Customer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("PersonalIdentificationNumber")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("character varying(20)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("character varying(15)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnUpdate()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
 
                     b.HasKey("Id");
 
@@ -123,52 +123,52 @@ namespace VehicleRegistrationAPI.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("character varying(30)");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
 
                     b.Property<string>("Make")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Model")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("character varying(100)");
 
                     b.Property<Guid>("OwnerId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("RegistrationDate")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("character varying(15)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnUpdate()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
 
                     b.Property<int>("Year")
                         .HasMaxLength(4)
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -190,7 +190,7 @@ namespace VehicleRegistrationAPI.Migrations
                             Model = "Camry",
                             Name = "Toyota Camry",
                             OwnerId = new Guid("ad14152a-55b9-43f1-ac68-e87ecaef702a"),
-                            RegistrationDate = new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegistrationDate = new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             RegistrationNumber = "ABC1234",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Year = 2020
@@ -204,7 +204,7 @@ namespace VehicleRegistrationAPI.Migrations
                             Model = "Accord",
                             Name = "Honda Accord",
                             OwnerId = new Guid("445bdbe0-b8b0-4efb-9540-e5b38ff07a86"),
-                            RegistrationDate = new DateTime(2019, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegistrationDate = new DateTime(2019, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             RegistrationNumber = "XYZ5678",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Year = 2019
@@ -218,7 +218,7 @@ namespace VehicleRegistrationAPI.Migrations
                             Model = "Mustang",
                             Name = "Ford Mustang",
                             OwnerId = new Guid("763ff2cd-55b9-4c0f-ac6c-ff94bc7abdd0"),
-                            RegistrationDate = new DateTime(2021, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegistrationDate = new DateTime(2021, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             RegistrationNumber = "MUS2021",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Year = 2021

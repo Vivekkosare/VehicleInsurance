@@ -1,4 +1,7 @@
 using InsuranceAPI.Data;
+using InsuranceAPI.Features.Insurance.Endpoints;
+using InsuranceAPI.Features.Insurance.Repositories;
+using InsuranceAPI.Features.Insurance.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +13,13 @@ builder.Services.AddOpenApi();
 //Register the DbContext with SQL Server
 builder.Services.AddDbContext<InsuranceDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IInsuranceRepository, InsuranceRepository>();
+builder.Services.AddScoped<IInsuranceService, InsuranceService>();
+
+
 
 builder.Services.AddHttpClient<InsuranceAPI.HttpClients.CarRegistrationAPIClient>()
     .ConfigureHttpClient(client =>
@@ -23,6 +31,9 @@ builder.Services.AddHttpClient<InsuranceAPI.HttpClients.CarRegistrationAPIClient
 
 
 var app = builder.Build();
+
+// Map the insurance endpoints
+app.MapInsuranceEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

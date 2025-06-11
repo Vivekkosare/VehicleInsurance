@@ -29,19 +29,19 @@ public class InsuranceProductConfiguration : IEntityTypeConfiguration<InsuranceP
         builder.Property(ip => ip.Price)
             .HasColumnName("Price")
             .IsRequired()
-            .HasColumnType("decimal(18,2)");
+            .HasColumnType("numeric(18,2)");
 
         builder.Property(i => i.CreatedAt)
             .HasColumnName("CreatedAt")
             .IsRequired()
-            .HasColumnType("datetime")
-            .HasDefaultValueSql("GETUTCDATE()")
+            .HasColumnType("timestamp with time zone")
+            .HasDefaultValueSql("NOW()")
             .ValueGeneratedOnAdd();
 
         builder.Property(i => i.UpdatedAt)
             .HasColumnName("UpdatedAt")
-            .HasColumnType("datetime")
-            .HasDefaultValueSql("GETUTCDATE()")
+            .HasColumnType("timestamp with time zone")
+            .HasDefaultValueSql("NOW()")
             .ValueGeneratedOnUpdate();
 
         builder.HasIndex(ip => ip.Code)

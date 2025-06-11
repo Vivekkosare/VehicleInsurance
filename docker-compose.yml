@@ -1,21 +1,38 @@
 services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    # platform: linux/amd64
-    container_name: sqlserver
+  vehicleregistrationdb:
+    image: postgres:16
+    container_name: vehicleregistrationdb
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Test_Password@123
+      - POSTGRES_DB=VehicleRegistrationDB
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Frankenstein@123
     ports:
-      - "1433:1433"
+      - "5433:5432"
     volumes:
-      - sqlserverdata:/var/opt/mssql
+      - vehicleregdbdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "127.0.0.1", "-U", "SA", "-P", "Test_Password@123", "-Q", "SELECT 1"]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 30s
       timeout: 10s
       retries: 5
-  
+
+  insurancedb:
+    image: postgres:16
+    container_name: insurancedb
+    environment:
+      - POSTGRES_DB=InsuranceDB
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Frankenstein@123
+    ports:
+      - "5434:5432"
+    volumes:
+      - insurancedbdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
   vehicleregistrationapi:
     build:
       context: ./VehicleRegistrationAPI
@@ -25,11 +42,11 @@ services:
       - "5059:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings_DefaultConnection=Server=sqlserver;Database=VehicleRegistrationDB;User Id=SA;Password=Test_Password@123;Encrypt=True;TrustServerCertificate=True;
-    # depends_on:
-    #   sqlserver:
-    #     condition: service_healthy
-  
+      - ConnectionStrings__DefaultConnection=Host=vehicleregistrationdb;Port=5432;Database=VehicleRegistrationDB;Username=postgres;Password=Frankenstein@123
+    depends_on:
+      vehicleregistrationdb:
+        condition: service_healthy
+
   insuranceapi:
     build:
       context: ./InsuranceAPI
@@ -39,10 +56,11 @@ services:
       - "5084:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings_DefaultConnection=Server=sqlserver;Database=InsuranceDB;User Id=SA;Password=Test_Password@123;Encrypt=True;TrustServerCertificate=True;
-    # depends_on:
-    #   sqlserver:
-    #     condition: service_healthy
+      - ConnectionStrings__DefaultConnection=Host=insurancedb;Port=5432;Database=InsuranceDB;Username=postgres;Password=Frankenstein@123
+    depends_on:
+      insurancedb:
+        condition: service_healthy
 
 volumes:
-  sqlserverdata:
+  vehicleregdbdata:
+  insurancedbdata:

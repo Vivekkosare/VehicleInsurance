@@ -3,8 +3,8 @@ using System;
 using InsuranceAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -17,46 +17,46 @@ namespace InsuranceAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("ProductVersion", "9.0.2")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("InsuranceAPI.Features.Insurance.Entities.Insurance", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("Id");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreatedAt")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasDefaultValueSql("NOW()");
 
                     b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("EndDate");
 
                     b.Property<Guid>("InsuranceProductId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("PersonalIdentificationNumber")
                         .IsRequired()
                         .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)")
+                        .HasColumnType("character varying(12)")
                         .HasColumnName("PersonalIdentificationNumber");
 
                     b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("StartDate");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnUpdate()
-                        .HasColumnType("datetime")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("UpdatedAt")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasDefaultValueSql("NOW()");
 
                     b.HasKey("Id");
 
@@ -69,36 +69,36 @@ namespace InsuranceAPI.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("uuid")
                         .HasColumnName("Id");
 
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)")
+                        .HasColumnType("character varying(15)")
                         .HasColumnName("Code");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreatedAt")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasDefaultValueSql("NOW()");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
+                        .HasColumnType("character varying(50)")
                         .HasColumnName("Name");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("numeric(18,2)")
                         .HasColumnName("Price");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnUpdate()
-                        .HasColumnType("datetime")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("UpdatedAt")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasDefaultValueSql("NOW()");
 
                     b.HasKey("Id");
 

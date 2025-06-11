@@ -16,7 +16,8 @@ public static class CustomerExtensions
         {
             Name = customerInput.Name,
             Email = customerInput.Email,
-            PhoneNumber = customerInput.PhoneNumber
+            PhoneNumber = customerInput.PhoneNumber,
+            PersonalIdentificationNumber = customerInput.PersonalIdentificationNumber
         };
     }
 

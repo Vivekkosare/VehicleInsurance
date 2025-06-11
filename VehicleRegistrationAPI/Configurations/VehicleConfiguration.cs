@@ -31,16 +31,16 @@ public class VehicleConfiguration : IEntityTypeConfiguration<VehicleRegistration
             .HasMaxLength(30);
         builder.Property(v => v.RegistrationDate)
             .IsRequired()
-            .HasColumnType("datetime");
+            .HasColumnType("timestamp with time zone");
 
         builder.Property(c => c.CreatedAt)
             .IsRequired()
-            .HasDefaultValueSql("GETUTCDATE()")
+            .HasDefaultValueSql("NOW()")
             .ValueGeneratedOnAdd();
 
         builder.Property(c => c.UpdatedAt)
             .IsRequired()
-            .HasDefaultValueSql("GETUTCDATE()")
+            .HasDefaultValueSql("NOW()")
             .ValueGeneratedOnUpdate();
 
         builder.HasOne(v => v.Owner)
@@ -62,7 +62,7 @@ public class VehicleConfiguration : IEntityTypeConfiguration<VehicleRegistration
                     Model = "Camry",
                     Year = 2020,
                     Color = "White",
-                    RegistrationDate = new DateTime(2020, 5, 10),
+                    RegistrationDate = DateTime.SpecifyKind(new DateTime(2020, 5, 10), DateTimeKind.Utc),
                     OwnerId = Guid.Parse("ad14152a-55b9-43f1-ac68-e87ecaef702a")
                 },
                 new Vehicle
@@ -74,7 +74,7 @@ public class VehicleConfiguration : IEntityTypeConfiguration<VehicleRegistration
                     Model = "Accord",
                     Year = 2019,
                     Color = "Black",
-                    RegistrationDate = new DateTime(2019, 3, 15),
+                    RegistrationDate = DateTime.SpecifyKind(new DateTime(2019, 3, 15), DateTimeKind.Utc),
                     OwnerId = Guid.Parse("445bdbe0-b8b0-4efb-9540-e5b38ff07a86")
                 },
                 new Vehicle
@@ -86,7 +86,7 @@ public class VehicleConfiguration : IEntityTypeConfiguration<VehicleRegistration
                     Model = "Mustang",
                     Year = 2021,
                     Color = "Red",
-                    RegistrationDate = new DateTime(2021, 7, 20),
+                    RegistrationDate = DateTime.SpecifyKind(new DateTime(2021, 7, 20), DateTimeKind.Utc),
                     OwnerId = Guid.Parse("763ff2cd-55b9-4c0f-ac6c-ff94bc7abdd0")
                 }
             );

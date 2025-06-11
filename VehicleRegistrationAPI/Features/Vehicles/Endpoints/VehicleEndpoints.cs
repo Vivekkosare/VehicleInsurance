@@ -7,7 +7,7 @@ public static class VehicleEndpoints
 {
     public static void MapVehicleEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/vehicles");
+        var group = app.MapGroup("api/v1/vehicles");
         group.WithTags("Vehicles");
 
         /// <summary>

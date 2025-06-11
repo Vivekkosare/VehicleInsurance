@@ -24,24 +24,24 @@ public class InsuranceConfiguration : IEntityTypeConfiguration<Insurance>
         builder.Property(i => i.StartDate)
             .HasColumnName("StartDate")
             .IsRequired()
-            .HasColumnType("datetime");
+            .HasColumnType("timestamp with time zone");
 
         builder.Property(i => i.EndDate)
             .HasColumnName("EndDate")
             .IsRequired()
-            .HasColumnType("datetime");
+            .HasColumnType("timestamp with time zone");
 
         builder.Property(i => i.CreatedAt)
             .HasColumnName("CreatedAt")
             .IsRequired()
-            .HasColumnType("datetime")
-            .HasDefaultValueSql("GETUTCDATE()")
+            .HasColumnType("timestamp with time zone")
+            .HasDefaultValueSql("NOW()")
             .ValueGeneratedOnAdd();
 
         builder.Property(i => i.UpdatedAt)
             .HasColumnName("UpdatedAt")
-            .HasColumnType("datetime")
-            .HasDefaultValueSql("GETUTCDATE()")
+            .HasColumnType("timestamp with time zone")
+            .HasDefaultValueSql("NOW()")
             .ValueGeneratedOnUpdate();
 
         builder.HasOne(i => i.InsuranceProduct)
