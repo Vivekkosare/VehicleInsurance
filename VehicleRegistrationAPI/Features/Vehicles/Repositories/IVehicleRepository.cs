@@ -12,4 +12,6 @@ public interface IVehicleRepository
     Task<bool> VehicleExistsAsync(string registrationNumber);
     Task<IEnumerable<Vehicle>> GetVehiclesByCustomerIdAsync(Guid customerId);
     Task<Vehicle> GetVehicleByRegistrationNumberAsync(string registrationNumber);
+
+    Task<ICollection<Vehicle>> GetVehiclesByPersonalIdentificationNumberAsync(string personalIdentificationNumber);
 }

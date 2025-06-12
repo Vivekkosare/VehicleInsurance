@@ -4,7 +4,7 @@ using VehicleRegistrationAPI.Entities;
 
 namespace VehicleRegistrationAPI.Features.Vehicles.Repositories;
 
-public class VehicleRepository(VehicleRegistrationDbContext dbContext) : IVehicleRepository
+public class VehicleRepository(VehicleRegistrationDbContext dbContext):IVehicleRepository
 {
     public async Task<Vehicle> AddVehicleAsync(Vehicle vehicle)
     {
@@ -125,5 +125,14 @@ public class VehicleRepository(VehicleRegistrationDbContext dbContext) : IVehicl
         }
 
         return dbContext.Vehicles.AnyAsync(v => v.RegistrationNumber == registrationNumber);
+    }
+
+    public async Task<ICollection<Vehicle>> GetVehiclesByPersonalIdentificationNumberAsync(string personalIdentificationNumber)
+    {
+        var vehicles = await dbContext.Vehicles
+            .Include(v => v.Owner)
+            .Where(v => v.Owner.PersonalIdentificationNumber == personalIdentificationNumber)
+            .ToListAsync();
+        return vehicles ?? new List<Vehicle>();
     }
 }

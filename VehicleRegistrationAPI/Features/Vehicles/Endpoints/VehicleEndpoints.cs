@@ -111,5 +111,21 @@ public static class VehicleEndpoints
         .WithName("DeleteVehicle")
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound);
+
+        /// <summary>
+        /// Get all vehicles by Personal Identification Number for a customer.
+        /// </summary>
+        /// <param name="personalIdentificationNumber">The personal identification number of the customer.</param>
+        /// <returns>A list of vehicles associated with the provided personal identification number.</returns>
+        /// <response code="200">Returns a list of vehicles.</response>
+        /// <response code="404">If no vehicles are found for the provided personal identification number.</response>
+        group.MapGet("personal/{personalIdentificationNumber}", async (string personalIdentificationNumber, IVehicleService vehicleService) =>
+        {
+            var vehicles = await vehicleService.GetVehiclesByPersonalIdentificationNumberAsync(personalIdentificationNumber);
+            return vehicles.Any() ? Results.Ok(vehicles) : Results.NotFound();
+        })
+        .WithName("GetVehiclesByPersonalIdentificationNumber")
+        .Produces<IEnumerable<VehicleOutput>>(StatusCodes.Status200OK)
+        .Produces(StatusCodes.Status404NotFound);
     }
 }

@@ -108,4 +108,19 @@ public class VehicleService(IVehicleRepository _vehicleRepo) : IVehicleService
         }
         return await _vehicleRepo.VehicleExistsAsync(registrationNumber);
     }
+
+    public async Task<IEnumerable<VehicleOutput>> GetVehiclesByPersonalIdentificationNumberAsync(string personalIdentificationNumber)
+    {
+        if (string.IsNullOrWhiteSpace(personalIdentificationNumber))
+        {
+            throw new ArgumentException("Personal identification number cannot be null or empty.", nameof(personalIdentificationNumber));
+        }
+        var vehiclesCollectionFromDB =  await _vehicleRepo.GetVehiclesByPersonalIdentificationNumberAsync(personalIdentificationNumber);
+        if (vehiclesCollectionFromDB == null || !vehiclesCollectionFromDB.Any())
+        {
+            throw new KeyNotFoundException($"No vehicles found for personal identification number {personalIdentificationNumber}.");
+        }
+        return vehiclesCollectionFromDB.Select(v => v.ToVehicleOutput());
+
+    }
 }

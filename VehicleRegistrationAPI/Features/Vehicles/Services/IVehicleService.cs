@@ -12,4 +12,5 @@ public interface IVehicleService
     Task<bool> VehicleExistsAsync(string registrationNumber);
     Task<IEnumerable<VehicleOutput>> GetVehiclesByCustomerIdAsync(Guid customerId);
     Task<VehicleOutput> GetVehicleByRegistrationNumberAsync(string registrationNumber);
+    Task<IEnumerable<VehicleOutput>> GetVehiclesByPersonalIdentificationNumberAsync(string personalIdentificationNumber);
 }
