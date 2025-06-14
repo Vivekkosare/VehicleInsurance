@@ -1,11 +1,12 @@
 using InsuranceAPI.DTOs;
+using VehicleInsurance.Shared;
 
 namespace InsuranceAPI.Features.Insurance.Services;
 
 public interface IInsuranceService
 {
-    Task<IEnumerable<Entities.Insurance>> GetAllInsurancesAsync();
-    Task<Entities.Insurance> GetInsuranceByIdAsync(Guid id);
-    Task<Entities.Insurance> AddInsuranceAsync(Entities.Insurance insurance);
-    Task<IEnumerable<InsuranceResponse>> GetInsurancesByPersonalIdentificationNumberAsync(string personalIdentificationNumber);
+    Task<Result<IEnumerable<InsuranceResponse>>> GetAllInsurancesAsync();
+    Task<Result<Entities.Insurance>> GetInsuranceByIdAsync(Guid id);
+    Task<Result<InsuranceResponse>> AddInsuranceAsync(Entities.Insurance insurance);
+    Task<Result<IEnumerable<InsuranceResponse>>> GetInsurancesByPersonalIdentificationNumberAsync(string personalIdentificationNumber);
 }

@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using VehicleInsurance.Shared;
 using VehicleRegistrationAPI.Data;
 using VehicleRegistrationAPI.Entities;
+using VehicleRegistrationAPI.Features.Vehicles.DTOs;
 
 namespace VehicleRegistrationAPI.Features.Vehicles.Repositories;
 
-public class VehicleRepository(VehicleRegistrationDbContext dbContext):IVehicleRepository
+public class VehicleRepository(VehicleRegistrationDbContext dbContext) : IVehicleRepository
 {
     public async Task<Vehicle> AddVehicleAsync(Vehicle vehicle)
     {
@@ -127,12 +129,21 @@ public class VehicleRepository(VehicleRegistrationDbContext dbContext):IVehicleR
         return dbContext.Vehicles.AnyAsync(v => v.RegistrationNumber == registrationNumber);
     }
 
-    public async Task<ICollection<Vehicle>> GetVehiclesByPersonalIdentificationNumberAsync(string personalIdentificationNumber)
+    public async Task<IEnumerable<Vehicle>> GetVehiclesByPersonalIdentificationNumberAsync(string personalIdentificationNumber)
     {
-        var vehicles = await dbContext.Vehicles
+        var vehiclesByOwner = await dbContext.Vehicles
             .Include(v => v.Owner)
             .Where(v => v.Owner.PersonalIdentificationNumber == personalIdentificationNumber)
             .ToListAsync();
-        return vehicles ?? new List<Vehicle>();
+        return vehiclesByOwner ?? new List<Vehicle>();
+    }
+
+    public async Task<IEnumerable<Vehicle>> GetVehiclesByPersonalIdsAsync(PersonIdentifiersRequest personIds)
+    {
+        var vehiclesByOwners = await dbContext.Vehicles
+            .Include(v => v.Owner)
+            .Where(v => personIds.PersonalIdentificationNumbers.Contains(v.Owner.PersonalIdentificationNumber))
+            .ToListAsync();
+        return vehiclesByOwners ?? new List<Vehicle>();
     }
 }

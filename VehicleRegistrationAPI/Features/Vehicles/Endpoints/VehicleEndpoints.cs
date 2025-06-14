@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+using VehicleInsurance.Shared;
 using VehicleRegistrationAPI.Features.Vehicles.DTOs;
 using VehicleRegistrationAPI.Features.Vehicles.Services;
 
@@ -119,12 +121,28 @@ public static class VehicleEndpoints
         /// <returns>A list of vehicles associated with the provided personal identification number.</returns>
         /// <response code="200">Returns a list of vehicles.</response>
         /// <response code="404">If no vehicles are found for the provided personal identification number.</response>
-        group.MapGet("personal/{personalIdentificationNumber}", async (string personalIdentificationNumber, IVehicleService vehicleService) =>
+        group.MapGet("/personal/{personalIdentificationNumber}", async (string personalIdentificationNumber, IVehicleService vehicleService) =>
         {
             var vehicles = await vehicleService.GetVehiclesByPersonalIdentificationNumberAsync(personalIdentificationNumber);
             return vehicles.Any() ? Results.Ok(vehicles) : Results.NotFound();
         })
         .WithName("GetVehiclesByPersonalIdentificationNumber")
+        .Produces<IEnumerable<VehicleOutput>>(StatusCodes.Status200OK)
+        .Produces(StatusCodes.Status404NotFound);
+
+        /// <summary>
+        /// Get all vehicles by multiple personal identifiers.
+        /// </summary>
+        /// <param name="personIds">The request containing multiple personal identifiers.</param>
+        /// <returns>A list of vehicles associated with the provided personal identifiers.</returns>
+        /// <response code="200">Returns a list of vehicles.</response>
+        /// <response code="404">If no vehicles are found for the provided personal identifiers.</response>
+        group.MapPost("/personal/", async ([FromBody] PersonIdentifiersRequest personIds, IVehicleService vehicleService) =>
+        {
+            var vehiclesByOwners = await vehicleService.GetVehiclesByPersonalIdsAsync(personIds);
+            return vehiclesByOwners.Any() ? Results.Ok(vehiclesByOwners) : Results.NotFound();
+        })
+        .WithName("GetVehiclesByPersonalIdentifiers")
         .Produces<IEnumerable<VehicleOutput>>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound);
     }

@@ -26,7 +26,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/VehicleInsurance.Shared.csproj": {
+                "projectPath": "/Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/VehicleInsurance.Shared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -79,6 +83,66 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100-rc.1.24452.12/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/VehicleInsurance.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/VehicleInsurance.Shared.csproj",
+        "projectName": "VehicleInsurance.Shared",
+        "projectPath": "/Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/VehicleInsurance.Shared.csproj",
+        "packagesPath": "/Users/vivekkosare/.nuget/packages/",
+        "outputPath": "/Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/vivekkosare/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

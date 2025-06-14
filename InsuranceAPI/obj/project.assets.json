@@ -1860,6 +1860,16 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "VehicleInsurance.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/VehicleInsurance.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VehicleInsurance.Shared.dll": {}
+        }
       }
     }
   },
@@ -4867,6 +4877,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "VehicleInsurance.Shared/1.0.0": {
+      "type": "project",
+      "path": "../VehicleInsurance.Shared/VehicleInsurance.Shared.csproj",
+      "msbuildProject": "../VehicleInsurance.Shared/VehicleInsurance.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4874,7 +4889,8 @@
       "EFCore.BulkExtensions >= 9.0.1",
       "Microsoft.AspNetCore.OpenApi >= 9.0.0-rc.1.24452.1",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.0",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.3"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.3",
+      "VehicleInsurance.Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4902,7 +4918,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/VehicleInsurance.Shared.csproj": {
+              "projectPath": "/Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/VehicleInsurance.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

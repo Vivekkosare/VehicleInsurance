@@ -1,3 +1,4 @@
+using VehicleInsurance.Shared;
 using VehicleRegistrationAPI.Features.Vehicles.DTOs;
 
 namespace VehicleRegistrationAPI.Features.Vehicles.Services;
@@ -13,4 +14,6 @@ public interface IVehicleService
     Task<IEnumerable<VehicleOutput>> GetVehiclesByCustomerIdAsync(Guid customerId);
     Task<VehicleOutput> GetVehicleByRegistrationNumberAsync(string registrationNumber);
     Task<IEnumerable<VehicleOutput>> GetVehiclesByPersonalIdentificationNumberAsync(string personalIdentificationNumber);
+    Task<IEnumerable<VehicleOutput>> GetVehiclesByPersonalIdsAsync(PersonIdentifiersRequest personIds);
+
 }

@@ -27,6 +27,6 @@ public static class CustomerExtensions
         {
             throw new ArgumentNullException(nameof(customer));
         }
-        return new CustomerOutput(customer.Id, customer.Name, customer.Email, customer.PhoneNumber);
+        return new CustomerOutput(customer.Id, customer.Name, customer.PersonalIdentificationNumber, customer.Email, customer.PhoneNumber);
     }
 }

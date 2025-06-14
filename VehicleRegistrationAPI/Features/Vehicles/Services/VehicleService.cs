@@ -1,3 +1,4 @@
+using VehicleInsurance.Shared;
 using VehicleRegistrationAPI.Features.Vehicles.DTOs;
 using VehicleRegistrationAPI.Features.Vehicles.Extensions;
 using VehicleRegistrationAPI.Features.Vehicles.Repositories;
@@ -122,5 +123,15 @@ public class VehicleService(IVehicleRepository _vehicleRepo) : IVehicleService
         }
         return vehiclesCollectionFromDB.Select(v => v.ToVehicleOutput());
 
+    }
+
+    public async Task<IEnumerable<VehicleOutput>> GetVehiclesByPersonalIdsAsync(PersonIdentifiersRequest personIds)
+    {
+        if (!personIds.PersonalIdentificationNumbers.Any())
+        {
+            throw new ArgumentException("Personal identification numbers cannot be empty.", nameof(personIds.PersonalIdentificationNumbers));
+        }
+        var vehiclesByOwners = await _vehicleRepo.GetVehiclesByPersonalIdsAsync(personIds);
+        return vehiclesByOwners.Select(v => v.ToVehicleOutput());
     }
 }
