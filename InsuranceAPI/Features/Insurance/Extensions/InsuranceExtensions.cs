@@ -26,8 +26,9 @@ public static class InsuranceExtensions
     public static InsuranceResponse ToResponse(this Entities.Insurance insurance)
     {
         return new InsuranceResponse(
+            insurance.Id,
             insurance.PersonalIdentificationNumber,
-            insurance.InsuranceProduct.ToResponse(),
+            insurance.InsuranceProduct?.ToResponse(),
             insurance.StartDate,
             insurance.EndDate, null);
     }

@@ -1,5 +1,5 @@
 using InsuranceAPI.DTOs;
-using VehicleInsurance.Shared;
+using VehicleInsurance.Shared.DTOs;
 
 namespace InsuranceAPI.Features.Insurance.Services;
 

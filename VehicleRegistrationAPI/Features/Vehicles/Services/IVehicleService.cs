@@ -1,4 +1,5 @@
 using VehicleInsurance.Shared;
+using VehicleInsurance.Shared.DTOs;
 using VehicleRegistrationAPI.Features.Vehicles.DTOs;
 
 namespace VehicleRegistrationAPI.Features.Vehicles.Services;

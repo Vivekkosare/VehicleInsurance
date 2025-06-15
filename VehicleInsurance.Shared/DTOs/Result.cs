@@ -1,4 +1,4 @@
-﻿namespace VehicleInsurance.Shared;
+﻿namespace VehicleInsurance.Shared.DTOs;
 
 public class Result<T>
 {

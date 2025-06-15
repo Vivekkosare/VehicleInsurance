@@ -1,4 +1,5 @@
 using VehicleInsurance.Shared;
+using VehicleInsurance.Shared.DTOs;
 using VehicleRegistrationAPI.Entities;
 using VehicleRegistrationAPI.Features.Vehicles.DTOs;
 
@@ -16,5 +17,5 @@ public interface IVehicleRepository
     Task<Vehicle> GetVehicleByRegistrationNumberAsync(string registrationNumber);
 
     Task<IEnumerable<Vehicle>> GetVehiclesByPersonalIdentificationNumberAsync(string personalIdentificationNumber);
-    Task<IEnumerable<Vehicle>> GetVehiclesByPersonalIdsAsync(PersonIdentifiersRequest personIds);
+    Task<IEnumerable<Vehicle>> GetVehiclesByPersonalIdsAsync(VehicleInsurance.Shared.DTOs.PersonIdentifiersRequest personIds);
 }

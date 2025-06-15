@@ -1,8 +1,7 @@
 namespace InsuranceAPI.Features.Insurance.Repositories;
 
-using InsuranceAPI.DTOs;
 using InsuranceAPI.Features.Insurance.Entities;
-using VehicleInsurance.Shared;
+using VehicleInsurance.Shared.DTOs;
 
 public interface IInsuranceRepository
 {
@@ -10,5 +9,6 @@ public interface IInsuranceRepository
     Task<Result<Insurance>> GetInsuranceByIdAsync(Guid id);
     Task<Result<Insurance>> AddInsuranceAsync(Insurance insurance);
     Task<Result<IEnumerable<Insurance>>> GetInsurancesByPersonalIdentificationNumberAsync(string personalIdentificationNumber);
+    Task<Result<InsuranceProduct>> GetInsuranceProductByIdAsync(Guid id);
 
 }

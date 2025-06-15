@@ -2,7 +2,8 @@ using System.Text.Json.Serialization;
 
 namespace InsuranceAPI.DTOs;
 
-public record InsuranceResponse(string PersonalIdentificationNumber,
+public record InsuranceResponse(Guid Id,
+    string PersonalIdentificationNumber,
     InsuranceProductResponse InsuranceProduct,    
     DateTime StartDate,
     DateTime EndDate,

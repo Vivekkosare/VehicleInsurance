@@ -42,6 +42,10 @@ namespace InsuranceAPI.Migrations
                     b.Property<Guid>("InsuranceProductId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("InsuredItem")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("PersonalIdentificationNumber")
                         .IsRequired()
                         .HasMaxLength(12)

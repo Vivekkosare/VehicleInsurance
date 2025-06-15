@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using VehicleRegistrationAPI.Data;
 using VehicleRegistrationAPI.Features.Customers.Endpoints;
 using VehicleRegistrationAPI.Features.Customers.Repositories;
@@ -6,8 +7,13 @@ using VehicleRegistrationAPI.Features.Customers.Services;
 using VehicleRegistrationAPI.Features.Vehicles.Endpoints;
 using VehicleRegistrationAPI.Features.Vehicles.Repositories;
 using VehicleRegistrationAPI.Features.Vehicles.Services;
+using VehicleInsurance.Shared.Extensions;
+using VehicleRegistrationAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Register Serilog for logging
+builder.RegisterSerilog(builder.Configuration);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -19,19 +25,23 @@ builder.Services.AddDbContext<VehicleRegistrationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+//Add and Register the Redis cache service
+builder.Services.AddRedisCache(builder.Configuration);
+
 //Register repositories and services
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<ICustomerService, CustomerService>();
-
-builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
-builder.Services.AddScoped<IVehicleService, VehicleService>();
-
+builder.Services.AddVehicleRegistrationServices();
 
 var app = builder.Build();
 
 //Register the endpoints
 app.MapCustomerEndpoints();
 app.MapVehicleEndpoints();
+
+app.UseExceptionHandler(error =>
+{
+    // Configure the exception handler
+    error.ConfigureExceptionHandler();
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

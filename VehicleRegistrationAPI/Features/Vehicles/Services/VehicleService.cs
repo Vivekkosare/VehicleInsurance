@@ -1,4 +1,4 @@
-using VehicleInsurance.Shared;
+using VehicleInsurance.Shared.DTOs;
 using VehicleRegistrationAPI.Features.Vehicles.DTOs;
 using VehicleRegistrationAPI.Features.Vehicles.Extensions;
 using VehicleRegistrationAPI.Features.Vehicles.Repositories;
@@ -125,7 +125,7 @@ public class VehicleService(IVehicleRepository _vehicleRepo) : IVehicleService
 
     }
 
-    public async Task<IEnumerable<VehicleOutput>> GetVehiclesByPersonalIdsAsync(PersonIdentifiersRequest personIds)
+    public async Task<IEnumerable<VehicleOutput>> GetVehiclesByPersonalIdsAsync(VehicleInsurance.Shared.DTOs.PersonIdentifiersRequest personIds)
     {
         if (!personIds.PersonalIdentificationNumbers.Any())
         {

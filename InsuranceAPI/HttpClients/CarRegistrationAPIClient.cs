@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
 using InsuranceAPI.DTOs;
 using VehicleInsurance.Shared;
+using VehicleInsurance.Shared.DTOs;
 
 namespace InsuranceAPI.HttpClients;
 

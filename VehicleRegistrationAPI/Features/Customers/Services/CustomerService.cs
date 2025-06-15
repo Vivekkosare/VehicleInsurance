@@ -1,69 +1,87 @@
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using VehicleInsurance.Shared.DTOs;
 using VehicleRegistrationAPI.Features.Customers.DTOs;
 using VehicleRegistrationAPI.Features.Customers.Extensions;
 using VehicleRegistrationAPI.Features.Customers.Repositories;
 
 namespace VehicleRegistrationAPI.Features.Customers.Services;
 
-public class CustomerService(ICustomerRepository _customerRepo) : ICustomerService
+public class CustomerService(ICustomerRepository _customerRepo,
+ILogger<CustomerService> _logger) : ICustomerService
 {
-    public async Task<CustomerOutput> AddCustomerAsync(CustomerInput customerInput)
+    public async Task<Result<CustomerOutput>> AddCustomerAsync(CustomerInput customerInput)
     {
         if (customerInput == null)
         {
-            throw new ArgumentNullException(nameof(customerInput));
+            _logger.LogError("Customer input cannot be null.");
+            return Result<CustomerOutput>.Failure("Customer input cannot be null.");
         }
         var customer = customerInput.ToCustomer();
-        if (await _customerRepo.CustomerExistsAsync(customer.Email))
-        {
-            throw new InvalidOperationException($"Customer with email {customer.Email} already exists.");
-        }
-        var newCustomer = await _customerRepo.AddCustomerAsync(customer);
-        return newCustomer.ToCustomerOutput();   
-    }
-    
-   
+        // if (await _customerRepo.CustomerExistsAsync(customer.Email))
+        // {
+        //     _logger.LogError($"Customer with email {customer.Email} already exists.");
+        //     return Result<CustomerOutput>.Failure($"Customer with email {customer.Email} already exists.");
+        // }
 
-    public Task DeleteCustomerAsync(Guid customerId)
+        //Add the customer to the repository
+        var newCustomer = await _customerRepo.AddCustomerAsync(customer);
+        return Result<CustomerOutput>.Success(newCustomer.Value.ToCustomerOutput());
+    }
+
+
+
+    public async Task<Result<bool>> DeleteCustomerAsync(Guid customerId)
     {
         if (customerId == Guid.Empty)
         {
-            throw new ArgumentException("Customer ID cannot be empty.", nameof(customerId));
+            _logger.LogError("Customer ID cannot be empty.");
+            return Result<bool>.Failure("Customer ID cannot be empty.");
         }
-        return _customerRepo.DeleteCustomerAsync(customerId);
+        var iscustomerDeleted = await _customerRepo.DeleteCustomerAsync(customerId);
+        return Result<bool>.Success(iscustomerDeleted);
     }
 
-    public async Task<IEnumerable<CustomerOutput>> GetAllCustomersAsync()
+    public async Task<Result<IEnumerable<CustomerOutput>>> GetAllCustomersAsync()
     {
         var customers = await _customerRepo.GetAllCustomersAsync();
-        return customers.Select(c => c.ToCustomerOutput());
+        return Result<IEnumerable<CustomerOutput>>.Success(customers.Select(c => c.ToCustomerOutput()));
     }
 
-    public async Task<CustomerOutput> GetCustomerByIdAsync(Guid customerId)
+    public async Task<Result<CustomerOutput>> GetCustomerByIdAsync(Guid customerId)
     {
         if (customerId == Guid.Empty)
         {
-            throw new ArgumentException("Customer ID cannot be empty.", nameof(customerId));
+            _logger.LogError("Customer ID cannot be empty.");
+            return Result<CustomerOutput>.Failure("Customer ID cannot be empty.");
         }
         var customer = await _customerRepo.GetCustomerByIdAsync(customerId);
-        return customer.ToCustomerOutput();
+        return Result<CustomerOutput>.Success(customer.ToCustomerOutput());
     }
 
-    public async Task<CustomerOutput> UpdateCustomerAsync(Guid customerId, CustomerInput customer)
+    public async Task<Result<CustomerOutput>> UpdateCustomerAsync(Guid customerId, CustomerInput customer)
     {
         if (customerId == Guid.Empty)
         {
-            throw new ArgumentException("Customer ID cannot be empty.", nameof(customerId));
+            _logger.LogError("Customer ID cannot be empty.");
+            return Result<CustomerOutput>.Failure("Customer ID cannot be empty.");
         }
         if (customer == null)
         {
-            throw new ArgumentNullException(nameof(customer));
+            _logger.LogError("Customer input cannot be null.");
+            return Result<CustomerOutput>.Failure("Customer input cannot be null.");
         }
 
+        //transform the input DTO to the entity and update the customer
         var customerEntity = customer.ToCustomer();
         await _customerRepo.UpdateCustomerAsync(customerId, customerEntity);
+        _logger.LogInformation($"Customer with ID {customerId} updated successfully.");
 
+        //Retrieve the updated customer from the repository
         var updatedCustomer = await _customerRepo.GetCustomerByIdAsync(customerId);
-        return updatedCustomer.ToCustomerOutput();
-        
+        _logger.LogInformation($"Customer with ID {customerId} retrieved successfully after update.");
+
+        return Result<CustomerOutput>.Success(updatedCustomer.ToCustomerOutput());
+
     }
 }

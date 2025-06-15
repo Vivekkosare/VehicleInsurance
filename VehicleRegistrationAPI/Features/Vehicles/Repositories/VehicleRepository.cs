@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using VehicleInsurance.Shared;
+using VehicleInsurance.Shared.DTOs;
 using VehicleRegistrationAPI.Data;
 using VehicleRegistrationAPI.Entities;
 using VehicleRegistrationAPI.Features.Vehicles.DTOs;
@@ -138,7 +139,7 @@ public class VehicleRepository(VehicleRegistrationDbContext dbContext) : IVehicl
         return vehiclesByOwner ?? new List<Vehicle>();
     }
 
-    public async Task<IEnumerable<Vehicle>> GetVehiclesByPersonalIdsAsync(PersonIdentifiersRequest personIds)
+    public async Task<IEnumerable<Vehicle>> GetVehiclesByPersonalIdsAsync(VehicleInsurance.Shared.DTOs.PersonIdentifiersRequest personIds)
     {
         var vehiclesByOwners = await dbContext.Vehicles
             .Include(v => v.Owner)

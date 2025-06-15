@@ -1,6 +1,7 @@
 /Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/bin/Debug/net9.0/VehicleInsurance.Shared.deps.json
 /Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/bin/Debug/net9.0/VehicleInsurance.Shared.dll
 /Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/bin/Debug/net9.0/VehicleInsurance.Shared.pdb
+/Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/obj/Debug/net9.0/VehicleInsurance.Shared.csproj.AssemblyReference.cache
 /Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/obj/Debug/net9.0/VehicleInsurance.Shared.GeneratedMSBuildEditorConfig.editorconfig
 /Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/obj/Debug/net9.0/VehicleInsurance.Shared.AssemblyInfoInputs.cache
 /Users/vivekkosare/Development/VehicleInsurance/VehicleInsurance.Shared/obj/Debug/net9.0/VehicleInsurance.Shared.AssemblyInfo.cs

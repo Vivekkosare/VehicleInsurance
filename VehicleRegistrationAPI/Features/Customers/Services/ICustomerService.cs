@@ -1,12 +1,13 @@
+using VehicleInsurance.Shared.DTOs;
 using VehicleRegistrationAPI.Features.Customers.DTOs;
 
 namespace VehicleRegistrationAPI.Features.Customers.Services;
 
 public interface ICustomerService
 {
-    Task<CustomerOutput> GetCustomerByIdAsync(Guid customerId);
-    Task<IEnumerable<CustomerOutput>> GetAllCustomersAsync();
-    Task<CustomerOutput> AddCustomerAsync(CustomerInput  customerInput);
-    Task<CustomerOutput> UpdateCustomerAsync(Guid customerId, CustomerInput customer);
-    Task DeleteCustomerAsync(Guid customerId);
+    Task<Result<CustomerOutput>> GetCustomerByIdAsync(Guid customerId);
+    Task<Result<IEnumerable<CustomerOutput>>> GetAllCustomersAsync();
+    Task<Result<CustomerOutput>> AddCustomerAsync(CustomerInput customerInput);
+    Task<Result<CustomerOutput>> UpdateCustomerAsync(Guid customerId, CustomerInput customer);
+    Task<Result<bool>> DeleteCustomerAsync(Guid customerId);
 }

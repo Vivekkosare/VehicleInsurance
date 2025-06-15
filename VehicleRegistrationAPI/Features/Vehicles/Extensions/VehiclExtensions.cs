@@ -1,4 +1,5 @@
 using VehicleRegistrationAPI.Entities;
+using VehicleRegistrationAPI.Features.Customers.DTOs;
 using VehicleRegistrationAPI.Features.Customers.Extensions;
 using VehicleRegistrationAPI.Features.Vehicles.DTOs;
 
@@ -8,8 +9,6 @@ public static class VehiclExtensions
 {
     public static VehicleOutput ToVehicleOutput(this Vehicle vehicle)
     {
-        if (vehicle == null) return null;
-
         return new VehicleOutput(
             vehicle.Id,
             vehicle.Name,
@@ -19,13 +18,11 @@ public static class VehiclExtensions
             vehicle.Year,
             vehicle.Color,
             vehicle.RegistrationDate,
-            vehicle.Owner?.ToCustomerOutput());
+            vehicle.Owner.ToCustomerOutput());
     }
 
     public static Vehicle ToVehicleEntity(this VehicleInput vehicleInput)
     {
-        if (vehicleInput == null) return null;
-
         return new Vehicle
         {
             Name = vehicleInput.Name,

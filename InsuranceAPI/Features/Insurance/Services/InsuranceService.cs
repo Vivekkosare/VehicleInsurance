@@ -1,13 +1,14 @@
-using System.Collections.Generic;
 using InsuranceAPI.DTOs;
 using InsuranceAPI.Features.Insurance.Extensions;
 using InsuranceAPI.Features.Insurance.Repositories;
 using InsuranceAPI.HttpClients;
-using VehicleInsurance.Shared;
+using VehicleInsurance.Shared.DTOs;
+using VehicleInsurance.Shared.DTOs;
 namespace InsuranceAPI.Features.Insurance.Services;
 
 public class InsuranceService(IInsuranceRepository _insuranceRepo,
-CarRegistrationAPIClient _apiClient) : IInsuranceService
+CarRegistrationAPIClient _apiClient,
+ILogger<InsuranceService> _logger) : IInsuranceService
 {
     public async Task<Result<InsuranceResponse>> AddInsuranceAsync(Entities.Insurance insurance)
     {
@@ -17,24 +18,40 @@ CarRegistrationAPIClient _apiClient) : IInsuranceService
             {
                 return Result<InsuranceResponse>.Failure("Insurance cannot be null.");
             }
-            var carDetails = await _apiClient.GetCarRegistrationAsync(insurance.PersonalIdentificationNumber);
-            if (carDetails == null)
+            //Validate the insurance product ID if it exists
+            var insuranceProduct = await _insuranceRepo.GetInsuranceProductByIdAsync(insurance.InsuranceProductId);
+            if (!insuranceProduct.IsSuccess || insuranceProduct.Value == null)
             {
-                return Result<InsuranceResponse>.Failure("Car details not found for the provided personal identification number.");
+                _logger.LogError("Insurance product not found for ID: {InsuranceProductId}", insurance.InsuranceProductId);
+                return Result<InsuranceResponse>.Failure(insuranceProduct.Error ?? "Insurance product not found for the provided ID.");
             }
 
+            //Check if the insurace code is CAR and if so, fetch car details
+            // from the Vehicle Registration API using the personal identification number
+            if (insuranceProduct.Value.Code == "CAR")
+            {
+                var carDetails = await _apiClient.GetCarRegistrationAsync(insurance.PersonalIdentificationNumber);
+                if (carDetails == null)
+                {
+                    _logger.LogWarning("Car details not found for personal identification number: {PersonalIdentificationNumber}", insurance.PersonalIdentificationNumber);
+                    return Result<InsuranceResponse>.Failure("Car details not found for the provided personal identification number.");
+                }
+            }
+            //Add the insurance to the repository
             var newInsurance = await _insuranceRepo.AddInsuranceAsync(insurance);
             if (!newInsurance.IsSuccess || newInsurance.Value == null)
             {
+                _logger.LogError("Failed to add insurance: {Error}", newInsurance.Error);
                 return Result<InsuranceResponse>.Failure(newInsurance.Error ?? "Failed to add insurance.");
             }
-            return Result<InsuranceResponse>.Success(newInsurance.Value.ToResponse() with
-            {
-                Car = carDetails.FirstOrDefault()
-            });
+            newInsurance.Value.InsuranceProduct = insuranceProduct.Value;
+            _logger.LogInformation("Insurance with ID {InsuranceId} added successfully.", newInsurance.Value.Id);
+
+            return Result<InsuranceResponse>.Success(newInsurance.Value.ToResponse());
         }
         catch (System.Exception)
         {
+            _logger.LogError("An error occurred while adding the insurance.");
             return Result<InsuranceResponse>.Failure("An error occurred while adding the insurance.");
         }
     }
@@ -46,35 +63,47 @@ CarRegistrationAPIClient _apiClient) : IInsuranceService
     /// <returns></returns>
     public async Task<Result<IEnumerable<InsuranceResponse>>> GetAllInsurancesAsync()
     {
-        var insurances = await _insuranceRepo.GetAllInsurancesAsync();
-        if (!insurances.IsSuccess)
+        try
         {
-            return Result<IEnumerable<InsuranceResponse>>
-                .Failure(insurances.Error ?? "Failed to retrieve insurances.");
-        }
-        var insuranceValue = insurances?.Value ?? Enumerable.Empty<Entities.Insurance>();
-        var carInsurances = insuranceValue
-                        .Where(i => i.InsuranceProduct.Code == "CAR").ToList();
+            var insurances = await _insuranceRepo.GetAllInsurancesAsync();
+            if (!insurances.IsSuccess)
+            {
+                _logger.LogError("Failed to retrieve insurances: {Error}", insurances.Error);
+                return Result<IEnumerable<InsuranceResponse>>
+                    .Failure(insurances.Error ?? "Failed to retrieve insurances.");
+            }
+            var insuranceValue = insurances?.Value ?? Enumerable.Empty<Entities.Insurance>();
+            var carInsurances = insuranceValue
+                            .Where(i => i.InsuranceProduct.Code == "CAR").ToList();
 
-        if (!carInsurances.Any())
+            if (!carInsurances.Any())
+            {
+                _logger.LogInformation("No car insurances. Fetching all insurances without car details.");
+                return Result<IEnumerable<InsuranceResponse>>.Success(insuranceValue
+                    .Select(i => i.ToResponse()));
+            }
+
+            //Make an Http call to Vehicle Registration API to get car details for Car insurances
+            IEnumerable<CarDto> carDetails = await CallAPIForCarRegistrationsAsync(carInsurances);
+
+            //Get car insurances with their corresponding car details
+            var insurancesWithCars = GetCarInsurances(carDetails, carInsurances);
+
+            _logger.LogInformation("Retrieved {Count} car insurances with details.", insurancesWithCars.Count());
+            // Combine insurances without cars and those with cars
+            var totalInsurances = insuranceValue
+                                .Where(i => i.InsuranceProduct.Code != "CAR")
+                                .Select(i => i.ToResponse())
+                                .Concat(insurancesWithCars);
+
+            return Result<IEnumerable<InsuranceResponse>>.Success(totalInsurances);
+        }
+        catch (System.Exception)
         {
-            return Result<IEnumerable<InsuranceResponse>>.Success(insuranceValue
-                .Select(i => i.ToResponse()));
+            _logger.LogError("An error occurred while retrieving insurances.");
+            return Result<IEnumerable<InsuranceResponse>>.Failure("An error occurred while retrieving insurances.");
         }
 
-        //Make an Http call to Vehicle Registration API to get car details for Car insurances
-        IEnumerable<CarDto> carDetails = await CallAPIForCarRegistrationsAsync(carInsurances);
-
-        //Get car insurances with their corresponding car details
-        var insurancesWithCars = GetCarInsurances(carDetails, carInsurances);
-
-        // Combine insurances without cars and those with cars
-        var totalInsurances = insuranceValue
-                            .Where(i => i.InsuranceProduct.Code != "CAR")
-                            .Select(i => i.ToResponse())
-                            .Concat(insurancesWithCars);
-
-        return Result<IEnumerable<InsuranceResponse>>.Success(totalInsurances);
     }
 
     /// <summary>
@@ -93,7 +122,11 @@ CarRegistrationAPIClient _apiClient) : IInsuranceService
             .Distinct()
             .ToArray();
 
-        var personIdentifiersRequest = new PersonIdentifiersRequest(personalIdentificationNumbers);
+        var personIdentifiersRequest = new VehicleInsurance.Shared.DTOs.PersonIdentifiersRequest(personalIdentificationNumbers);
+        _logger.LogInformation("Fetching car registrations for personal identification numbers: {PersonalIdentificationNumbers}",
+            string.Join(", ", personIdentifiersRequest.PersonalIdentificationNumbers));
+
+        // Call the API client to get car registrations by personal identification numbers
         return await _apiClient.GetCarRegistrationsByPersonIdsAsync(personIdentifiersRequest);
     }
 
@@ -107,12 +140,12 @@ CarRegistrationAPIClient _apiClient) : IInsuranceService
         var carDetailsDict = carDetails.ToDictionary(cd => cd.Owner.PersonalIdentificationNumber, cd => cd);
 
         var insurancesWithCars = carInsurances.Select(ci => ci.ToResponse());
-        return insurancesWithCars.Select(i =>
+        return insurancesWithCars.Select(insurance =>
         {
             // For each insurance, try to get the car detail from the dictionary based 
             // on the personal identification number
-            carDetailsDict.TryGetValue(i.PersonalIdentificationNumber, out var carDetail);
-            return i with { Car = carDetail };
+            carDetailsDict.TryGetValue(insurance.PersonalIdentificationNumber, out var carDetail);
+            return insurance with { Car = carDetail };
         });
     }
 
@@ -122,7 +155,24 @@ CarRegistrationAPIClient _apiClient) : IInsuranceService
     /// <param name="id">The unique identifier of the insurance record.</param>
     public async Task<Result<Entities.Insurance>> GetInsuranceByIdAsync(Guid id)
     {
-        return await _insuranceRepo.GetInsuranceByIdAsync(id);
+        try
+        {
+
+            var insurance = await _insuranceRepo.GetInsuranceByIdAsync(id);
+            if (!insurance.IsSuccess)
+            {
+                _logger.LogError("Failed to retrieve insurance by ID {Id}: {Error}", id, insurance.Error);
+                return Result<Entities.Insurance>.Failure(insurance.Error ?? "Failed to retrieve insurance.");
+            }
+            _logger.LogInformation("Successfully retrieved insurance by ID {Id}", id);
+            return Result<Entities.Insurance>.Success(insurance.Value);
+
+        }
+        catch (System.Exception)
+        {
+            _logger.LogError("An error occurred while retrieving the insurance by ID {Id}", id);
+            return Result<Entities.Insurance>.Failure("An error occurred while retrieving the insurance.");
+        }
     }
 
     /// <summary>
@@ -132,27 +182,71 @@ CarRegistrationAPIClient _apiClient) : IInsuranceService
     /// <returns></returns>
     public async Task<Result<IEnumerable<InsuranceResponse>>> GetInsurancesByPersonalIdentificationNumberAsync(string personalIdentificationNumber)
     {
-        List<InsuranceResponse> insuranceResponses = new();
-        var insurances = await _insuranceRepo
-                    .GetInsurancesByPersonalIdentificationNumberAsync(personalIdentificationNumber);
-        if (!insurances.IsSuccess)
+        try
         {
-            return Result<IEnumerable<InsuranceResponse>>.Failure(insurances.Error ?? "Failed to retrieve insurances.");
-        }
 
-        if (insurances.Value != null)
-        {
-            foreach (var insurance in insurances.Value)
+            var insurancesResult = await _insuranceRepo.GetInsurancesByPersonalIdentificationNumberAsync(personalIdentificationNumber);
+            if (!insurancesResult.IsSuccess)
             {
-                var carDetails = insurance.InsuranceProduct.Code == "CAR"
-                    ? await _apiClient.GetCarRegistrationAsync(insurance.PersonalIdentificationNumber)
-                    : null;
-
-                var insuranceResponse = insurance.ToResponse() with { Car = carDetails?.FirstOrDefault() };
-                insuranceResponses.Add(insuranceResponse);
+                return Result<IEnumerable<InsuranceResponse>>.Failure(insurancesResult.Error ?? "Failed to retrieve insurances.");
             }
+
+            var insurances = insurancesResult.Value ?? Enumerable.Empty<Entities.Insurance>();
+            var carInsurances = insurances.Where(i => i.InsuranceProduct.Code == "CAR").ToList();
+            var otherInsurances = insurances.Where(i => i.InsuranceProduct.Code != "CAR").ToList();
+
+            var insuranceResponses = new List<InsuranceResponse>();
+
+            if (carInsurances.Any())
+                insuranceResponses.AddRange(await GetCarInsuranceResponsesAsync(carInsurances, personalIdentificationNumber));
+
+            insuranceResponses.AddRange(GetOtherInsuranceResponses(otherInsurances, personalIdentificationNumber));
+
+            return Result<IEnumerable<InsuranceResponse>>.Success(insuranceResponses);
+        }
+        catch (System.Exception)
+        {
+            _logger.LogError("An error occurred while retrieving insurances for personal identification number: {PersonalIdentificationNumber}", personalIdentificationNumber);
+            return Result<IEnumerable<InsuranceResponse>>.Failure("An error occurred while retrieving insurances.");
+        }
+    }
+
+    private async Task<IEnumerable<InsuranceResponse>> GetCarInsuranceResponsesAsync(
+        List<Entities.Insurance> carInsurances, string personalIdentificationNumber)
+    {
+        var responses = new List<InsuranceResponse>();
+        var carDetails = await _apiClient.GetCarRegistrationAsync(personalIdentificationNumber);
+
+        if (carDetails == null)
+        {
+            _logger.LogWarning("No car details found for personal identification number: {PersonalIdentificationNumber}", personalIdentificationNumber);
+            return responses;
         }
 
-        return Result<IEnumerable<InsuranceResponse>>.Success(insuranceResponses);
+        foreach (var insurance in carInsurances)
+        {
+            var carDetail = carDetails.FirstOrDefault(cd =>
+                cd.Owner.PersonalIdentificationNumber == insurance.PersonalIdentificationNumber &&
+                cd.RegistrationNumber == insurance.InsuredItem);
+
+            var insuranceResponse = insurance.ToResponse() with { Car = carDetail };
+            responses.Add(insuranceResponse);
+        }
+
+        _logger.LogInformation("Retrieved {Count} car insurances with details for personal identification number: {PersonalIdentificationNumber}",
+            carInsurances.Count, personalIdentificationNumber);
+
+        return responses;
+    }
+
+    private IEnumerable<InsuranceResponse> GetOtherInsuranceResponses(
+        List<Entities.Insurance> otherInsurances, string personalIdentificationNumber)
+    {
+        var responses = otherInsurances.Select(insurance => insurance.ToResponse()).ToList();
+
+        _logger.LogInformation("Retrieved {Count} other insurances for personal identification number: {PersonalIdentificationNumber}",
+            responses.Count, personalIdentificationNumber);
+
+        return responses;
     }
 }

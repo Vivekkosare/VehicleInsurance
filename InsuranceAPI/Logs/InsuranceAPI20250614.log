@@ -1,0 +1,88 @@
+2025-06-14 22:56:54.196 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-14 22:56:54.232 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-14 22:56:54.232 +02:00 [INF] Hosting environment: Development
+2025-06-14 22:56:54.232 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-14 22:56:54.448 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-14 22:56:54.537 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-14 22:56:54.548 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 97.0967ms
+2025-06-14 22:56:54.561 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-14 23:00:02.962 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - application/json 215
+2025-06-14 23:00:02.967 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v1/insurances/'
+2025-06-14 23:00:11.714 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1005
+2025-06-14 23:00:11.715 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1005
+2025-06-14 23:00:18.346 +02:00 [INF] Received HTTP response headers after 6629.6853ms - 500
+2025-06-14 23:00:18.347 +02:00 [INF] End processing HTTP request after 6635.9042ms - 500
+2025-06-14 23:00:24.013 +02:00 [ERR] An error occurred while adding the insurance.
+2025-06-14 23:00:24.018 +02:00 [INF] Setting HTTP status code 400.
+2025-06-14 23:00:24.033 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2025-06-14 23:00:24.043 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v1/insurances/'
+2025-06-14 23:00:24.046 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - 400 null application/problem+json 21084.4062ms
+2025-06-14 23:39:26.291 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - application/json 215
+2025-06-14 23:39:26.295 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v1/insurances/'
+2025-06-14 23:39:30.682 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-14 23:39:30.682 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-14 23:39:30.874 +02:00 [INF] Received HTTP response headers after 191.3442ms - 200
+2025-06-14 23:39:30.874 +02:00 [INF] End processing HTTP request after 191.8105ms - 200
+2025-06-14 23:39:39.321 +02:00 [INF] Executed DbCommand (41ms) [Parameters=[@__insurance_PersonalIdentificationNumber_0='?', @__insurance_InsuredItem_1='?', @__insurance_InsuranceProductId_2='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."EndDate", i."InsuranceProductId", i."InsuredItem", i."PersonalIdentificationNumber", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__insurance_PersonalIdentificationNumber_0 AND i."InsuredItem" = @__insurance_InsuredItem_1 AND i."InsuranceProductId" = @__insurance_InsuranceProductId_2
+LIMIT 1
+2025-06-14 23:39:43.867 +02:00 [INF] Executed DbCommand (17ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Insurances" ("Id", "EndDate", "InsuranceProductId", "InsuredItem", "PersonalIdentificationNumber", "StartDate", "UpdatedAt")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6)
+RETURNING "CreatedAt";
+2025-06-14 23:39:44.810 +02:00 [INF] Insurance with ID "01977062-58fb-79bc-8d52-228ad5ecf02d" created successfully.
+2025-06-14 23:39:51.093 +02:00 [ERR] An error occurred while adding the insurance.
+2025-06-14 23:39:55.593 +02:00 [INF] Setting HTTP status code 400.
+2025-06-14 23:39:55.594 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2025-06-14 23:39:55.595 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v1/insurances/'
+2025-06-14 23:39:55.601 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - 400 null application/problem+json 29310.4503ms
+2025-06-14 23:44:19.619 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - application/json 215
+2025-06-14 23:44:19.651 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v1/insurances/'
+2025-06-14 23:44:26.929 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-14 23:44:26.930 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-14 23:44:26.943 +02:00 [INF] Received HTTP response headers after 13.653ms - 200
+2025-06-14 23:44:26.943 +02:00 [INF] End processing HTTP request after 14.2442ms - 200
+2025-06-14 23:45:01.075 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__insurance_PersonalIdentificationNumber_0='?', @__insurance_InsuredItem_1='?', @__insurance_InsuranceProductId_2='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."EndDate", i."InsuranceProductId", i."InsuredItem", i."PersonalIdentificationNumber", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__insurance_PersonalIdentificationNumber_0 AND i."InsuredItem" = @__insurance_InsuredItem_1 AND i."InsuranceProductId" = @__insurance_InsuranceProductId_2
+LIMIT 1
+2025-06-14 23:45:33.635 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Insurances" ("Id", "EndDate", "InsuranceProductId", "InsuredItem", "PersonalIdentificationNumber", "StartDate", "UpdatedAt")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6)
+RETURNING "CreatedAt";
+2025-06-14 23:45:35.527 +02:00 [INF] Insurance with ID "01977067-aabd-77b0-892e-1a011cc277b1" created successfully.
+2025-06-14 23:50:23.930 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-14 23:50:23.967 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-14 23:50:23.968 +02:00 [INF] Hosting environment: Development
+2025-06-14 23:50:23.968 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-14 23:50:24.105 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-14 23:50:24.197 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-14 23:50:24.207 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 101.6904ms
+2025-06-14 23:50:24.220 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-14 23:54:03.196 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - application/json 215
+2025-06-14 23:54:03.202 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v1/insurances/'
+2025-06-14 23:54:07.355 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1002
+2025-06-14 23:54:07.357 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1002
+2025-06-14 23:54:07.547 +02:00 [INF] Received HTTP response headers after 188.0579ms - 200
+2025-06-14 23:54:07.547 +02:00 [INF] End processing HTTP request after 193.5277ms - 200
+2025-06-14 23:54:18.476 +02:00 [INF] Executed DbCommand (37ms) [Parameters=[@__insurance_PersonalIdentificationNumber_0='?', @__insurance_InsuredItem_1='?', @__insurance_InsuranceProductId_2='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."EndDate", i."InsuranceProductId", i."InsuredItem", i."PersonalIdentificationNumber", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__insurance_PersonalIdentificationNumber_0 AND i."InsuredItem" = @__insurance_InsuredItem_1 AND i."InsuranceProductId" = @__insurance_InsuranceProductId_2
+LIMIT 1
+2025-06-14 23:54:23.526 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Insurances" ("Id", "EndDate", "InsuranceProductId", "InsuredItem", "PersonalIdentificationNumber", "StartDate", "UpdatedAt")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6)
+RETURNING "CreatedAt";
+2025-06-14 23:54:24.588 +02:00 [INF] Insurance with ID "0197706f-c58d-7987-ac90-33b99e66f51d" created successfully.
+2025-06-14 23:54:37.526 +02:00 [ERR] An error occurred while adding the insurance.
+2025-06-14 23:54:37.532 +02:00 [INF] Setting HTTP status code 400.
+2025-06-14 23:54:37.543 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2025-06-14 23:54:37.557 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v1/insurances/'
+2025-06-14 23:54:37.563 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - 400 null application/problem+json 34366.6474ms
