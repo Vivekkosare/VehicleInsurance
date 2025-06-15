@@ -10,6 +10,7 @@ public class CustomerRepository(VehicleRegistrationDbContext dbContext,
 ILogger<CustomerRepository> _logger,
 ICacheService _cache) : ICustomerRepository
 {
+    private readonly TimeSpan _cacheTimeout = TimeSpan.FromMinutes(5);
     public async Task<Result<Customer>> AddCustomerAsync(Customer customer)
     {
         if (customer == null)
@@ -50,7 +51,7 @@ ICacheService _cache) : ICustomerRepository
         bool customerExists = await dbContext.Customers.AnyAsync(c => c.Email == email);
 
         // Store the result in cache
-        await _cache.SetAsync(cacheKey, customerExists, TimeSpan.FromMinutes(30));
+        await _cache.SetAsync(cacheKey, customerExists, _cacheTimeout);
         _logger.LogInformation("Customer existence check for email {Email} completed. Exists: {Exists}", email, customerExists);
 
         return Result<bool>.Success(customerExists);
@@ -58,76 +59,109 @@ ICacheService _cache) : ICustomerRepository
 
     public async Task<Result<bool>> DeleteCustomerAsync(Guid customerId)
     {
-        var cacheKey = $"Customer_{customerId}";
-        var customerExistsInCache = await _cache.GetAsync<bool>(cacheKey);
-        if (customerExistsInCache.IsSuccess && !customerExistsInCache.Value)
-        {
-            _logger.LogError($"Customer with ID {customerId} does not exist in cache.");
-            return Result<bool>.Failure($"Customer with ID {customerId} does not exist.");
-        }
-        var customer = await dbContext.Customers.FindAsync(customerId);
-        if (customer == null)
-        {
-            _logger.LogError($"Customer with ID {customerId} not found.");
-            return Result<bool>.Failure($"Customer with ID {customerId} not found.");
-        }
+        //existing customer
+        var customer = await GetCustomerByIdAsync(customerId);
 
-        dbContext.Customers.Remove(customer);
+        dbContext.Customers.Remove(customer.Value);
         await dbContext.SaveChangesAsync();
         _logger.LogInformation("Customer with ID {CustomerId} deleted successfully.", customerId);
 
         // Remove the customer from cache
-        await _cache.RemoveAsync(cacheKey);
+        var existingCustomercacheKey = $"Customer_{customerId}";
+        await _cache.RemoveAsync(existingCustomercacheKey);
         _logger.LogInformation("Customer with ID {CustomerId} removed from cache.", customerId);
 
         // Invalidate the customer existence cache
-        var existenceCacheKey = $"CustomerExists_{customer.Email}";
+        var existenceCacheKey = $"CustomerExists_{customer.Value.Email}";
         await _cache.RemoveAsync(existenceCacheKey);
 
         return Result<bool>.Success(true);
     }
 
-    public async Task<IEnumerable<Customer>> GetAllCustomersAsync()
+    public async Task<Result<IEnumerable<Customer>>> GetAllCustomersAsync()
     {
+        var cacheKey = "AllCustomers";
+        var cachedCustomers = await _cache.GetAsync<IEnumerable<Customer>>(cacheKey);
+        if (cachedCustomers.IsSuccess && cachedCustomers.Value != null)
+        {
+            _logger.LogInformation("Retrieved all customers from cache.");
+            return Result<IEnumerable<Customer>>.Success(cachedCustomers.Value);
+        }
+        _logger.LogInformation("Cache miss for all customers, retrieving from database.");
+
+        // If not in cache, retrieve from the database
         var customers = await dbContext.Customers.ToListAsync();
-        return customers ?? new List<Customer>();
+        if (customers == null || !customers.Any())
+        {
+            _logger.LogInformation("No customers found in the database.");
+            return Result<IEnumerable<Customer>>.Success(new List<Customer>());
+        }
+        _logger.LogInformation("Retrieved {Count} customers from the database.", customers.Count);
+
+        // Cache the customers for future requests
+        await _cache.SetAsync(cacheKey, customers, _cacheTimeout);
+        _logger.LogInformation("Cached all customers for future requests.");
+
+        return Result<IEnumerable<Customer>>.Success(customers);
     }
 
-    public async Task<Customer> GetCustomerByIdAsync(Guid customerId)
+    public async Task<Result<Customer>> GetCustomerByIdAsync(Guid customerId)
     {
-        var customer = await dbContext.Customers.FirstOrDefaultAsync(c => c.Id == customerId);
+        var cacheKey = $"Customer_{customerId}";
+        var customerInCache = await _cache.GetAsync<bool>(cacheKey);
+        if (customerInCache.IsSuccess && !customerInCache.Value)
+        {
+            _logger.LogError($"Customer with ID {customerId} does not exist in cache.");
+            return Result<Customer>.Failure($"Customer with ID {customerId} does not exist.");
+        }
+
+        // If not in cache, retrieve from the database
+        _logger.LogInformation($"Retrieving customer with ID {customerId} from database.");
+        var customer = await dbContext.Customers.FindAsync(customerId);
         if (customer == null)
         {
-            throw new KeyNotFoundException($"Customer with ID {customerId} not found.");
+            _logger.LogError($"Customer with ID {customerId} not found.");
+            return Result<Customer>.Failure($"Customer with ID {customerId} not found.");
         }
-        return customer;
+        _logger.LogInformation($"Customer with ID {customerId} retrieved successfully.");
+
+        // Cache the customer for future requests
+        await _cache.SetAsync(cacheKey, customer, _cacheTimeout);
+        _logger.LogInformation($"Cached customer with ID {customerId} for future requests.");
+
+        return Result<Customer>.Success(customer);
     }
 
-    public async Task<Customer> GetCustomerByEmailAsync(string email)
+
+    public async Task<Result<bool>> UpdateCustomerAsync(Guid customerId, Customer customer)
     {
-        if (string.IsNullOrWhiteSpace(email))
+        var existingCustomer = await GetCustomerByIdAsync(customerId);
+        if (!existingCustomer.IsSuccess && existingCustomer.Value == null)
         {
-            throw new ArgumentException("Email cannot be null or empty.", nameof(email));
+            _logger.LogError($"Customer with ID {customerId} not found for update.");
+            return Result<bool>.Failure($"Customer with ID {customerId} not found.");
         }
 
-        var customer = await dbContext.Customers.FirstOrDefaultAsync(c => c.Email == email);
-        if (customer == null)
-        {
-            throw new KeyNotFoundException($"Customer with email {email} not found.");
-        }
-        return customer;
-    }
+        //Update the existing customer with the new values
+        _logger.LogInformation($"Updating customer with ID {customerId}.");
 
-    public async Task UpdateCustomerAsync(Guid customerId, Customer customer)
-    {
-        var existingCustomer = await dbContext.Customers.FindAsync(customerId);
-        if (existingCustomer == null)
-        {
-            throw new KeyNotFoundException($"Customer with ID {customerId} not found.");
-        }
-        dbContext.Entry(existingCustomer).CurrentValues.SetValues(customer);
-        dbContext.Customers.Update(existingCustomer);
+        dbContext.Entry(existingCustomer.Value).CurrentValues.SetValues(customer);
+        dbContext.Customers.Update(existingCustomer.Value);
         await dbContext.SaveChangesAsync();
+
+        _logger.LogInformation($"Customer with ID {customerId} updated successfully.");
+
+        // Update the customer in cache
+        var cacheKey = $"Customer_{customerId}";
+        await _cache.SetAsync(cacheKey, existingCustomer.Value, _cacheTimeout);
+        _logger.LogInformation($"Cached updated customer with ID {customerId} for future requests.");
+
+        // Invalidate the customer existence cache
+        var existenceCacheKey = $"CustomerExists_{existingCustomer.Value.Email}";
+        await _cache.RemoveAsync(existenceCacheKey);
+        _logger.LogInformation($"Invalidated customer existence cache for email {existingCustomer.Value.Email}.");
+
+        return Result<bool>.Success(true);
 
     }
 }
