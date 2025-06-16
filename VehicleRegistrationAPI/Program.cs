@@ -1,6 +1,7 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.Extensions.Configuration;
 using VehicleRegistrationAPI.Data;
 using VehicleRegistrationAPI.Features.Customers.Endpoints;
@@ -21,11 +22,23 @@ builder.RegisterSerilog(builder.Configuration);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-//Register the DbContext with SQL Server
-builder.Services.AddDbContext<VehicleRegistrationDbContext>(options =>
+// Conditionally register the DbContext with SQL Server or InMemory for tests
+var useInMemory = Environment.GetEnvironmentVariable("USE_INMEMORY_DB") == "true";
+if (useInMemory)
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+    builder.Services.AddDbContext<VehicleRegistrationDbContext>(options =>
+    {
+        options.UseInMemoryDatabase("TestDb");
+    }, ServiceLifetime.Scoped, ServiceLifetime.Scoped);
+}
+else
+{
+    //Register the DbContext with SQL Server
+    builder.Services.AddDbContext<VehicleRegistrationDbContext>(options =>
+    {
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    });
+}
 
 //Add and Register the Redis cache service
 builder.Services.AddRedisCache(builder.Configuration);
@@ -61,3 +74,8 @@ if (app.Environment.IsDevelopment())
 
 
 app.Run();
+
+namespace VehicleRegistrationAPI
+{
+    public partial class Program { }
+}

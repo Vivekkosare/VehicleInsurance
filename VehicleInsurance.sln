@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleInsurance.Shared", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceAPI.Tests", "InsuranceAPI.Tests\InsuranceAPI.Tests.csproj", "{428E87B1-36F0-404F-988C-216BA1BE75F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleRegistrationAPI.Tests", "VehicleRegistrationAPI.Tests\VehicleRegistrationAPI.Tests.csproj", "{8F2674E2-A127-4AFC-9E47-8937B3364DED}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,5 +74,17 @@ Global
 		{428E87B1-36F0-404F-988C-216BA1BE75F8}.Release|x64.Build.0 = Release|Any CPU
 		{428E87B1-36F0-404F-988C-216BA1BE75F8}.Release|x86.ActiveCfg = Release|Any CPU
 		{428E87B1-36F0-404F-988C-216BA1BE75F8}.Release|x86.Build.0 = Release|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Debug|x64.Build.0 = Debug|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Debug|x86.Build.0 = Debug|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Release|x64.ActiveCfg = Release|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Release|x64.Build.0 = Release|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Release|x86.ActiveCfg = Release|Any CPU
+		{8F2674E2-A127-4AFC-9E47-8937B3364DED}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
