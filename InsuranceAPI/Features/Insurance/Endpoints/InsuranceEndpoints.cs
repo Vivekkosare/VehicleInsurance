@@ -1,6 +1,7 @@
 using InsuranceAPI.DTOs;
 using InsuranceAPI.Features.Insurance.Services;
 using Microsoft.AspNetCore.Mvc;
+using FluentValidation;
 
 namespace InsuranceAPI.Features.Insurance.Endpoints;
 
@@ -27,7 +28,7 @@ public static class InsuranceEndpoints
                 );
         })
         .WithName("GetAllInsurances")
-        .Produces<IEnumerable<InsuranceResponse>>(StatusCodes.Status200OK)
+        .Produces<IEnumerable<InsuranceOutput>>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound);
 
 
@@ -46,7 +47,7 @@ public static class InsuranceEndpoints
                 );
         })
         .WithName("GetInsuranceById")
-        .Produces<Entities.Insurance>(StatusCodes.Status200OK)
+        .Produces<InsuranceOutput>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound);
 
 
@@ -55,18 +56,14 @@ public static class InsuranceEndpoints
         /// </summary>
         /// <param name="policyNumber">The policy number of the insurance record.</param>
         /// <returns>An insurance object if found, otherwise a 404 Not Found response.</returns>
-        group.MapPost("/", async ([FromBody] Entities.Insurance insurance, [FromServices] IInsuranceService insuranceService) =>
+        group.MapPost("/", async ([FromBody] InsuranceInput insuranceInput, [FromServices] IInsuranceService insuranceService, [FromServices] IValidator<InsuranceInput> validator) =>
         {
-            if (insurance is null)
+            var validationResult = await validator.ValidateAsync(insuranceInput);
+            if (!validationResult.IsValid)
             {
-                return Results.Problem(
-                    title: "Invalid Insurance Data",
-                    detail: "Insurance cannot be null.",
-                    statusCode: StatusCodes.Status400BadRequest
-                );
+                return Results.ValidationProblem(validationResult.ToDictionary());
             }
-
-            var newInsurance = await insuranceService.AddInsuranceAsync(insurance);
+            var newInsurance = await insuranceService.AddInsuranceAsync(insuranceInput);
             if (newInsurance.IsSuccess && newInsurance.Value != null)
             {
                 return Results.Created($"/api/insurances/{newInsurance.Value.Id}", newInsurance.Value);
@@ -78,7 +75,9 @@ public static class InsuranceEndpoints
             );
         })
         .WithName("AddInsurance")
-        .Produces<Entities.Insurance>(StatusCodes.Status201Created)
+        .Accepts<InsuranceInput>("application/json")
+        .Produces<InsuranceOutput>(StatusCodes.Status201Created)
+        .ProducesValidationProblem()
         .Produces(StatusCodes.Status400BadRequest);
 
 
@@ -100,7 +99,30 @@ public static class InsuranceEndpoints
                 );
         })
         .WithName("GetInsurancesByPersonalIdentificationNumber")
-        .Produces<IEnumerable<Entities.Insurance>>(StatusCodes.Status200OK)
+        .Produces<IEnumerable<InsuranceOutput>>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound);
+
+
+        /// <summary>
+        /// Updates an existing insurance record.
+        /// </summary>
+        /// <param name="id">The unique identifier of the insurance record to update.</param>
+        /// <param name="insuranceInput">The updated insurance data.</param>
+        /// <returns>A 200 OK response if the update is successful, otherwise an error response.</returns>
+        group.MapPut("/{id:guid}", async (Guid id, [FromBody] InsuranceInput insuranceInput, [FromServices] IInsuranceService insuranceService, [FromServices] IValidator<InsuranceInput> validator) =>
+        {
+            var validationResult = await validator.ValidateAsync(insuranceInput);
+            if (!validationResult.IsValid)
+            {
+                return Results.ValidationProblem(validationResult.ToDictionary());
+            }
+            // TODO: Implement update logic using insuranceService
+            return Results.Ok(); // Placeholder
+        })
+        .WithName("UpdateInsurance")
+        .Accepts<InsuranceInput>("application/json")
+        .Produces<InsuranceOutput>(StatusCodes.Status200OK)
+        .ProducesValidationProblem()
+        .Produces(StatusCodes.Status400BadRequest);
     }
 }

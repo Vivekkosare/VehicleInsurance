@@ -3,6 +3,7 @@ using VehicleInsurance.Shared;
 using VehicleInsurance.Shared.DTOs;
 using VehicleRegistrationAPI.Features.Vehicles.DTOs;
 using VehicleRegistrationAPI.Features.Vehicles.Services;
+using FluentValidation;
 
 namespace VehicleRegistrationAPI.Features.Vehicles.Endpoints;
 
@@ -23,11 +24,11 @@ public static class VehicleEndpoints
         group.MapGet("{vehicleId:guid}", async (Guid vehicleId, IVehicleService vehicleService) =>
         {
             var vehicle = await vehicleService.GetVehicleByIdAsync(vehicleId);
-            return vehicle is not null ? Results.Ok(vehicle) : Results.NotFound();
+            return vehicle.IsSuccess ? Results.Ok(vehicle.Value) : Results.Problem(vehicle.Error);
         })
         .WithName("GetVehicleById")
         .Produces<VehicleOutput>(StatusCodes.Status200OK)
-        .Produces(StatusCodes.Status404NotFound);
+        .Produces(StatusCodes.Status500InternalServerError);
 
 
         /// <summary>
@@ -40,11 +41,11 @@ public static class VehicleEndpoints
         group.MapGet("registration/{registrationNumber}", async (string registrationNumber, IVehicleService vehicleService) =>
         {
             var vehicle = await vehicleService.GetVehicleByRegistrationNumberAsync(registrationNumber);
-            return vehicle is not null ? Results.Ok(vehicle) : Results.NotFound();
+            return vehicle.IsSuccess ? Results.Ok(vehicle.Value) : Results.Problem(vehicle.Error);
         })
         .WithName("GetVehicleByRegistrationNumber")
         .Produces<VehicleOutput>(StatusCodes.Status200OK)
-        .Produces(StatusCodes.Status404NotFound);
+        .Produces(StatusCodes.Status500InternalServerError);
 
 
         /// <summary>
@@ -56,10 +57,12 @@ public static class VehicleEndpoints
         group.MapGet("/", async (IVehicleService vehicleService) =>
         {
             var vehicles = await vehicleService.GetAllVehiclesAsync();
-            return Results.Ok(vehicles);
+            return vehicles.IsSuccess ? Results.Ok(vehicles.Value) : Results.Problem(vehicles.Error);
         })
         .WithName("GetAllVehicles")
-        .Produces<IEnumerable<VehicleOutput>>(StatusCodes.Status200OK);
+        .Produces<IEnumerable<VehicleOutput>>(StatusCodes.Status200OK)
+        .Produces(StatusCodes.Status500InternalServerError);
+
 
 
         /// <summary>
@@ -69,15 +72,22 @@ public static class VehicleEndpoints
         /// <returns>The created vehicle object.</returns>
         /// <response code="201">Returns the created vehicle object.</response>
         /// <response code="400">If the input data is invalid.</response>
-        group.MapPost("/add", async (VehicleInput vehicleInput, IVehicleService vehicleService) =>
+        group.MapPost("/add", async (VehicleInput vehicleInput, IVehicleService vehicleService, IValidator<VehicleInput> validator) =>
         {
+            var validationResult = await validator.ValidateAsync(vehicleInput);
+            if (!validationResult.IsValid)
+            {
+                return Results.ValidationProblem(validationResult.ToDictionary());
+            }
             var createdVehicle = await vehicleService.AddVehicleAsync(vehicleInput);
-            return Results.Created($"/vehicles/{createdVehicle.Id}", createdVehicle);
+            return createdVehicle.IsSuccess ? Results.Created($"/vehicles/{createdVehicle.Value.Id}", createdVehicle.Value)
+                        : Results.Problem(createdVehicle.Error);
         })
         .WithName("AddVehicle")
         .Accepts<VehicleInput>("application/json")
         .Produces<VehicleOutput>(StatusCodes.Status201Created)
-        .Produces(StatusCodes.Status400BadRequest);
+        .ProducesValidationProblem()
+        .Produces(StatusCodes.Status500InternalServerError);
 
 
         /// <summary>
@@ -88,15 +98,21 @@ public static class VehicleEndpoints
         /// <returns>The updated vehicle object if successful, otherwise a 404 Not Found response.</returns>
         /// <response code="200">Returns the updated vehicle object.</response>
         /// <response code="404">If the vehicle with the specified ID does not exist.</response>
-        group.MapPut("/{vehicleId:guid}", async (Guid vehicleId, VehicleInput vehicleInput, IVehicleService vehicleService) =>
+        group.MapPut("/{vehicleId:guid}", async (Guid vehicleId, VehicleInput vehicleInput, IVehicleService vehicleService, IValidator<VehicleInput> validator) =>
         {
+            var validationResult = await validator.ValidateAsync(vehicleInput);
+            if (!validationResult.IsValid)
+            {
+                return Results.ValidationProblem(validationResult.ToDictionary());
+            }
             var updatedVehicle = await vehicleService.UpdateVehicleAsync(vehicleId, vehicleInput);
-            return updatedVehicle is not null ? Results.Ok(updatedVehicle) : Results.NotFound();
+            return updatedVehicle.IsSuccess ? Results.Ok(updatedVehicle.Value) : Results.Problem(updatedVehicle.Error);
         })
         .WithName("UpdateVehicle")
         .Accepts<VehicleInput>("application/json")
         .Produces<VehicleOutput>(StatusCodes.Status200OK)
-        .Produces(StatusCodes.Status404NotFound);
+        .ProducesValidationProblem()
+        .Produces(StatusCodes.Status500InternalServerError);
 
 
         /// <summary>
@@ -108,12 +124,12 @@ public static class VehicleEndpoints
         /// <response code="404">If the vehicle with the specified ID does not exist.</response>
         group.MapDelete("/{vehicleId:guid}", async (Guid vehicleId, IVehicleService vehicleService) =>
         {
-            await vehicleService.DeleteVehicleAsync(vehicleId);
-            return Results.NoContent();
+            var vehicleDeleted = await vehicleService.DeleteVehicleAsync(vehicleId);
+            return vehicleDeleted.IsSuccess ? Results.NoContent() : Results.Problem(vehicleDeleted.Error);
         })
         .WithName("DeleteVehicle")
         .Produces(StatusCodes.Status204NoContent)
-        .Produces(StatusCodes.Status404NotFound);
+        .Produces(StatusCodes.Status500InternalServerError);
 
         /// <summary>
         /// Get all vehicles by Personal Identification Number for a customer.
@@ -125,11 +141,11 @@ public static class VehicleEndpoints
         group.MapGet("/personal/{personalIdentificationNumber}", async (string personalIdentificationNumber, IVehicleService vehicleService) =>
         {
             var vehicles = await vehicleService.GetVehiclesByPersonalIdentificationNumberAsync(personalIdentificationNumber);
-            return vehicles.Any() ? Results.Ok(vehicles) : Results.NotFound();
+            return vehicles.IsSuccess ? Results.Ok(vehicles.Value) : Results.Problem(vehicles.Error);
         })
         .WithName("GetVehiclesByPersonalIdentificationNumber")
         .Produces<IEnumerable<VehicleOutput>>(StatusCodes.Status200OK)
-        .Produces(StatusCodes.Status404NotFound);
+        .Produces(StatusCodes.Status500InternalServerError);
 
         /// <summary>
         /// Get all vehicles by multiple personal identifiers.
@@ -141,10 +157,10 @@ public static class VehicleEndpoints
         group.MapPost("/personal/", async ([FromBody] PersonIdentifiersRequest personIds, IVehicleService vehicleService) =>
         {
             var vehiclesByOwners = await vehicleService.GetVehiclesByPersonalIdsAsync(personIds);
-            return vehiclesByOwners.Any() ? Results.Ok(vehiclesByOwners) : Results.NotFound();
+            return vehiclesByOwners.IsSuccess ? Results.Ok(vehiclesByOwners.Value) : Results.Problem(vehiclesByOwners.Error);
         })
         .WithName("GetVehiclesByPersonalIdentifiers")
         .Produces<IEnumerable<VehicleOutput>>(StatusCodes.Status200OK)
-        .Produces(StatusCodes.Status404NotFound);
+        .Produces(StatusCodes.Status500InternalServerError);
     }
 }

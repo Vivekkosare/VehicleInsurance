@@ -10,4 +10,5 @@ public interface ICustomerService
     Task<Result<CustomerOutput>> AddCustomerAsync(CustomerInput customerInput);
     Task<Result<CustomerOutput>> UpdateCustomerAsync(Guid customerId, CustomerInput customer);
     Task<Result<bool>> DeleteCustomerAsync(Guid customerId);
+    Task<Result<CustomerOutput>> GetCustomerByPersonalIdentificationNumberAsync(string personalIdentificationNumber);
 }

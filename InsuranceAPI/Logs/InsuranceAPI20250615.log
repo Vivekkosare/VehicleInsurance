@@ -147,3 +147,19 @@ LIMIT 1
 2025-06-15 11:49:33.816 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
 2025-06-15 11:49:33.817 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v1/insurances/'
 2025-06-15 11:49:33.817 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - 400 null application/problem+json 4365.0664ms
+2025-06-15 20:58:19.931 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-15 20:58:19.961 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-15 20:58:19.961 +02:00 [INF] Hosting environment: Development
+2025-06-15 20:58:19.962 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-15 20:58:20.298 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-15 20:58:20.443 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-15 20:58:20.454 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 166.0923ms
+2025-06-15 20:58:20.476 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-15 21:06:29.133 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-15 21:06:29.162 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-15 21:06:29.162 +02:00 [INF] Hosting environment: Development
+2025-06-15 21:06:29.162 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-15 21:06:29.554 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-15 21:06:29.637 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-15 21:06:29.645 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 91.7891ms
+2025-06-15 21:06:29.655 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404

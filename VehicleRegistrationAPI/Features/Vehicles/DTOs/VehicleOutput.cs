@@ -1,3 +1,4 @@
+using VehicleInsurance.Shared.DTOs;
 using VehicleRegistrationAPI.Features.Customers.DTOs;
 
 namespace VehicleRegistrationAPI.Features.Vehicles.DTOs;

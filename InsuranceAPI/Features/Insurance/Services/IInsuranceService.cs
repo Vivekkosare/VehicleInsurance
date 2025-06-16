@@ -5,8 +5,8 @@ namespace InsuranceAPI.Features.Insurance.Services;
 
 public interface IInsuranceService
 {
-    Task<Result<IEnumerable<InsuranceResponse>>> GetAllInsurancesAsync();
+    Task<Result<IEnumerable<InsuranceOutput>>> GetAllInsurancesAsync();
     Task<Result<Entities.Insurance>> GetInsuranceByIdAsync(Guid id);
-    Task<Result<InsuranceResponse>> AddInsuranceAsync(Entities.Insurance insurance);
-    Task<Result<IEnumerable<InsuranceResponse>>> GetInsurancesByPersonalIdentificationNumberAsync(string personalIdentificationNumber);
+    Task<Result<InsuranceOutput>> AddInsuranceAsync(InsuranceInput insuranceInput);
+    Task<Result<IEnumerable<InsuranceOutput>>> GetInsurancesByPersonalIdentificationNumberAsync(string personalIdentificationNumber);
 }

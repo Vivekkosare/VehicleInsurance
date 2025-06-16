@@ -5,7 +5,7 @@ public static class HttpClientExtensions
     public static IServiceCollection AddVehicleRegistrationAPIHttpClient(this IServiceCollection services,
     IConfiguration configuration)
     {
-        services.AddHttpClient<HttpClients.CarRegistrationAPIClient>()
+        services.AddHttpClient<HttpClients.ICarRegistrationAPIClient, HttpClients.CarRegistrationAPIClient>()
                 .ConfigureHttpClient(client =>
                 {
                     client.BaseAddress = new Uri(configuration.GetValue<string>("VehicleRegistrationAPIUrl") ??

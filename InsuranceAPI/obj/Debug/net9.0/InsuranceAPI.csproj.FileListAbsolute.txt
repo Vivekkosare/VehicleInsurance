@@ -13,6 +13,9 @@
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/EFCore.BulkExtensions.PostgreSql.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/EFCore.BulkExtensions.Sqlite.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/EFCore.BulkExtensions.SqlServer.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/FluentValidation.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/FluentValidation.AspNetCore.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/FluentValidation.DependencyInjectionExtensions.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Humanizer.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/MedallionTopologicalSort.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Microsoft.AspNetCore.OpenApi.dll
@@ -65,6 +68,7 @@
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/NetTopologySuite.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/NetTopologySuite.IO.SpatiaLite.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/NetTopologySuite.IO.SqlServerBytes.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Newtonsoft.Json.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Npgsql.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Oracle.EntityFrameworkCore.dll

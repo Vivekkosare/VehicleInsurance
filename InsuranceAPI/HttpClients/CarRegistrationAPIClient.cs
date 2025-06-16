@@ -5,7 +5,7 @@ using VehicleInsurance.Shared.DTOs;
 
 namespace InsuranceAPI.HttpClients;
 
-public class CarRegistrationAPIClient
+public class CarRegistrationAPIClient : ICarRegistrationAPIClient
 {
     private readonly HttpClient _httpClient;
 
@@ -67,6 +67,32 @@ public class CarRegistrationAPIClient
             throw new InvalidOperationException("Deserialized car object is null.");
         }
         return cars;
+    }
+
+    public async Task<CustomerOutput?> GetCustomerByPersonalIdentificationNumberAsync(string personalIdentificationNumber)
+    {
+        if (string.IsNullOrEmpty(personalIdentificationNumber))
+        {
+            throw new ArgumentException("Personal identification number cannot be null or empty.", nameof(personalIdentificationNumber));
+        }
+        // Use the correct path relative to the base address
+        var response = await _httpClient.GetAsync($"/api/v1/customers/{personalIdentificationNumber}");
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Error fetching customer: {response.ReasonPhrase}");
+        }
+        response.EnsureSuccessStatusCode();
+        var data = await response.Content.ReadAsStringAsync();
+        if (string.IsNullOrEmpty(data))
+        {
+            throw new InvalidOperationException("No customer data found for the provided personal identification number.");
+        }
+        var customer = System.Text.Json.JsonSerializer.Deserialize<CustomerOutput>(data);
+        if (customer == null)
+        {
+            throw new InvalidOperationException("Deserialized customer object is null.");
+        }
+        return customer;
     }
 
 }

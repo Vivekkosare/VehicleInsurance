@@ -11,7 +11,7 @@ ILogger<InsuranceRepository> _logger,
 ICacheService _cache,
 IConfiguration _config) : IInsuranceRepository
 {
-    private readonly TimeSpan _cacheTimeout = TimeSpan.FromMinutes(_config.GetValue<int>("TimeoutInMinutes"));
+    private readonly TimeSpan _cacheTimeout = TimeSpan.FromMinutes(int.TryParse(_config["TimeoutInMinutes"], out var t) ? t : 5);
     public async Task<Result<Entities.Insurance>> AddInsuranceAsync(Entities.Insurance insurance)
     {
         var existingInsurance = await GetExistingInsuranceAsync(insurance);
@@ -23,9 +23,16 @@ IConfiguration _config) : IInsuranceRepository
 
         var newInsurance = await _dbContext.Insurances.AddAsync(insurance);
         await _dbContext.SaveChangesAsync();
+
+        //Reload the Owner and Vehicle entities to ensure they are up-to-date
+        await _dbContext.Entry(newInsurance.Entity).ReloadAsync();
+        _dbContext.Entry(newInsurance.Entity).Reference(i => i.InsuranceProduct).Load();
+
         _logger.LogInformation("Insurance with ID {InsuranceId} created successfully.", newInsurance.Entity.Id);
         return Result<Entities.Insurance>.Success(newInsurance.Entity);
     }
+
+
 
     private async Task<Entities.Insurance?> GetExistingInsuranceAsync(Entities.Insurance insurance)
     {
@@ -46,9 +53,27 @@ IConfiguration _config) : IInsuranceRepository
 
     public async Task<Result<IEnumerable<Entities.Insurance>>> GetAllInsurancesAsync()
     {
+        var cacheKey = "AllInsurances";
+        // Check if the insurances are in cache
+        var cachedInsurances = await _cache.GetAsync<IEnumerable<Entities.Insurance>>(cacheKey);
+        if (cachedInsurances.IsSuccess && cachedInsurances.Value != null)
+        {
+            _logger.LogInformation("Found insurances in cache for key: {CacheKey}", cacheKey);
+            return Result<IEnumerable<Entities.Insurance>>.Success(cachedInsurances.Value);
+        }
+        // If not in cache, retrieve from the database
         var insurances = await _dbContext.Insurances
                         .Include(i => i.InsuranceProduct).ToListAsync();
         _logger.LogInformation("Retrieved {Count} insurances from the database.", insurances.Count);
+        if (insurances == null || !insurances.Any())
+        {
+            _logger.LogWarning("No insurances found in the database.");
+            return Result<IEnumerable<Entities.Insurance>>.Success(Enumerable.Empty<Entities.Insurance>());
+        }
+
+        //set the insurances in cache
+        await _cache.SetAsync(cacheKey, insurances, _cacheTimeout);
+
         return Result<IEnumerable<Entities.Insurance>>.Success(insurances ?? new List<Entities.Insurance>());
     }
 
@@ -65,12 +90,15 @@ IConfiguration _config) : IInsuranceRepository
         }
 
         // If not in cache, retrieve from the database
-        var insurance = await _dbContext.Insurances.FirstOrDefaultAsync(i => i.Id == id);
+        var insurance = await _dbContext.Insurances.FindAsync(id);
         if (insurance == null)
         {
             _logger.LogWarning("Insurance with ID {InsuranceId} not found.", id);
             return Result<Entities.Insurance>.Failure($"Insurance with ID {id} not found.");
         }
+        //Reload the Owner and Vehicle entities to ensure they are up-to-date
+        await _dbContext.Entry(insurance).ReloadAsync();
+        _dbContext.Entry(insurance).Reference(i => i.InsuranceProduct).Load();
         _logger.LogInformation("Insurance with ID {InsuranceId} retrieved successfully.", id);
 
         // Cache the insurance for future requests

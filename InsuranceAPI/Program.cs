@@ -5,6 +5,9 @@ using InsuranceAPI.Features.Insurance.Services;
 using Microsoft.EntityFrameworkCore;
 using InsuranceAPI.ServiceRegistrations;
 using VehicleInsurance.Shared.Extensions;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using InsuranceAPI.Features.Insurance.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,10 +30,12 @@ builder.Services.AddRedisCache(builder.Configuration);
 builder.Services.AddScoped<IInsuranceRepository, InsuranceRepository>();
 builder.Services.AddScoped<IInsuranceService, InsuranceService>();
 
-
 //Register the http client for the Vehicle Registration API
 builder.Services.AddVehicleRegistrationAPIHttpClient(builder.Configuration);
 
+// Register FluentValidation validators for InsuranceInput
+builder.Services.AddValidatorsFromAssemblyContaining<InsuranceInputValidator>();
+builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 
@@ -49,6 +54,5 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.UseHttpsRedirection();
 }
-
 
 app.Run();

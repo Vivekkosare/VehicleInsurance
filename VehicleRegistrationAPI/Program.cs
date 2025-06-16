@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using VehicleRegistrationAPI.Data;
@@ -30,6 +32,13 @@ builder.Services.AddRedisCache(builder.Configuration);
 
 //Register repositories and services
 builder.Services.AddVehicleRegistrationServices();
+
+// Register FluentValidation validators for input DTOs
+builder.Services.AddValidatorsFromAssemblyContaining<VehicleRegistrationAPI.Features.Vehicles.Validators.VehicleInputValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<VehicleRegistrationAPI.Features.Customers.Validators.CustomerInputValidator>();
+
+// Optionally enable automatic validation for minimal APIs
+builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 

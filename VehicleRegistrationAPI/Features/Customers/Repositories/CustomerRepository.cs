@@ -30,6 +30,9 @@ ICacheService _cache) : ICustomerRepository
         await dbContext.SaveChangesAsync();
         _logger.LogInformation("Customer with ID {CustomerId} created successfully.", newCustomer.Entity.Id);
 
+        // Remove all customers cache to ensure the new customer is included in future requests
+        await RemoveAllCustomersCacheAsync();
+
         return Result<Customer>.Success(newCustomer.Entity);
     }
 
@@ -74,6 +77,11 @@ ICacheService _cache) : ICustomerRepository
         // Invalidate the customer existence cache
         var existenceCacheKey = $"CustomerExists_{customer.Value.Email}";
         await _cache.RemoveAsync(existenceCacheKey);
+        _logger.LogInformation("Invalidated customer existence cache for email {Email}.", customer.Value.Email);
+
+        //Remove all customers cache to ensure the deleted customer is not included in future requests
+        await RemoveAllCustomersCacheAsync();
+        _logger.LogInformation("Removed all customers cache after deletion for customer ID {CustomerId}.", customerId);
 
         return Result<bool>.Success(true);
     }
@@ -132,6 +140,34 @@ ICacheService _cache) : ICustomerRepository
         return Result<Customer>.Success(customer);
     }
 
+    public async Task<Result<Customer>> GetCustomerByPersonalIdentificationNumberAsync(string personalIdentificationNumber)
+    {
+        var cacheKey = $"CustomerByPIN_{personalIdentificationNumber}";
+        var customerInCache = await _cache.GetAsync<bool>(cacheKey);
+        if (customerInCache.IsSuccess && !customerInCache.Value)
+        {
+            _logger.LogError($"Customer with personalIdentificationNumber {personalIdentificationNumber} does not exist in cache.");
+            return Result<Customer>.Failure($"Customer with personalIdentificationNumber {personalIdentificationNumber} does not exist.");
+        }
+
+        // If not in cache, retrieve from the database
+        _logger.LogInformation($"Retrieving customer with personalIdentificationNumber {personalIdentificationNumber} from database.");
+        var customer = await dbContext.Customers
+                        .FirstOrDefaultAsync(c => c.PersonalIdentificationNumber == personalIdentificationNumber);
+        if (customer == null)
+        {
+            _logger.LogError($"Customer with personalIdentificationNumber {personalIdentificationNumber} not found.");
+            return Result<Customer>.Failure($"Customer with personalIdentificationNumber {personalIdentificationNumber} not found.");
+        }
+        _logger.LogInformation($"Customer with personalIdentificationNumber {personalIdentificationNumber} retrieved successfully.");
+
+        // Cache the customer for future requests
+        await _cache.SetAsync(cacheKey, customer, _cacheTimeout);
+        _logger.LogInformation($"Cached customer with personalIdentificationNumber {personalIdentificationNumber} for future requests.");
+
+        return Result<Customer>.Success(customer);
+    }
+
 
     public async Task<Result<bool>> UpdateCustomerAsync(Guid customerId, Customer customer)
     {
@@ -161,7 +197,22 @@ ICacheService _cache) : ICustomerRepository
         await _cache.RemoveAsync(existenceCacheKey);
         _logger.LogInformation($"Invalidated customer existence cache for email {existingCustomer.Value.Email}.");
 
+        // Invalidate the customer existence cache
+        await RemoveAllCustomersCacheAsync();
+        _logger.LogInformation($"Removed all customers cache after update for customer ID {customerId}.");
+
         return Result<bool>.Success(true);
 
+    }
+
+    /// <summary>
+    /// Removes all customers from the cache.
+    /// </summary>
+    /// <returns></returns>
+    private async Task RemoveAllCustomersCacheAsync()
+    {
+        var allCustomersCacheKey = "AllCustomers";
+        await _cache.RemoveAsync(allCustomersCacheKey);
+        _logger.LogInformation("Removed all customers cache.");
     }
 }
