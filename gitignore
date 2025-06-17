@@ -4,6 +4,19 @@
 # Ignore bin and obj folders
 **/bin/
 **/obj/
+[Bb]in/
+[Oo]bj/
+
+# Build results
+*.dll
+*.exe
+*.pdb
+*.cache
+*.db
+*.log
+*.TestResults
+TestResults/
+build_output.log
 
 # User-specific files
 *.user
@@ -11,42 +24,29 @@
 *.userosscache
 *.sln.docstates
 
-# Build results
-*.dll
-*.exe
-*.app
-*.log
-
 # VS Code settings
 .vscode/
+.vscode/*
 
 # Rider settings
 .idea/
 
-# NuGet packages
-*.nupkg
-packages/
-.nuget/
-
-# Dotnet tools
-.dotnet/
-
-# Test results
-TestResults/
-*.coverage
-*.coveragexml
-
-# Publish output
-publish/
-out/
+# Visual Studio
+.vs/
+.vs/*
 
 # OS generated files
 .DS_Store
 Thumbs.db
 
+# Docker
+**/Dockerfile
+docker-compose.override.yml
+
 # Others
-*.swp
-*.tmp
-*.bak
-*.orig
-*.rej
+*.ncrunch*
+*.localhistory
+*.resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user

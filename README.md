@@ -105,11 +105,17 @@ docker-compose up --build
 ---
 
 ## Running Locally
-1. Clone the repository
-2. Ensure Docker Desktop is running
-3. Run:
+1. Clone the repository with command 
+   `git clone https://github.com/Vivekkosare/VehicleInsurance.git`
+2. After the repository is cloned, run `cd VehicleInsurance`
+3. Ensure Docker Desktop is running
+4. Run:
    ```sh
    docker-compose up --build
+   ```
+5. Once the build is succeeded run:
+   ```sh
+   docker-compose up
    ```
 4. Use the provided Postman collection (`VehicleInsurance.postman_collection.json`) to test endpoints
 
