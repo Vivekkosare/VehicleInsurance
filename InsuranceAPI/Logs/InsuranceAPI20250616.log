@@ -1917,3 +1917,133 @@ LIMIT 1
 2025-06-16 19:53:19.740 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
 2025-06-16 19:53:19.740 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v1/insurances/'
 2025-06-16 19:53:19.741 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - 400 null application/problem+json 97.0172ms
+2025-06-16 23:43:07.166 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-16 23:43:07.195 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-16 23:43:07.195 +02:00 [INF] Hosting environment: Development
+2025-06-16 23:43:07.195 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-16 23:43:07.441 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-16 23:43:07.507 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-16 23:43:07.562 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 97.3973ms
+2025-06-16 23:43:07.574 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-16 23:44:08.597 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-16 23:44:08.601 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/insurances/'
+2025-06-16 23:44:08.958 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-16 23:44:09.538 +02:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."EndDate", i."InsuranceProductId", i."InsuredItem", i."PersonalIdentificationNumber", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-16 23:44:09.596 +02:00 [INF] Retrieved 8 insurances from the database.
+2025-06-16 23:44:09.638 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-16 23:44:09.642 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-16 23:44:09.643 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1005, PIN1006
+2025-06-16 23:44:09.653 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-16 23:44:09.659 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-16 23:44:09.734 +02:00 [INF] Received HTTP response headers after 72.9178ms - 200
+2025-06-16 23:44:09.736 +02:00 [INF] End processing HTTP request after 83.8134ms - 200
+2025-06-16 23:44:09.752 +02:00 [INF] Retrieved 6 car insurances with details.
+2025-06-16 23:44:09.754 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:44:09.759 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-16 23:44:09.767 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/insurances/'
+2025-06-16 23:44:09.771 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 1174.414ms
+2025-06-16 23:44:26.270 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1023 - null null
+2025-06-16 23:44:26.273 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/insurances/pin/{personalIdentificationNumber}'
+2025-06-16 23:44:26.276 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1023
+2025-06-16 23:44:26.276 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1023
+2025-06-16 23:44:26.281 +02:00 [INF] Received HTTP response headers after 5.3234ms - 200
+2025-06-16 23:44:26.281 +02:00 [INF] End processing HTTP request after 5.6881ms - 200
+2025-06-16 23:44:26.284 +02:00 [INF] No data found in cache for key: Insurances_PIN1023
+2025-06-16 23:44:26.312 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."EndDate", i."InsuranceProductId", i."InsuredItem", i."PersonalIdentificationNumber", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-16 23:44:26.312 +02:00 [WRN] No insurances found for personal identification number PIN1023.
+2025-06-16 23:44:26.313 +02:00 [INF] Setting HTTP status code 404.
+2025-06-16 23:44:26.319 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2025-06-16 23:44:26.320 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/insurances/pin/{personalIdentificationNumber}'
+2025-06-16 23:44:26.321 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1023 - 404 null application/problem+json 51.1282ms
+2025-06-16 23:44:32.651 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1005 - null null
+2025-06-16 23:44:32.652 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/insurances/pin/{personalIdentificationNumber}'
+2025-06-16 23:44:32.660 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1005
+2025-06-16 23:44:32.660 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1005
+2025-06-16 23:44:32.663 +02:00 [INF] Received HTTP response headers after 3.0585ms - 200
+2025-06-16 23:44:32.663 +02:00 [INF] End processing HTTP request after 3.3264ms - 200
+2025-06-16 23:44:32.664 +02:00 [INF] No data found in cache for key: Insurances_PIN1005
+2025-06-16 23:44:32.696 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."EndDate", i."InsuranceProductId", i."InsuredItem", i."PersonalIdentificationNumber", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-16 23:44:32.696 +02:00 [INF] Retrieved 1 insurances for personal identification number PIN1005.
+2025-06-16 23:44:32.697 +02:00 [INF] Setting data in cache for key: Insurances_PIN1005
+2025-06-16 23:44:32.697 +02:00 [INF] Successfully set data in cache for key: Insurances_PIN1005
+2025-06-16 23:44:32.699 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1005
+2025-06-16 23:44:32.699 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1005
+2025-06-16 23:44:32.702 +02:00 [INF] Received HTTP response headers after 3.6877ms - 200
+2025-06-16 23:44:32.702 +02:00 [INF] End processing HTTP request after 3.9128ms - 200
+2025-06-16 23:44:32.703 +02:00 [INF] Retrieved 1 car insurances with details for personal identification number: PIN1005
+2025-06-16 23:44:32.703 +02:00 [INF] Retrieved 0 other insurances for personal identification number: PIN1005
+2025-06-16 23:44:32.703 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:44:32.703 +02:00 [INF] Writing value of type 'List`1' as Json.
+2025-06-16 23:44:32.705 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/insurances/pin/{personalIdentificationNumber}'
+2025-06-16 23:44:32.705 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1005 - 200 null application/json; charset=utf-8 54.1517ms
+2025-06-16 23:44:37.725 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/0197707b-b9f7-7e6b-bf6e-57c7a4c50760 - null null
+2025-06-16 23:44:37.725 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/insurances/{id:guid}'
+2025-06-16 23:44:37.731 +02:00 [INF] No data found in cache for key: Insurance_0197707b-b9f7-7e6b-bf6e-57c7a4c50760
+2025-06-16 23:44:37.744 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."EndDate", i."InsuranceProductId", i."InsuredItem", i."PersonalIdentificationNumber", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:44:37.768 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."EndDate", i."InsuranceProductId", i."InsuredItem", i."PersonalIdentificationNumber", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:44:37.779 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:44:37.780 +02:00 [INF] Insurance with ID "0197707b-b9f7-7e6b-bf6e-57c7a4c50760" retrieved successfully.
+2025-06-16 23:44:37.781 +02:00 [INF] Setting data in cache for key: Insurance_0197707b-b9f7-7e6b-bf6e-57c7a4c50760
+2025-06-16 23:44:37.781 +02:00 [INF] Successfully set data in cache for key: Insurance_0197707b-b9f7-7e6b-bf6e-57c7a4c50760
+2025-06-16 23:44:37.781 +02:00 [INF] Successfully retrieved insurance by ID "0197707b-b9f7-7e6b-bf6e-57c7a4c50760"
+2025-06-16 23:44:37.781 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:44:37.782 +02:00 [INF] Writing value of type 'Insurance' as Json.
+2025-06-16 23:44:37.783 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/insurances/{id:guid}'
+2025-06-16 23:44:37.783 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/0197707b-b9f7-7e6b-bf6e-57c7a4c50760 - 200 null application/json; charset=utf-8 58.4109ms
+2025-06-16 23:44:42.620 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - application/json 215
+2025-06-16 23:44:42.620 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v1/insurances/'
+2025-06-16 23:44:42.659 +02:00 [INF] No data found in cache for key: InsuranceProduct_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-16 23:44:42.663 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__id_0
+LIMIT 1
+2025-06-16 23:44:42.664 +02:00 [INF] Insurance product with ID "ca536771-42b8-4f55-8014-7e98c6c7b060" retrieved successfully.
+2025-06-16 23:44:42.664 +02:00 [INF] Setting data in cache for key: InsuranceProduct_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-16 23:44:42.664 +02:00 [INF] Successfully set data in cache for key: InsuranceProduct_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-16 23:44:42.665 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1006
+2025-06-16 23:44:42.665 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1006
+2025-06-16 23:44:42.667 +02:00 [INF] Received HTTP response headers after 2.8157ms - 200
+2025-06-16 23:44:42.667 +02:00 [INF] End processing HTTP request after 2.9744ms - 200
+2025-06-16 23:44:42.668 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1006
+2025-06-16 23:44:42.668 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1006
+2025-06-16 23:44:42.672 +02:00 [INF] Received HTTP response headers after 3.8241ms - 200
+2025-06-16 23:44:42.672 +02:00 [INF] End processing HTTP request after 3.9835ms - 200
+2025-06-16 23:44:42.674 +02:00 [INF] No data found in cache for key: PIN1006_MEP6371_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-16 23:44:42.681 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__insurance_PersonalIdentificationNumber_0='?', @__insurance_InsuredItem_1='?', @__insurance_InsuranceProductId_2='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."EndDate", i."InsuranceProductId", i."InsuredItem", i."PersonalIdentificationNumber", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__insurance_PersonalIdentificationNumber_0 AND i."InsuredItem" = @__insurance_InsuredItem_1 AND i."InsuranceProductId" = @__insurance_InsuranceProductId_2
+LIMIT 1
+2025-06-16 23:44:42.681 +02:00 [INF] Setting data in cache for key: PIN1006_MEP6371_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-16 23:44:42.682 +02:00 [INF] Successfully set data in cache for key: PIN1006_MEP6371_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-16 23:44:42.682 +02:00 [WRN] Insurance with the same personal identification number, insured item and insurance product already exists.
+2025-06-16 23:44:42.682 +02:00 [ERR] Failed to add insurance: Insurance with the same personal identification number, insuread item and insurance product already exists.
+2025-06-16 23:44:42.682 +02:00 [INF] Setting HTTP status code 400.
+2025-06-16 23:44:42.682 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2025-06-16 23:44:42.682 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v1/insurances/'
+2025-06-16 23:44:42.682 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - 400 null application/problem+json 62.258ms

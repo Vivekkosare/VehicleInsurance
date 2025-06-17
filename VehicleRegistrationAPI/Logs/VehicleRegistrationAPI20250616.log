@@ -4059,3 +4059,331 @@ WHERE c."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
 2025-06-16 19:53:19.721 +02:00 [INF] Writing value of type 'VehicleOutput[]' as Json.
 2025-06-16 19:53:19.726 +02:00 [INF] Executed endpoint 'HTTP: GET api/v1/vehicles/personal/{personalIdentificationNumber}'
 2025-06-16 19:53:19.726 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/personal/PIN1006 - 200 null application/json; charset=utf-8 8.2524ms
+2025-06-16 23:42:58.844 +02:00 [INF] Now listening on: http://localhost:5059
+2025-06-16 23:42:58.872 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-16 23:42:58.872 +02:00 [INF] Hosting environment: Development
+2025-06-16 23:42:58.872 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/VehicleRegistrationAPI
+2025-06-16 23:43:00.256 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers - null null
+2025-06-16 23:43:00.345 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-16 23:43:00.349 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/customers/'
+2025-06-16 23:43:00.628 +02:00 [INF] No data found in cache for key: AllCustomers
+2025-06-16 23:43:00.629 +02:00 [INF] Cache miss for all customers, retrieving from database.
+2025-06-16 23:43:01.224 +02:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+2025-06-16 23:43:01.283 +02:00 [INF] Retrieved 8 customers from the database.
+2025-06-16 23:43:01.324 +02:00 [INF] Setting data in cache for key: AllCustomers
+2025-06-16 23:43:01.327 +02:00 [INF] Successfully set data in cache for key: AllCustomers
+2025-06-16 23:43:01.327 +02:00 [INF] Cached all customers for future requests.
+2025-06-16 23:43:01.328 +02:00 [INF] 8 customers retrieved successfully.
+2025-06-16 23:43:01.329 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:43:01.331 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-16 23:43:01.348 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/customers/'
+2025-06-16 23:43:01.352 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers - 200 null application/json; charset=utf-8 1097.0392ms
+2025-06-16 23:43:14.585 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers/b85483e5-25d2-479a-9d0b-8e80a57484de - null null
+2025-06-16 23:43:14.588 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/customers/{id:guid}'
+2025-06-16 23:43:14.594 +02:00 [INF] No data found in cache for key: Customer_b85483e5-25d2-479a-9d0b-8e80a57484de
+2025-06-16 23:43:14.594 +02:00 [INF] Retrieving customer with ID b85483e5-25d2-479a-9d0b-8e80a57484de from database.
+2025-06-16 23:43:14.687 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+WHERE c."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:43:14.688 +02:00 [INF] Customer with ID b85483e5-25d2-479a-9d0b-8e80a57484de retrieved successfully.
+2025-06-16 23:43:14.688 +02:00 [INF] Setting data in cache for key: Customer_b85483e5-25d2-479a-9d0b-8e80a57484de
+2025-06-16 23:43:14.689 +02:00 [INF] Successfully set data in cache for key: Customer_b85483e5-25d2-479a-9d0b-8e80a57484de
+2025-06-16 23:43:14.689 +02:00 [INF] Cached customer with ID b85483e5-25d2-479a-9d0b-8e80a57484de for future requests.
+2025-06-16 23:43:14.689 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:43:14.689 +02:00 [INF] Writing value of type 'CustomerOutput' as Json.
+2025-06-16 23:43:14.690 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/customers/{id:guid}'
+2025-06-16 23:43:14.690 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers/b85483e5-25d2-479a-9d0b-8e80a57484de - 200 null application/json; charset=utf-8 106.3557ms
+2025-06-16 23:43:17.874 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers/PIN1002 - null null
+2025-06-16 23:43:17.874 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/customers/{personalIdentificationNumber}'
+2025-06-16 23:43:17.882 +02:00 [INF] No data found in cache for key: CustomerByPIN_PIN1002
+2025-06-16 23:43:17.882 +02:00 [INF] Retrieving customer with personalIdentificationNumber PIN1002 from database.
+2025-06-16 23:43:17.921 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+WHERE c."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+LIMIT 1
+2025-06-16 23:43:17.922 +02:00 [INF] Customer with personalIdentificationNumber PIN1002 retrieved successfully.
+2025-06-16 23:43:17.922 +02:00 [INF] Setting data in cache for key: CustomerByPIN_PIN1002
+2025-06-16 23:43:17.922 +02:00 [INF] Successfully set data in cache for key: CustomerByPIN_PIN1002
+2025-06-16 23:43:17.922 +02:00 [INF] Cached customer with personalIdentificationNumber PIN1002 for future requests.
+2025-06-16 23:43:17.922 +02:00 [INF] Customer with personal identification number PIN1002 retrieved successfully.
+2025-06-16 23:43:17.923 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:43:17.923 +02:00 [INF] Writing value of type 'CustomerOutput' as Json.
+2025-06-16 23:43:17.923 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/customers/{personalIdentificationNumber}'
+2025-06-16 23:43:17.923 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers/PIN1002 - 200 null application/json; charset=utf-8 49.3703ms
+2025-06-16 23:43:20.948 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5059/api/v1/customers/add - application/json 149
+2025-06-16 23:43:20.949 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v1/customers/add'
+2025-06-16 23:43:28.954 +02:00 [INF] No data found in cache for key: CustomerExists_marcus.lindgren@example.com
+2025-06-16 23:43:28.968 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Customers" AS c
+    WHERE c."Email" = @__email_0)
+2025-06-16 23:43:28.971 +02:00 [INF] Setting data in cache for key: CustomerExists_marcus.lindgren@example.com
+2025-06-16 23:43:28.972 +02:00 [INF] Successfully set data in cache for key: CustomerExists_marcus.lindgren@example.com
+2025-06-16 23:43:28.972 +02:00 [INF] Customer existence check for email marcus.lindgren@example.com completed. Exists: true
+2025-06-16 23:43:28.973 +02:00 [ERR] Customer with email marcus.lindgren@example.com already exists.
+2025-06-16 23:43:28.973 +02:00 [ERR] Failed to add customer: Customer with email marcus.lindgren@example.com already exists.
+2025-06-16 23:43:28.974 +02:00 [INF] Setting HTTP status code 500.
+2025-06-16 23:43:28.981 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2025-06-16 23:43:28.983 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v1/customers/add'
+2025-06-16 23:43:28.983 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5059/api/v1/customers/add - 500 null application/problem+json 8035.0374ms
+2025-06-16 23:43:36.646 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers - null null
+2025-06-16 23:43:36.647 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/customers/'
+2025-06-16 23:43:36.671 +02:00 [INF] Successfully retrieved data from cache for key: AllCustomers
+2025-06-16 23:43:36.671 +02:00 [INF] Retrieved all customers from cache.
+2025-06-16 23:43:36.671 +02:00 [INF] 8 customers retrieved successfully.
+2025-06-16 23:43:36.672 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:43:36.672 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-16 23:43:36.672 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/customers/'
+2025-06-16 23:43:36.672 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers - 200 null application/json; charset=utf-8 25.8965ms
+2025-06-16 23:43:43.889 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/vehicles - null null
+2025-06-16 23:43:43.889 +02:00 [INF] Executing endpoint 'HTTP: GET api/v1/vehicles/'
+2025-06-16 23:43:43.895 +02:00 [INF] No data found in cache for key: AllVehicles
+2025-06-16 23:43:43.896 +02:00 [INF] Retrieving all vehicles from the database.
+2025-06-16 23:43:43.921 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year", c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Vehicles" AS v
+INNER JOIN "Customers" AS c ON v."OwnerId" = c."Id"
+2025-06-16 23:43:43.945 +02:00 [INF] Setting data in cache for key: AllVehicles
+2025-06-16 23:43:43.945 +02:00 [INF] Successfully set data in cache for key: AllVehicles
+2025-06-16 23:43:43.945 +02:00 [INF] Cached 9 vehicles for future requests.
+2025-06-16 23:43:43.945 +02:00 [INF] 9 vehicles retrieved successfully.
+2025-06-16 23:43:43.946 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:43:43.947 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-16 23:43:43.950 +02:00 [INF] Executed endpoint 'HTTP: GET api/v1/vehicles/'
+2025-06-16 23:43:43.950 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/vehicles - 200 null application/json; charset=utf-8 60.8904ms
+2025-06-16 23:43:49.159 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/5fa8cca5-9612-4cd4-9c7d-a85afdd1c37f - null null
+2025-06-16 23:43:49.159 +02:00 [INF] Executing endpoint 'HTTP: GET api/v1/vehicles/{vehicleId:guid}'
+2025-06-16 23:43:49.165 +02:00 [INF] No data found in cache for key: Vehicle_5fa8cca5-9612-4cd4-9c7d-a85afdd1c37f
+2025-06-16 23:43:49.165 +02:00 [INF] Retrieving vehicle with ID 5fa8cca5-9612-4cd4-9c7d-a85afdd1c37f from the database.
+2025-06-16 23:43:49.170 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year"
+FROM "Vehicles" AS v
+WHERE v."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:43:49.200 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year"
+FROM "Vehicles" AS v
+WHERE v."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:43:49.210 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+WHERE c."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:43:49.211 +02:00 [INF] Vehicle with ID 5fa8cca5-9612-4cd4-9c7d-a85afdd1c37f retrieved successfully.
+2025-06-16 23:43:49.212 +02:00 [INF] Setting data in cache for key: Vehicle_5fa8cca5-9612-4cd4-9c7d-a85afdd1c37f
+2025-06-16 23:43:49.212 +02:00 [INF] Successfully set data in cache for key: Vehicle_5fa8cca5-9612-4cd4-9c7d-a85afdd1c37f
+2025-06-16 23:43:49.212 +02:00 [INF] Cached vehicle with ID 5fa8cca5-9612-4cd4-9c7d-a85afdd1c37f.
+2025-06-16 23:43:49.218 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+WHERE c."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:43:49.218 +02:00 [INF] Vehicle with ID 5fa8cca5-9612-4cd4-9c7d-a85afdd1c37f has owner Charlie Brown.
+2025-06-16 23:43:49.218 +02:00 [INF] Vehicle with ID 5fa8cca5-9612-4cd4-9c7d-a85afdd1c37f retrieved successfully.
+2025-06-16 23:43:49.218 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:43:49.218 +02:00 [INF] Writing value of type 'VehicleOutput' as Json.
+2025-06-16 23:43:49.218 +02:00 [INF] Executed endpoint 'HTTP: GET api/v1/vehicles/{vehicleId:guid}'
+2025-06-16 23:43:49.218 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/5fa8cca5-9612-4cd4-9c7d-a85afdd1c37f - 200 null application/json; charset=utf-8 59.6693ms
+2025-06-16 23:43:51.986 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/registration/ABC1234 - null null
+2025-06-16 23:43:51.988 +02:00 [INF] Executing endpoint 'HTTP: GET api/v1/vehicles/registration/{registrationNumber}'
+2025-06-16 23:43:51.994 +02:00 [INF] No data found in cache for key: Vehicle_ABC1234
+2025-06-16 23:43:51.994 +02:00 [INF] Retrieving vehicle with registration number ABC1234 from the database.
+2025-06-16 23:43:52.000 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__registrationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year", c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Vehicles" AS v
+INNER JOIN "Customers" AS c ON v."OwnerId" = c."Id"
+WHERE v."RegistrationNumber" = @__registrationNumber_0
+LIMIT 1
+2025-06-16 23:43:52.000 +02:00 [INF] Setting data in cache for key: Vehicle_ABC1234
+2025-06-16 23:43:52.001 +02:00 [INF] Successfully set data in cache for key: Vehicle_ABC1234
+2025-06-16 23:43:52.001 +02:00 [INF] Cached vehicle with registration number ABC1234.
+2025-06-16 23:43:52.004 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+WHERE c."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:43:52.005 +02:00 [INF] Vehicle with registration number ABC1234 has owner Alice Johnson.
+2025-06-16 23:43:52.005 +02:00 [INF] Vehicle with registration number ABC1234 retrieved successfully.
+2025-06-16 23:43:52.005 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:43:52.005 +02:00 [INF] Writing value of type 'VehicleOutput' as Json.
+2025-06-16 23:43:52.005 +02:00 [INF] Executed endpoint 'HTTP: GET api/v1/vehicles/registration/{registrationNumber}'
+2025-06-16 23:43:52.005 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/registration/ABC1234 - 200 null application/json; charset=utf-8 19.3317ms
+2025-06-16 23:43:54.838 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5059/api/v1/vehicles/add - application/json 246
+2025-06-16 23:43:54.839 +02:00 [INF] Executing endpoint 'HTTP: POST api/v1/vehicles/add'
+2025-06-16 23:43:54.859 +02:00 [INF] No data found in cache for key: VehicleExists_FRR9572
+2025-06-16 23:43:54.859 +02:00 [INF] Checking if vehicle with registration number FRR9572 exists in the database.
+2025-06-16 23:43:54.862 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__registrationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Vehicles" AS v
+    WHERE v."RegistrationNumber" = @__registrationNumber_0)
+2025-06-16 23:43:54.862 +02:00 [INF] Setting data in cache for key: VehicleExists_FRR9572
+2025-06-16 23:43:54.863 +02:00 [INF] Successfully set data in cache for key: VehicleExists_FRR9572
+2025-06-16 23:43:54.863 +02:00 [INF] Vehicle with registration number FRR9572 exists: True
+2025-06-16 23:43:54.863 +02:00 [INF] Vehicle with registration number FRR9572 exists: True
+2025-06-16 23:43:54.863 +02:00 [ERR] Vehicle with registration number FRR9572 already exists.
+2025-06-16 23:43:54.863 +02:00 [INF] Setting HTTP status code 500.
+2025-06-16 23:43:54.863 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2025-06-16 23:43:54.863 +02:00 [INF] Executed endpoint 'HTTP: POST api/v1/vehicles/add'
+2025-06-16 23:43:54.863 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5059/api/v1/vehicles/add - 500 null application/problem+json 24.7638ms
+2025-06-16 23:43:59.372 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/0197791a-1d79-7b63-ae7e-7508d9ea7cc1 - null null
+2025-06-16 23:43:59.372 +02:00 [INF] Executing endpoint 'HTTP: GET api/v1/vehicles/{vehicleId:guid}'
+2025-06-16 23:43:59.376 +02:00 [INF] No data found in cache for key: Vehicle_0197791a-1d79-7b63-ae7e-7508d9ea7cc1
+2025-06-16 23:43:59.376 +02:00 [INF] Retrieving vehicle with ID 0197791a-1d79-7b63-ae7e-7508d9ea7cc1 from the database.
+2025-06-16 23:43:59.377 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year"
+FROM "Vehicles" AS v
+WHERE v."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:43:59.378 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year"
+FROM "Vehicles" AS v
+WHERE v."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:43:59.379 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+WHERE c."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:43:59.379 +02:00 [INF] Vehicle with ID 0197791a-1d79-7b63-ae7e-7508d9ea7cc1 retrieved successfully.
+2025-06-16 23:43:59.379 +02:00 [INF] Setting data in cache for key: Vehicle_0197791a-1d79-7b63-ae7e-7508d9ea7cc1
+2025-06-16 23:43:59.380 +02:00 [INF] Successfully set data in cache for key: Vehicle_0197791a-1d79-7b63-ae7e-7508d9ea7cc1
+2025-06-16 23:43:59.380 +02:00 [INF] Cached vehicle with ID 0197791a-1d79-7b63-ae7e-7508d9ea7cc1.
+2025-06-16 23:43:59.381 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+WHERE c."Id" = @__p_0
+LIMIT 1
+2025-06-16 23:43:59.381 +02:00 [INF] Vehicle with ID 0197791a-1d79-7b63-ae7e-7508d9ea7cc1 has owner Bob Smith.
+2025-06-16 23:43:59.381 +02:00 [INF] Vehicle with ID 0197791a-1d79-7b63-ae7e-7508d9ea7cc1 retrieved successfully.
+2025-06-16 23:43:59.381 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:43:59.381 +02:00 [INF] Writing value of type 'VehicleOutput' as Json.
+2025-06-16 23:43:59.381 +02:00 [INF] Executed endpoint 'HTTP: GET api/v1/vehicles/{vehicleId:guid}'
+2025-06-16 23:43:59.382 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/0197791a-1d79-7b63-ae7e-7508d9ea7cc1 - 200 null application/json; charset=utf-8 9.8569ms
+2025-06-16 23:44:02.807 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/personal/PIN1002 - null null
+2025-06-16 23:44:02.807 +02:00 [INF] Executing endpoint 'HTTP: GET api/v1/vehicles/personal/{personalIdentificationNumber}'
+2025-06-16 23:44:02.810 +02:00 [INF] No data found in cache for key: VehiclesByPIN_PIN1002
+2025-06-16 23:44:02.810 +02:00 [INF] Retrieving vehicles for personal identification number PIN1002 from the database.
+2025-06-16 23:44:02.815 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year", c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Vehicles" AS v
+INNER JOIN "Customers" AS c ON v."OwnerId" = c."Id"
+WHERE c."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-16 23:44:02.816 +02:00 [INF] Setting data in cache for key: VehiclesByPIN_PIN1002
+2025-06-16 23:44:02.816 +02:00 [INF] Successfully set data in cache for key: VehiclesByPIN_PIN1002
+2025-06-16 23:44:02.816 +02:00 [INF] Cached vehicles for personal identification number PIN1002.
+2025-06-16 23:44:02.816 +02:00 [INF] 2 vehicles retrieved for personal identification number PIN1002.
+2025-06-16 23:44:02.816 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:44:02.816 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-16 23:44:02.817 +02:00 [INF] Executed endpoint 'HTTP: GET api/v1/vehicles/personal/{personalIdentificationNumber}'
+2025-06-16 23:44:02.817 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/personal/PIN1002 - 200 null application/json; charset=utf-8 10.0427ms
+2025-06-16 23:44:09.678 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5059/api/v1/vehicles/personal/ - application/json; charset=utf-8 null
+2025-06-16 23:44:09.678 +02:00 [INF] Executing endpoint 'HTTP: POST api/v1/vehicles/personal/'
+2025-06-16 23:44:09.684 +02:00 [INF] No data found in cache for key: VehiclesByPersonIds_PIN1001,PIN1002,PIN1005,PIN1006
+2025-06-16 23:44:09.684 +02:00 [INF] Retrieving vehicles for personal identification numbers PIN1001, PIN1002, PIN1005, PIN1006 from the database.
+2025-06-16 23:44:09.729 +02:00 [INF] Executed DbCommand (28ms) [Parameters=[@__personIds_PersonalIdentificationNumbers_0='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year", c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Vehicles" AS v
+INNER JOIN "Customers" AS c ON v."OwnerId" = c."Id"
+WHERE c."PersonalIdentificationNumber" = ANY (@__personIds_PersonalIdentificationNumbers_0)
+2025-06-16 23:44:09.730 +02:00 [INF] Setting data in cache for key: VehiclesByPersonIds_PIN1001,PIN1002,PIN1005,PIN1006
+2025-06-16 23:44:09.730 +02:00 [INF] Successfully set data in cache for key: VehiclesByPersonIds_PIN1001,PIN1002,PIN1005,PIN1006
+2025-06-16 23:44:09.730 +02:00 [INF] Cached vehicles for personal identification numbers PIN1001, PIN1002, PIN1005, PIN1006.
+2025-06-16 23:44:09.730 +02:00 [INF] 8 vehicles retrieved for the provided personal identification numbers.
+2025-06-16 23:44:09.730 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:44:09.730 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-16 23:44:09.731 +02:00 [INF] Executed endpoint 'HTTP: POST api/v1/vehicles/personal/'
+2025-06-16 23:44:09.731 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5059/api/v1/vehicles/personal/ - 200 null application/json; charset=utf-8 52.3371ms
+2025-06-16 23:44:26.277 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers/PIN1023 - null null
+2025-06-16 23:44:26.277 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/customers/{personalIdentificationNumber}'
+2025-06-16 23:44:26.277 +02:00 [INF] No data found in cache for key: CustomerByPIN_PIN1023
+2025-06-16 23:44:26.278 +02:00 [INF] Retrieving customer with personalIdentificationNumber PIN1023 from database.
+2025-06-16 23:44:26.279 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+WHERE c."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+LIMIT 1
+2025-06-16 23:44:26.280 +02:00 [INF] Customer with personalIdentificationNumber PIN1023 retrieved successfully.
+2025-06-16 23:44:26.280 +02:00 [INF] Setting data in cache for key: CustomerByPIN_PIN1023
+2025-06-16 23:44:26.280 +02:00 [INF] Successfully set data in cache for key: CustomerByPIN_PIN1023
+2025-06-16 23:44:26.280 +02:00 [INF] Cached customer with personalIdentificationNumber PIN1023 for future requests.
+2025-06-16 23:44:26.280 +02:00 [INF] Customer with personal identification number PIN1023 retrieved successfully.
+2025-06-16 23:44:26.280 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:44:26.280 +02:00 [INF] Writing value of type 'CustomerOutput' as Json.
+2025-06-16 23:44:26.281 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/customers/{personalIdentificationNumber}'
+2025-06-16 23:44:26.281 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers/PIN1023 - 200 null application/json; charset=utf-8 3.8754ms
+2025-06-16 23:44:32.661 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers/PIN1005 - null null
+2025-06-16 23:44:32.661 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/customers/{personalIdentificationNumber}'
+2025-06-16 23:44:32.661 +02:00 [INF] No data found in cache for key: CustomerByPIN_PIN1005
+2025-06-16 23:44:32.661 +02:00 [INF] Retrieving customer with personalIdentificationNumber PIN1005 from database.
+2025-06-16 23:44:32.662 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+WHERE c."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+LIMIT 1
+2025-06-16 23:44:32.663 +02:00 [INF] Customer with personalIdentificationNumber PIN1005 retrieved successfully.
+2025-06-16 23:44:32.663 +02:00 [INF] Setting data in cache for key: CustomerByPIN_PIN1005
+2025-06-16 23:44:32.663 +02:00 [INF] Successfully set data in cache for key: CustomerByPIN_PIN1005
+2025-06-16 23:44:32.663 +02:00 [INF] Cached customer with personalIdentificationNumber PIN1005 for future requests.
+2025-06-16 23:44:32.663 +02:00 [INF] Customer with personal identification number PIN1005 retrieved successfully.
+2025-06-16 23:44:32.663 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:44:32.663 +02:00 [INF] Writing value of type 'CustomerOutput' as Json.
+2025-06-16 23:44:32.663 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/customers/{personalIdentificationNumber}'
+2025-06-16 23:44:32.663 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers/PIN1005 - 200 null application/json; charset=utf-8 2.2907ms
+2025-06-16 23:44:32.699 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/personal/PIN1005 - null null
+2025-06-16 23:44:32.699 +02:00 [INF] Executing endpoint 'HTTP: GET api/v1/vehicles/personal/{personalIdentificationNumber}'
+2025-06-16 23:44:32.699 +02:00 [INF] No data found in cache for key: VehiclesByPIN_PIN1005
+2025-06-16 23:44:32.700 +02:00 [INF] Retrieving vehicles for personal identification number PIN1005 from the database.
+2025-06-16 23:44:32.701 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year", c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Vehicles" AS v
+INNER JOIN "Customers" AS c ON v."OwnerId" = c."Id"
+WHERE c."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-16 23:44:32.702 +02:00 [INF] Setting data in cache for key: VehiclesByPIN_PIN1005
+2025-06-16 23:44:32.702 +02:00 [INF] Successfully set data in cache for key: VehiclesByPIN_PIN1005
+2025-06-16 23:44:32.702 +02:00 [INF] Cached vehicles for personal identification number PIN1005.
+2025-06-16 23:44:32.702 +02:00 [INF] 2 vehicles retrieved for personal identification number PIN1005.
+2025-06-16 23:44:32.702 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:44:32.702 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-16 23:44:32.702 +02:00 [INF] Executed endpoint 'HTTP: GET api/v1/vehicles/personal/{personalIdentificationNumber}'
+2025-06-16 23:44:32.702 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/personal/PIN1005 - 200 null application/json; charset=utf-8 3.2195ms
+2025-06-16 23:44:42.665 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers/PIN1006 - null null
+2025-06-16 23:44:42.665 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/customers/{personalIdentificationNumber}'
+2025-06-16 23:44:42.666 +02:00 [INF] No data found in cache for key: CustomerByPIN_PIN1006
+2025-06-16 23:44:42.666 +02:00 [INF] Retrieving customer with personalIdentificationNumber PIN1006 from database.
+2025-06-16 23:44:42.666 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+WHERE c."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+LIMIT 1
+2025-06-16 23:44:42.667 +02:00 [INF] Customer with personalIdentificationNumber PIN1006 retrieved successfully.
+2025-06-16 23:44:42.667 +02:00 [INF] Setting data in cache for key: CustomerByPIN_PIN1006
+2025-06-16 23:44:42.667 +02:00 [INF] Successfully set data in cache for key: CustomerByPIN_PIN1006
+2025-06-16 23:44:42.667 +02:00 [INF] Cached customer with personalIdentificationNumber PIN1006 for future requests.
+2025-06-16 23:44:42.667 +02:00 [INF] Customer with personal identification number PIN1006 retrieved successfully.
+2025-06-16 23:44:42.667 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:44:42.667 +02:00 [INF] Writing value of type 'CustomerOutput' as Json.
+2025-06-16 23:44:42.667 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/customers/{personalIdentificationNumber}'
+2025-06-16 23:44:42.667 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers/PIN1006 - 200 null application/json; charset=utf-8 2.2545ms
+2025-06-16 23:44:42.668 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/personal/PIN1006 - null null
+2025-06-16 23:44:42.668 +02:00 [INF] Executing endpoint 'HTTP: GET api/v1/vehicles/personal/{personalIdentificationNumber}'
+2025-06-16 23:44:42.669 +02:00 [INF] No data found in cache for key: VehiclesByPIN_PIN1006
+2025-06-16 23:44:42.669 +02:00 [INF] Retrieving vehicles for personal identification number PIN1006 from the database.
+2025-06-16 23:44:42.669 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year", c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Vehicles" AS v
+INNER JOIN "Customers" AS c ON v."OwnerId" = c."Id"
+WHERE c."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-16 23:44:42.670 +02:00 [WRN] No vehicles found for personal identification number PIN1006.
+2025-06-16 23:44:42.670 +02:00 [INF] No vehicles found for personal identification number PIN1006.
+2025-06-16 23:44:42.670 +02:00 [INF] Setting HTTP status code 200.
+2025-06-16 23:44:42.670 +02:00 [INF] Writing value of type 'VehicleOutput[]' as Json.
+2025-06-16 23:44:42.671 +02:00 [INF] Executed endpoint 'HTTP: GET api/v1/vehicles/personal/{personalIdentificationNumber}'
+2025-06-16 23:44:42.671 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/personal/PIN1006 - 200 null application/json; charset=utf-8 3.3968ms

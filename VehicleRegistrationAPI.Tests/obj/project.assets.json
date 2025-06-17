@@ -1981,19 +1981,19 @@
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
         }
       },
-      "StackExchange.Redis/2.7.27": {
+      "StackExchange.Redis/2.8.41": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
           "Pipelines.Sockets.Unofficial": "2.2.8"
         },
         "compile": {
-          "lib/net6.0/StackExchange.Redis.dll": {
+          "lib/net8.0/StackExchange.Redis.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/StackExchange.Redis.dll": {
+          "lib/net8.0/StackExchange.Redis.dll": {
             "related": ".xml"
           }
         }
@@ -2425,7 +2425,8 @@
           "Microsoft.AspNetCore.Mvc.Core": "2.3.0",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.6",
           "Newtonsoft.Json": "13.0.3",
-          "Serilog.AspNetCore": "9.0.0"
+          "Serilog.AspNetCore": "9.0.0",
+          "StackExchange.Redis": "2.8.41"
         },
         "compile": {
           "bin/placeholder/VehicleInsurance.Shared.dll": {}
@@ -4717,24 +4718,27 @@
         "sqlitepclraw.core.nuspec"
       ]
     },
-    "StackExchange.Redis/2.7.27": {
-      "sha512": "Uqc2OQHglqj9/FfGQ6RkKFkZfHySfZlfmbCl+hc+u2I/IqunfelQ7QJi7ZhvAJxUtu80pildVX6NPLdDaUffOw==",
+    "StackExchange.Redis/2.8.41": {
+      "sha512": "EgtQzlucry9V2Gces1K19Xi8Sz/8DfoZlGQEmL/hSM/SXO/ucDS5RPmLzcmT489ZNGFbj9CGhlpscPLOXtYWwA==",
       "type": "package",
-      "path": "stackexchange.redis/2.7.27",
+      "path": "stackexchange.redis/2.8.41",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "lib/net461/StackExchange.Redis.dll",
         "lib/net461/StackExchange.Redis.xml",
         "lib/net472/StackExchange.Redis.dll",
         "lib/net472/StackExchange.Redis.xml",
         "lib/net6.0/StackExchange.Redis.dll",
         "lib/net6.0/StackExchange.Redis.xml",
+        "lib/net8.0/StackExchange.Redis.dll",
+        "lib/net8.0/StackExchange.Redis.xml",
         "lib/netcoreapp3.1/StackExchange.Redis.dll",
         "lib/netcoreapp3.1/StackExchange.Redis.xml",
         "lib/netstandard2.0/StackExchange.Redis.dll",
         "lib/netstandard2.0/StackExchange.Redis.xml",
-        "stackexchange.redis.2.7.27.nupkg.sha512",
+        "stackexchange.redis.2.8.41.nupkg.sha512",
         "stackexchange.redis.nuspec"
       ]
     },

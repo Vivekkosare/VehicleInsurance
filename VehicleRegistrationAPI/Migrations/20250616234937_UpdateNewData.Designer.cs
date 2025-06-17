@@ -12,15 +12,15 @@ using VehicleRegistrationAPI.Data;
 namespace VehicleRegistrationAPI.Migrations
 {
     [DbContext(typeof(VehicleRegistrationDbContext))]
-    [Migration("20250611095444_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250616234937_UpdateNewData")]
+    partial class UpdateNewData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.2")
+                .HasAnnotation("ProductVersion", "9.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);

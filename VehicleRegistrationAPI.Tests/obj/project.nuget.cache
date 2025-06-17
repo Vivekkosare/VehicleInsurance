@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8RQwO26JUhE=",
+  "dgSpecHash": "qdS+M7p9CVg=",
   "success": true,
   "projectFilePath": "/Users/vivekkosare/Development/VehicleInsurance/VehicleRegistrationAPI.Tests/VehicleRegistrationAPI.Tests.csproj",
   "expectedPackageFiles": [
@@ -102,7 +102,7 @@
     "/Users/vivekkosare/.nuget/packages/serilog.sinks.debug/3.0.0/serilog.sinks.debug.3.0.0.nupkg.sha512",
     "/Users/vivekkosare/.nuget/packages/serilog.sinks.file/6.0.0/serilog.sinks.file.6.0.0.nupkg.sha512",
     "/Users/vivekkosare/.nuget/packages/sqlitepclraw.core/2.1.10/sqlitepclraw.core.2.1.10.nupkg.sha512",
-    "/Users/vivekkosare/.nuget/packages/stackexchange.redis/2.7.27/stackexchange.redis.2.7.27.nupkg.sha512",
+    "/Users/vivekkosare/.nuget/packages/stackexchange.redis/2.8.41/stackexchange.redis.2.8.41.nupkg.sha512",
     "/Users/vivekkosare/.nuget/packages/system.buffers/4.6.0/system.buffers.4.6.0.nupkg.sha512",
     "/Users/vivekkosare/.nuget/packages/system.clientmodel/1.0.0/system.clientmodel.1.0.0.nupkg.sha512",
     "/Users/vivekkosare/.nuget/packages/system.configuration.configurationmanager/9.0.0/system.configuration.configurationmanager.9.0.0.nupkg.sha512",

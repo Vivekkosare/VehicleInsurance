@@ -67,6 +67,41 @@ namespace InsuranceAPI.Migrations
                     b.HasIndex("InsuranceProductId");
 
                     b.ToTable("Insurances", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a1e1b2c3-d4e5-4f6a-8b7c-9d0e1f2a3b4c"),
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EndDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InsuranceProductId = new Guid("ca536771-42b8-4f55-8014-7e98c6c7b060"),
+                            InsuredItem = "Car",
+                            PersonalIdentificationNumber = "PIN1001",
+                            StartDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            UpdatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = new Guid("b2e2c3d4-e5f6-4a8b-7c9d-0e1f2a3b4c5d"),
+                            CreatedAt = new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EndDate = new DateTime(2025, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InsuranceProductId = new Guid("def55e24-40c9-4234-825a-bbf4319fc79b"),
+                            InsuredItem = "Health",
+                            PersonalIdentificationNumber = "PIN1002",
+                            StartDate = new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            UpdatedAt = new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = new Guid("c3d4e5f6-a8b7-4c9d-0e1f-2a3b4c5d6e7f"),
+                            CreatedAt = new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EndDate = new DateTime(2025, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InsuranceProductId = new Guid("b43c53a0-1c57-4c9c-94a1-673d7db31fcf"),
+                            InsuredItem = "Pet",
+                            PersonalIdentificationNumber = "PIN1003",
+                            StartDate = new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            UpdatedAt = new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        });
                 });
 
             modelBuilder.Entity("InsuranceAPI.Features.Insurance.Entities.InsuranceProduct", b =>

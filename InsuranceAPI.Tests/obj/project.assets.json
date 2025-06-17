@@ -1344,6 +1344,48 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "Microsoft.Extensions.Http/9.0.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.6",
+          "Microsoft.Extensions.Diagnostics": "9.0.6",
+          "Microsoft.Extensions.Logging": "9.0.6",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.6",
+          "Microsoft.Extensions.Options": "9.0.6"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.Extensions.Http.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Http.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Http.Polly/9.0.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Http": "9.0.6",
+          "Polly": "7.2.4",
+          "Polly.Extensions.Http": "3.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.Polly.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.Polly.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Logging/9.0.6": {
         "type": "package",
         "dependencies": {
@@ -2217,6 +2259,35 @@
           }
         }
       },
+      "Polly/7.2.4": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Polly.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Polly.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Polly.Extensions.Http/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Polly": "7.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Polly.Extensions.Http.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Polly.Extensions.Http.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Serilog/4.2.0": {
         "type": "package",
         "compile": {
@@ -2386,19 +2457,19 @@
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
         }
       },
-      "StackExchange.Redis/2.7.27": {
+      "StackExchange.Redis/2.8.41": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
           "Pipelines.Sockets.Unofficial": "2.2.8"
         },
         "compile": {
-          "lib/net6.0/StackExchange.Redis.dll": {
+          "lib/net8.0/StackExchange.Redis.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/StackExchange.Redis.dll": {
+          "lib/net8.0/StackExchange.Redis.dll": {
             "related": ".xml"
           }
         }
@@ -2828,6 +2899,7 @@
           "EFCore.BulkExtensions": "9.0.1",
           "FluentValidation.AspNetCore": "11.3.1",
           "Microsoft.AspNetCore.OpenApi": "9.0.0-rc.1.24452.1",
+          "Microsoft.Extensions.Http.Polly": "9.0.6",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
           "Serilog.AspNetCore": "9.0.0",
           "Serilog.Sinks.Console": "6.0.0",
@@ -2853,7 +2925,8 @@
           "Microsoft.AspNetCore.Mvc.Core": "2.3.0",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.6",
           "Newtonsoft.Json": "13.0.3",
-          "Serilog.AspNetCore": "9.0.0"
+          "Serilog.AspNetCore": "9.0.0",
+          "StackExchange.Redis": "2.8.41"
         },
         "compile": {
           "bin/placeholder/VehicleInsurance.Shared.dll": {}
@@ -4428,6 +4501,49 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.Extensions.Http/9.0.6": {
+      "sha512": "YoCEkjHHeeKsOzaJaGKuwsi1Ijckkm/+bv5RXmsKA0/qW4veY0eh5lVtkOXxkqQbVRuK3sObhxRM0UeuF6yAgA==",
+      "type": "package",
+      "path": "microsoft.extensions.http/9.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Http.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Http.targets",
+        "lib/net462/Microsoft.Extensions.Http.dll",
+        "lib/net462/Microsoft.Extensions.Http.xml",
+        "lib/net8.0/Microsoft.Extensions.Http.dll",
+        "lib/net8.0/Microsoft.Extensions.Http.xml",
+        "lib/net9.0/Microsoft.Extensions.Http.dll",
+        "lib/net9.0/Microsoft.Extensions.Http.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
+        "microsoft.extensions.http.9.0.6.nupkg.sha512",
+        "microsoft.extensions.http.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Http.Polly/9.0.6": {
+      "sha512": "eui0JinN+aOSMt6oeAGhSk+wAw5nJbeHt+JyOltn4+zjA7FhYDDLdsUW+Md3x18p+NxUdTwh7W/4EbB5RJ90Aw==",
+      "type": "package",
+      "path": "microsoft.extensions.http.polly/9.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.Polly.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.Polly.xml",
+        "microsoft.extensions.http.polly.9.0.6.nupkg.sha512",
+        "microsoft.extensions.http.polly.nuspec"
+      ]
+    },
     "Microsoft.Extensions.Logging/9.0.6": {
       "sha512": "XBzjitTFaQhF8EbJ645vblZezV1p52ePTxKHoVkRidHF11Xkjxg94qr0Rvp2qyxK2vBJ4OIZ41NB15YUyxTGMQ==",
       "type": "package",
@@ -5411,6 +5527,46 @@
         "pipelines.sockets.unofficial.nuspec"
       ]
     },
+    "Polly/7.2.4": {
+      "sha512": "bw00Ck5sh6ekduDE3mnCo1ohzuad946uslCDEENu3091+6UKnBuKLo4e+yaNcCzXxOZCXWY2gV4a35+K1d4LDA==",
+      "type": "package",
+      "path": "polly/7.2.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net461/Polly.dll",
+        "lib/net461/Polly.pdb",
+        "lib/net461/Polly.xml",
+        "lib/net472/Polly.dll",
+        "lib/net472/Polly.pdb",
+        "lib/net472/Polly.xml",
+        "lib/netstandard1.1/Polly.dll",
+        "lib/netstandard1.1/Polly.pdb",
+        "lib/netstandard1.1/Polly.xml",
+        "lib/netstandard2.0/Polly.dll",
+        "lib/netstandard2.0/Polly.pdb",
+        "lib/netstandard2.0/Polly.xml",
+        "package-icon.png",
+        "polly.7.2.4.nupkg.sha512",
+        "polly.nuspec"
+      ]
+    },
+    "Polly.Extensions.Http/3.0.0": {
+      "sha512": "drrG+hB3pYFY7w1c3BD+lSGYvH2oIclH8GRSehgfyP5kjnFnHKQuuBhuHLv+PWyFuaTDyk/vfRpnxOzd11+J8g==",
+      "type": "package",
+      "path": "polly.extensions.http/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard1.1/Polly.Extensions.Http.dll",
+        "lib/netstandard1.1/Polly.Extensions.Http.xml",
+        "lib/netstandard2.0/Polly.Extensions.Http.dll",
+        "lib/netstandard2.0/Polly.Extensions.Http.xml",
+        "polly.extensions.http.3.0.0.nupkg.sha512",
+        "polly.extensions.http.nuspec"
+      ]
+    },
     "Serilog/4.2.0": {
       "sha512": "gmoWVOvKgbME8TYR+gwMf7osROiWAURterc6Rt2dQyX7wtjZYpqFiA/pY6ztjGQKKV62GGCyOcmtP1UKMHgSmA==",
       "type": "package",
@@ -5632,24 +5788,27 @@
         "sqlitepclraw.core.nuspec"
       ]
     },
-    "StackExchange.Redis/2.7.27": {
-      "sha512": "Uqc2OQHglqj9/FfGQ6RkKFkZfHySfZlfmbCl+hc+u2I/IqunfelQ7QJi7ZhvAJxUtu80pildVX6NPLdDaUffOw==",
+    "StackExchange.Redis/2.8.41": {
+      "sha512": "EgtQzlucry9V2Gces1K19Xi8Sz/8DfoZlGQEmL/hSM/SXO/ucDS5RPmLzcmT489ZNGFbj9CGhlpscPLOXtYWwA==",
       "type": "package",
-      "path": "stackexchange.redis/2.7.27",
+      "path": "stackexchange.redis/2.8.41",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "lib/net461/StackExchange.Redis.dll",
         "lib/net461/StackExchange.Redis.xml",
         "lib/net472/StackExchange.Redis.dll",
         "lib/net472/StackExchange.Redis.xml",
         "lib/net6.0/StackExchange.Redis.dll",
         "lib/net6.0/StackExchange.Redis.xml",
+        "lib/net8.0/StackExchange.Redis.dll",
+        "lib/net8.0/StackExchange.Redis.xml",
         "lib/netcoreapp3.1/StackExchange.Redis.dll",
         "lib/netcoreapp3.1/StackExchange.Redis.xml",
         "lib/netstandard2.0/StackExchange.Redis.dll",
         "lib/netstandard2.0/StackExchange.Redis.xml",
-        "stackexchange.redis.2.7.27.nupkg.sha512",
+        "stackexchange.redis.2.8.41.nupkg.sha512",
         "stackexchange.redis.nuspec"
       ]
     },

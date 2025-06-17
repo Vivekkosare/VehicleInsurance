@@ -33,34 +33,55 @@ services:
       timeout: 10s
       retries: 5
 
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   vehicleregistrationapi:
     build:
-      context: ./VehicleRegistrationAPI
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: VehicleRegistrationAPI/Dockerfile
     container_name: vehicleregistrationapi
     ports:
       - "5059:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=vehicleregistrationdb;Port=5432;Database=VehicleRegistrationDB;Username=postgres;Password=Frankenstein@123
+      - ConnectionStrings__Redis=redis:6379
     depends_on:
       vehicleregistrationdb:
+        condition: service_healthy
+      redis:
         condition: service_healthy
 
   insuranceapi:
     build:
-      context: ./InsuranceAPI
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: InsuranceAPI/Dockerfile
     container_name: insuranceapi
     ports:
-      - "5084:80"
+      - "5096:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=insurancedb;Port=5432;Database=InsuranceDB;Username=postgres;Password=Frankenstein@123
+      - ConnectionStrings__Redis=redis:6379
+      - VehicleRegistrationAPIUrl=http://vehicleregistrationapi:80
     depends_on:
       insurancedb:
+        condition: service_healthy
+      redis:
         condition: service_healthy
 
 volumes:
   vehicleregdbdata:
   insurancedbdata:
+  redisdata:

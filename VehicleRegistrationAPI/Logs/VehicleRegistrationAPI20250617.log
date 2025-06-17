@@ -1,0 +1,196 @@
+2025-06-17 01:05:55.135 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-17 01:05:55.279 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-17 01:05:55.283 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-17 01:05:55.284 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-17 01:05:55.284 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-17 01:05:55.286 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-17 01:07:17.434 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-17 01:07:17.577 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-17 01:07:17.581 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-17 01:07:17.581 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-17 01:07:17.582 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-17 01:07:17.585 +02:00 [INF] Applying migration '20250616230714_UpdateSeedData'.
+2025-06-17 01:07:17.590 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20250616230714_UpdateSeedData', '9.0.6');
+2025-06-17 01:23:21.522 +02:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-17 01:23:21.665 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-17 01:23:21.668 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-17 01:23:21.669 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-17 01:23:21.669 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-17 01:23:21.673 +02:00 [INF] Applying migration '20250616232317_UpdateNewData'.
+2025-06-17 01:23:21.676 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20250616232317_UpdateNewData', '9.0.6');
+2025-06-17 01:49:40.592 +02:00 [ERR] An error occurred using the connection to database 'VehicleRegistrationDB' on server 'tcp://127.0.0.1:5432'.
+2025-06-17 01:49:40.957 +02:00 [INF] Executed DbCommand (220ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE DATABASE "VehicleRegistrationDB";
+2025-06-17 01:49:41.005 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-17 01:49:41.009 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-17 01:49:41.010 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-17 01:49:41.012 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-17 01:49:41.017 +02:00 [INF] Applying migration '20250616234937_UpdateNewData'.
+2025-06-17 01:49:41.034 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Customers" (
+    "Id" uuid NOT NULL,
+    "Name" character varying(100) NOT NULL,
+    "PersonalIdentificationNumber" character varying(20) NOT NULL,
+    "Email" character varying(100) NOT NULL,
+    "PhoneNumber" character varying(15) NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL DEFAULT (NOW()),
+    "UpdatedAt" timestamp with time zone NOT NULL DEFAULT (NOW()),
+    CONSTRAINT "PK_Customers" PRIMARY KEY ("Id")
+);
+2025-06-17 01:49:41.038 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Vehicles" (
+    "Id" uuid NOT NULL,
+    "Name" character varying(100) NOT NULL,
+    "RegistrationNumber" character varying(15) NOT NULL,
+    "Make" character varying(50) NOT NULL,
+    "Model" character varying(50) NOT NULL,
+    "Year" integer NOT NULL,
+    "Color" character varying(30) NOT NULL,
+    "RegistrationDate" timestamp with time zone NOT NULL,
+    "OwnerId" uuid NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL DEFAULT (NOW()),
+    "UpdatedAt" timestamp with time zone NOT NULL DEFAULT (NOW()),
+    CONSTRAINT "PK_Vehicles" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_Vehicles_Customers_OwnerId" FOREIGN KEY ("OwnerId") REFERENCES "Customers" ("Id") ON DELETE CASCADE
+);
+2025-06-17 01:49:41.041 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Customers" ("Id", "Email", "Name", "PersonalIdentificationNumber", "PhoneNumber")
+VALUES ('1efd72fa-e9ef-4415-b669-445dc43c4f8c', 'diana.prince@example.com', 'Diana Prince', 'PIN1004', '4567890123');
+INSERT INTO "Customers" ("Id", "Email", "Name", "PersonalIdentificationNumber", "PhoneNumber")
+VALUES ('445bdbe0-b8b0-4efb-9540-e5b38ff07a86', 'bob.smith@example.com', 'Bob Smith', 'PIN1002', '2345678901');
+INSERT INTO "Customers" ("Id", "Email", "Name", "PersonalIdentificationNumber", "PhoneNumber")
+VALUES ('763ff2cd-55b9-4c0f-ac6c-ff94bc7abdd0', 'charlie.brown@example.com', 'Charlie Brown', 'PIN1003', '3456789012');
+INSERT INTO "Customers" ("Id", "Email", "Name", "PersonalIdentificationNumber", "PhoneNumber")
+VALUES ('ad14152a-55b9-43f1-ac68-e87ecaef702a', 'alice.johnson@example.com', 'Alice Johnson', 'PIN1001', '1234567890');
+INSERT INTO "Customers" ("Id", "Email", "Name", "PersonalIdentificationNumber", "PhoneNumber")
+VALUES ('b85483e5-25d2-479a-9d0b-8e80a57484de', 'ethan.hunt@example.com', 'Ethan Hunt', 'PIN1005', '5678901234');
+2025-06-17 01:49:41.046 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Vehicles" ("Id", "Color", "Make", "Model", "Name", "OwnerId", "RegistrationDate", "RegistrationNumber", "Year")
+VALUES ('5fa8cca5-9612-4cd4-9c7d-a85afdd1c37f', 'Red', 'Ford', 'Mustang', 'Ford Mustang', '763ff2cd-55b9-4c0f-ac6c-ff94bc7abdd0', TIMESTAMPTZ '2021-07-20T00:00:00Z', 'MUS2021', 2021);
+INSERT INTO "Vehicles" ("Id", "Color", "Make", "Model", "Name", "OwnerId", "RegistrationDate", "RegistrationNumber", "Year")
+VALUES ('f0f23bde-c9e3-4cc3-b999-7681a15c66f1', 'Black', 'Honda', 'Accord', 'Honda Accord', '445bdbe0-b8b0-4efb-9540-e5b38ff07a86', TIMESTAMPTZ '2019-03-15T00:00:00Z', 'XYZ5678', 2019);
+INSERT INTO "Vehicles" ("Id", "Color", "Make", "Model", "Name", "OwnerId", "RegistrationDate", "RegistrationNumber", "Year")
+VALUES ('f28d7ed3-e0e6-42d7-8381-f5acf7fc10ef', 'White', 'Toyota', 'Camry', 'Toyota Camry', 'ad14152a-55b9-43f1-ac68-e87ecaef702a', TIMESTAMPTZ '2020-05-10T00:00:00Z', 'ABC1234', 2020);
+2025-06-17 01:49:41.048 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_Customers_PersonalIdentificationNumber" ON "Customers" ("PersonalIdentificationNumber");
+2025-06-17 01:49:41.049 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Vehicles_OwnerId" ON "Vehicles" ("OwnerId");
+2025-06-17 01:49:41.050 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_Vehicles_RegistrationNumber" ON "Vehicles" ("RegistrationNumber");
+2025-06-17 01:49:41.051 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20250616234937_UpdateNewData', '9.0.6');
+2025-06-17 01:51:03.188 +02:00 [INF] Now listening on: http://localhost:5059
+2025-06-17 01:51:03.218 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-17 01:51:03.218 +02:00 [INF] Hosting environment: Development
+2025-06-17 01:51:03.218 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/VehicleRegistrationAPI
+2025-06-17 01:51:03.453 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers - null null
+2025-06-17 01:51:03.683 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-17 01:51:03.687 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/customers/'
+2025-06-17 01:51:03.954 +02:00 [INF] No data found in cache for key: AllCustomers
+2025-06-17 01:51:03.955 +02:00 [INF] Cache miss for all customers, retrieving from database.
+2025-06-17 01:51:04.505 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+2025-06-17 01:51:04.552 +02:00 [INF] Retrieved 5 customers from the database.
+2025-06-17 01:51:04.591 +02:00 [INF] Setting data in cache for key: AllCustomers
+2025-06-17 01:51:04.595 +02:00 [INF] Successfully set data in cache for key: AllCustomers
+2025-06-17 01:51:04.596 +02:00 [INF] Cached all customers for future requests.
+2025-06-17 01:51:04.596 +02:00 [INF] 5 customers retrieved successfully.
+2025-06-17 01:51:04.597 +02:00 [INF] Setting HTTP status code 200.
+2025-06-17 01:51:04.599 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-17 01:51:04.611 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/customers/'
+2025-06-17 01:51:04.615 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers - 200 null application/json; charset=utf-8 1163.5295ms
+2025-06-17 01:51:14.481 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5059/api/v1/vehicles/personal/ - application/json; charset=utf-8 null
+2025-06-17 01:51:14.482 +02:00 [INF] Executing endpoint 'HTTP: POST api/v1/vehicles/personal/'
+2025-06-17 01:51:14.499 +02:00 [INF] No data found in cache for key: VehiclesByPersonIds_PIN1001
+2025-06-17 01:51:14.499 +02:00 [INF] Retrieving vehicles for personal identification numbers PIN1001 from the database.
+2025-06-17 01:51:14.622 +02:00 [INF] Executed DbCommand (34ms) [Parameters=[@__personIds_PersonalIdentificationNumbers_0='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year", c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Vehicles" AS v
+INNER JOIN "Customers" AS c ON v."OwnerId" = c."Id"
+WHERE c."PersonalIdentificationNumber" = ANY (@__personIds_PersonalIdentificationNumbers_0)
+2025-06-17 01:51:14.641 +02:00 [INF] Setting data in cache for key: VehiclesByPersonIds_PIN1001
+2025-06-17 01:51:14.642 +02:00 [INF] Successfully set data in cache for key: VehiclesByPersonIds_PIN1001
+2025-06-17 01:51:14.642 +02:00 [INF] Cached vehicles for personal identification numbers PIN1001.
+2025-06-17 01:51:14.642 +02:00 [INF] 1 vehicles retrieved for the provided personal identification numbers.
+2025-06-17 01:51:14.642 +02:00 [INF] Setting HTTP status code 200.
+2025-06-17 01:51:14.643 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-17 01:51:14.646 +02:00 [INF] Executed endpoint 'HTTP: POST api/v1/vehicles/personal/'
+2025-06-17 01:51:14.646 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5059/api/v1/vehicles/personal/ - 200 null application/json; charset=utf-8 165.8629ms
+2025-06-17 01:51:20.701 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers - null null
+2025-06-17 01:51:20.701 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v1/customers/'
+2025-06-17 01:51:20.721 +02:00 [INF] Successfully retrieved data from cache for key: AllCustomers
+2025-06-17 01:51:20.721 +02:00 [INF] Retrieved all customers from cache.
+2025-06-17 01:51:20.721 +02:00 [INF] 5 customers retrieved successfully.
+2025-06-17 01:51:20.721 +02:00 [INF] Setting HTTP status code 200.
+2025-06-17 01:51:20.721 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-17 01:51:20.721 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v1/customers/'
+2025-06-17 01:51:20.721 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers - 200 null application/json; charset=utf-8 20.2804ms
+2025-06-17 01:54:13.452 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-17 01:54:13.594 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-17 01:54:13.598 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-17 01:54:13.598 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-17 01:54:13.599 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-17 01:54:13.600 +02:00 [INF] No migrations were applied. The database is already up to date.

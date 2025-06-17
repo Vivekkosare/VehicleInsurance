@@ -39,6 +39,14 @@ builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 
+// Apply migrations and seed data at startup
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<InsuranceDbContext>();
+    dbContext.Database.Migrate();
+    // Seed data is handled by EF Core if configured with HasData
+}
+
 // Map the insurance endpoints
 app.MapInsuranceEndpoints();
 

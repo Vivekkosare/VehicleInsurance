@@ -1,0 +1,221 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [insuranceapi internal] load build definition from Dockerfile
+#1 transferring dockerfile: 832B done
+#1 DONE 0.0s
+
+#2 [vehicleregistrationapi internal] load build definition from Dockerfile
+#2 transferring dockerfile: 953B done
+#2 DONE 0.0s
+
+#3 [insuranceapi internal] load metadata for mcr.microsoft.com/dotnet/aspnet:9.0
+#3 DONE 0.1s
+
+#4 [insuranceapi internal] load metadata for mcr.microsoft.com/dotnet/sdk:9.0
+#4 DONE 0.1s
+
+#5 [insuranceapi internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [vehicleregistrationapi internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [vehicleregistrationapi internal] load build context
+#7 DONE 0.0s
+
+#8 [insuranceapi internal] load build context
+#8 DONE 0.0s
+
+#9 [insuranceapi build 1/8] FROM mcr.microsoft.com/dotnet/sdk:9.0@sha256:faa2daf2b72cbe787ee1882d9651fa4ef3e938ee56792b8324516f5a448f3abe
+#9 resolve mcr.microsoft.com/dotnet/sdk:9.0@sha256:faa2daf2b72cbe787ee1882d9651fa4ef3e938ee56792b8324516f5a448f3abe done
+#9 resolve mcr.microsoft.com/dotnet/sdk:9.0@sha256:faa2daf2b72cbe787ee1882d9651fa4ef3e938ee56792b8324516f5a448f3abe done
+#9 DONE 0.0s
+
+#10 [insuranceapi build 2/8] WORKDIR /src
+#10 CACHED
+
+#11 [insuranceapi base 1/2] FROM mcr.microsoft.com/dotnet/aspnet:9.0@sha256:1e12c265e1e1b3714c5805ab0cab63380eb687b0a04f3b3ef3392494a6122614
+#11 resolve mcr.microsoft.com/dotnet/aspnet:9.0@sha256:1e12c265e1e1b3714c5805ab0cab63380eb687b0a04f3b3ef3392494a6122614 0.0s done
+#11 DONE 0.0s
+
+#12 [insuranceapi base 2/2] WORKDIR /app
+#12 CACHED
+
+#13 [insuranceapi final 1/4] WORKDIR /app
+#13 CACHED
+
+#8 [insuranceapi internal] load build context
+#8 transferring context: 63.27MB 0.8s done
+#8 DONE 0.8s
+
+#7 [vehicleregistrationapi internal] load build context
+#7 transferring context: 63.73MB 0.8s done
+#7 DONE 0.8s
+
+#14 [vehicleregistrationapi build 3/8] COPY VehicleInsurance.sln ./
+#14 DONE 0.1s
+
+#15 [insuranceapi build 3/8] COPY InsuranceAPI/InsuranceAPI.csproj .
+#15 DONE 0.1s
+
+#16 [insuranceapi build 4/8] COPY VehicleInsurance.Shared/VehicleInsurance.Shared.csproj VehicleInsurance.Shared/
+#16 DONE 0.0s
+
+#17 [insuranceapi build 5/8] COPY VehicleInsurance.Shared/ VehicleInsurance.Shared/
+#17 DONE 0.0s
+
+#18 [vehicleregistrationapi build 4/8] COPY VehicleRegistrationAPI/ ./VehicleRegistrationAPI/
+#18 DONE 0.1s
+
+#19 [insuranceapi build 6/8] RUN dotnet restore "InsuranceAPI.csproj"
+#19 ...
+
+#20 [vehicleregistrationapi build 5/8] COPY VehicleInsurance.Shared/ ./VehicleInsurance.Shared/
+#20 DONE 0.0s
+
+#21 [vehicleregistrationapi build 6/8] WORKDIR /src/VehicleRegistrationAPI
+#21 DONE 0.0s
+
+#22 [vehicleregistrationapi build 7/8] RUN dotnet restore "VehicleRegistrationAPI.csproj"
+#22 0.529   Determining projects to restore...
+#22 6.816   Restored /src/VehicleInsurance.Shared/VehicleInsurance.Shared.csproj (in 5.97 sec).
+#22 ...
+
+#19 [insuranceapi build 6/8] RUN dotnet restore "InsuranceAPI.csproj"
+#19 0.618   Determining projects to restore...
+#19 6.936   Restored /src/VehicleInsurance.Shared/VehicleInsurance.Shared.csproj (in 6.03 sec).
+#19 10.80   Restored /src/InsuranceAPI.csproj (in 9.93 sec).
+#19 ...
+
+#22 [vehicleregistrationapi build 7/8] RUN dotnet restore "VehicleRegistrationAPI.csproj"
+#22 10.70   Restored /src/VehicleRegistrationAPI/VehicleRegistrationAPI.csproj (in 9.82 sec).
+#22 ...
+
+#19 [insuranceapi build 6/8] RUN dotnet restore "InsuranceAPI.csproj"
+#19 DONE 11.3s
+
+#22 [vehicleregistrationapi build 7/8] RUN dotnet restore "VehicleRegistrationAPI.csproj"
+#22 DONE 11.1s
+
+#23 [vehicleregistrationapi build 8/8] RUN dotnet build "VehicleRegistrationAPI.csproj" -c Release -o /app/build
+#23 ...
+
+#24 [insuranceapi build 7/8] COPY InsuranceAPI/. .
+#24 DONE 0.2s
+
+#25 [insuranceapi build 8/8] RUN dotnet build "InsuranceAPI.csproj" -c Release -o /app/build
+#25 0.602   Determining projects to restore...
+#25 1.230   Restored /src/InsuranceAPI.csproj (in 328 ms).
+#25 1.231   1 of 2 projects are up-to-date for restore.
+#25 2.755   VehicleInsurance.Shared -> /app/build/VehicleInsurance.Shared.dll
+#25 3.310 /src/obj/Release/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs(4,12): error CS0579: Duplicate 'global::System.Runtime.Versioning.TargetFrameworkAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.310 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(13,12): error CS0579: Duplicate 'System.Reflection.AssemblyCompanyAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.310 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(14,12): error CS0579: Duplicate 'System.Reflection.AssemblyConfigurationAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.310 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(15,12): error CS0579: Duplicate 'System.Reflection.AssemblyFileVersionAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.310 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(16,12): error CS0579: Duplicate 'System.Reflection.AssemblyInformationalVersionAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.310 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(17,12): error CS0579: Duplicate 'System.Reflection.AssemblyProductAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.310 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(18,12): error CS0579: Duplicate 'System.Reflection.AssemblyTitleAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.310 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(19,12): error CS0579: Duplicate 'System.Reflection.AssemblyVersionAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.311 /src/VehicleInsurance.Shared/DTOs/Result.cs(9,19): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/VehicleInsurance.Shared/DTOs/Result.cs(12,19): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/VehicleInsurance.Shared/Services/RedisCacheService.cs(12,34): warning CS0436: The type 'ICacheService' in '/src/VehicleInsurance.Shared/Services/ICacheService.cs' conflicts with the imported type 'ICacheService' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/Services/ICacheService.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/VehicleInsurance.Shared/Services/RedisCacheService.cs(11,9): warning CS0436: The type 'RedisCacheService' in '/src/VehicleInsurance.Shared/Services/RedisCacheService.cs' conflicts with the imported type 'RedisCacheService' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/Services/RedisCacheService.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/HttpClients/CarRegistrationAPIClient.cs(44,80): warning CS0436: The type 'PersonIdentifiersRequest' in '/src/VehicleInsurance.Shared/DTOs/PersonIdentifiersRequest.cs' conflicts with the imported type 'PersonIdentifiersRequest' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/PersonIdentifiersRequest.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/HttpClients/CarRegistrationAPIClient.cs(72,23): warning CS0436: The type 'CustomerOutput' in '/src/VehicleInsurance.Shared/DTOs/CustomerOutput.cs' conflicts with the imported type 'CustomerOutput' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/CustomerOutput.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/HttpClients/ICarRegistrationAPIClient.cs(9,67): warning CS0436: The type 'PersonIdentifiersRequest' in '/src/VehicleInsurance.Shared/DTOs/PersonIdentifiersRequest.cs' conflicts with the imported type 'PersonIdentifiersRequest' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/PersonIdentifiersRequest.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/HttpClients/ICarRegistrationAPIClient.cs(10,10): warning CS0436: The type 'CustomerOutput' in '/src/VehicleInsurance.Shared/DTOs/CustomerOutput.cs' conflicts with the imported type 'CustomerOutput' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/CustomerOutput.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/VehicleInsurance.Shared/Services/RedisCacheService.cs(55,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/VehicleInsurance.Shared/Services/RedisCacheService.cs(92,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/VehicleInsurance.Shared/Services/RedisCacheService.cs(112,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/VehicleInsurance.Shared/Services/ICacheService.cs(7,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/VehicleInsurance.Shared/Services/ICacheService.cs(8,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/VehicleInsurance.Shared/Services/ICacheService.cs(9,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/Features/Insurance/Repositories/IInsuranceRepository.cs(8,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/Features/Insurance/Repositories/IInsuranceRepository.cs(9,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/Features/Insurance/Repositories/IInsuranceRepository.cs(10,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/Features/Insurance/Repositories/IInsuranceRepository.cs(11,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/Features/Insurance/Repositories/IInsuranceRepository.cs(12,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/Features/Insurance/Services/IInsuranceService.cs(8,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.311 /src/Features/Insurance/Services/IInsuranceService.cs(9,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Services/IInsuranceService.cs(10,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Services/IInsuranceService.cs(11,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Repositories/InsuranceRepository.cs(11,1): warning CS0436: The type 'ICacheService' in '/src/VehicleInsurance.Shared/Services/ICacheService.cs' conflicts with the imported type 'ICacheService' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/Services/ICacheService.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Repositories/InsuranceRepository.cs(15,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Repositories/InsuranceRepository.cs(54,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Repositories/InsuranceRepository.cs(80,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Repositories/InsuranceRepository.cs(110,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Repositories/InsuranceRepository.cs(135,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Services/InsuranceService.cs(12,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Services/InsuranceService.cs(71,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Services/InsuranceService.cs(165,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.312 /src/Features/Insurance/Services/InsuranceService.cs(192,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.320 
+#25 3.320 Build FAILED.
+#25 3.320 
+#25 3.320 /src/VehicleInsurance.Shared/DTOs/Result.cs(9,19): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.320 /src/VehicleInsurance.Shared/DTOs/Result.cs(12,19): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.320 /src/VehicleInsurance.Shared/Services/RedisCacheService.cs(12,34): warning CS0436: The type 'ICacheService' in '/src/VehicleInsurance.Shared/Services/ICacheService.cs' conflicts with the imported type 'ICacheService' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/Services/ICacheService.cs'. [/src/InsuranceAPI.csproj]
+#25 3.320 /src/VehicleInsurance.Shared/Services/RedisCacheService.cs(11,9): warning CS0436: The type 'RedisCacheService' in '/src/VehicleInsurance.Shared/Services/RedisCacheService.cs' conflicts with the imported type 'RedisCacheService' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/Services/RedisCacheService.cs'. [/src/InsuranceAPI.csproj]
+#25 3.320 /src/HttpClients/CarRegistrationAPIClient.cs(44,80): warning CS0436: The type 'PersonIdentifiersRequest' in '/src/VehicleInsurance.Shared/DTOs/PersonIdentifiersRequest.cs' conflicts with the imported type 'PersonIdentifiersRequest' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/PersonIdentifiersRequest.cs'. [/src/InsuranceAPI.csproj]
+#25 3.320 /src/HttpClients/CarRegistrationAPIClient.cs(72,23): warning CS0436: The type 'CustomerOutput' in '/src/VehicleInsurance.Shared/DTOs/CustomerOutput.cs' conflicts with the imported type 'CustomerOutput' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/CustomerOutput.cs'. [/src/InsuranceAPI.csproj]
+#25 3.320 /src/HttpClients/ICarRegistrationAPIClient.cs(9,67): warning CS0436: The type 'PersonIdentifiersRequest' in '/src/VehicleInsurance.Shared/DTOs/PersonIdentifiersRequest.cs' conflicts with the imported type 'PersonIdentifiersRequest' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/PersonIdentifiersRequest.cs'. [/src/InsuranceAPI.csproj]
+#25 3.320 /src/HttpClients/ICarRegistrationAPIClient.cs(10,10): warning CS0436: The type 'CustomerOutput' in '/src/VehicleInsurance.Shared/DTOs/CustomerOutput.cs' conflicts with the imported type 'CustomerOutput' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/CustomerOutput.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/VehicleInsurance.Shared/Services/RedisCacheService.cs(55,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/VehicleInsurance.Shared/Services/RedisCacheService.cs(92,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/VehicleInsurance.Shared/Services/RedisCacheService.cs(112,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/VehicleInsurance.Shared/Services/ICacheService.cs(7,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/VehicleInsurance.Shared/Services/ICacheService.cs(8,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/VehicleInsurance.Shared/Services/ICacheService.cs(9,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Repositories/IInsuranceRepository.cs(8,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Repositories/IInsuranceRepository.cs(9,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Repositories/IInsuranceRepository.cs(10,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Repositories/IInsuranceRepository.cs(11,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Repositories/IInsuranceRepository.cs(12,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Services/IInsuranceService.cs(8,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Services/IInsuranceService.cs(9,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Services/IInsuranceService.cs(10,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Services/IInsuranceService.cs(11,10): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Repositories/InsuranceRepository.cs(11,1): warning CS0436: The type 'ICacheService' in '/src/VehicleInsurance.Shared/Services/ICacheService.cs' conflicts with the imported type 'ICacheService' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/Services/ICacheService.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Repositories/InsuranceRepository.cs(15,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Repositories/InsuranceRepository.cs(54,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Repositories/InsuranceRepository.cs(80,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Repositories/InsuranceRepository.cs(110,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Repositories/InsuranceRepository.cs(135,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Services/InsuranceService.cs(12,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Services/InsuranceService.cs(71,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Services/InsuranceService.cs(165,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/Features/Insurance/Services/InsuranceService.cs(192,23): warning CS0436: The type 'Result<T>' in '/src/VehicleInsurance.Shared/DTOs/Result.cs' conflicts with the imported type 'Result<T>' in 'VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'. Using the type defined in '/src/VehicleInsurance.Shared/DTOs/Result.cs'. [/src/InsuranceAPI.csproj]
+#25 3.321 /src/obj/Release/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs(4,12): error CS0579: Duplicate 'global::System.Runtime.Versioning.TargetFrameworkAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(13,12): error CS0579: Duplicate 'System.Reflection.AssemblyCompanyAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(14,12): error CS0579: Duplicate 'System.Reflection.AssemblyConfigurationAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(15,12): error CS0579: Duplicate 'System.Reflection.AssemblyFileVersionAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(16,12): error CS0579: Duplicate 'System.Reflection.AssemblyInformationalVersionAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(17,12): error CS0579: Duplicate 'System.Reflection.AssemblyProductAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(18,12): error CS0579: Duplicate 'System.Reflection.AssemblyTitleAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(19,12): error CS0579: Duplicate 'System.Reflection.AssemblyVersionAttribute' attribute [/src/InsuranceAPI.csproj]
+#25 3.321     33 Warning(s)
+#25 3.321     8 Error(s)
+#25 3.321 
+#25 3.321 Time Elapsed 00:00:03.07
+#25 ERROR: process "/bin/sh -c dotnet build \"InsuranceAPI.csproj\" -c Release -o /app/build" did not complete successfully: exit code: 1
+
+#23 [vehicleregistrationapi build 8/8] RUN dotnet build "VehicleRegistrationAPI.csproj" -c Release -o /app/build
+#23 0.755   Determining projects to restore...
+#23 1.088   All projects are up-to-date for restore.
+#23 2.749   VehicleInsurance.Shared -> /app/build/VehicleInsurance.Shared.dll
+#23 CANCELED
+------
+ > [insuranceapi build 8/8] RUN dotnet build "InsuranceAPI.csproj" -c Release -o /app/build:
+3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(14,12): error CS0579: Duplicate 'System.Reflection.AssemblyConfigurationAttribute' attribute [/src/InsuranceAPI.csproj]
+3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(15,12): error CS0579: Duplicate 'System.Reflection.AssemblyFileVersionAttribute' attribute [/src/InsuranceAPI.csproj]
+3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(16,12): error CS0579: Duplicate 'System.Reflection.AssemblyInformationalVersionAttribute' attribute [/src/InsuranceAPI.csproj]
+3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(17,12): error CS0579: Duplicate 'System.Reflection.AssemblyProductAttribute' attribute [/src/InsuranceAPI.csproj]
+3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(18,12): error CS0579: Duplicate 'System.Reflection.AssemblyTitleAttribute' attribute [/src/InsuranceAPI.csproj]
+3.321 /src/obj/Release/net9.0/InsuranceAPI.AssemblyInfo.cs(19,12): error CS0579: Duplicate 'System.Reflection.AssemblyVersionAttribute' attribute [/src/InsuranceAPI.csproj]
+3.321     33 Warning(s)
+3.321     8 Error(s)
+3.321 
+3.321 Time Elapsed 00:00:03.07
+------

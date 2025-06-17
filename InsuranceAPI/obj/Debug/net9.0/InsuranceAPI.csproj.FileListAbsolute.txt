@@ -230,3 +230,10 @@
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/obj/Debug/net9.0/InsuranceAPI.pdb
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/obj/Debug/net9.0/InsuranceAPI.genruntimeconfig.cache
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/obj/Debug/net9.0/ref/InsuranceAPI.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Microsoft.Extensions.Configuration.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Microsoft.Extensions.Diagnostics.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Microsoft.Extensions.Http.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Microsoft.Extensions.Http.Polly.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Polly.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI/bin/Debug/net9.0/Polly.Extensions.Http.dll
