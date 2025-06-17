@@ -8,6 +8,8 @@ using VehicleInsurance.Shared.Extensions;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using InsuranceAPI.Features.Insurance.Validators;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +45,11 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<InsuranceDbContext>();
-    dbContext.Database.Migrate();
+    var databaseCreator = dbContext.Database.GetService<IDatabaseCreator>();
+    if (databaseCreator is RelationalDatabaseCreator)
+    {
+        dbContext.Database.Migrate();
+    }
     // Seed data is handled by EF Core if configured with HasData
 }
 

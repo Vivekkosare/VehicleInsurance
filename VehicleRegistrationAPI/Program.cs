@@ -1,15 +1,11 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.InMemory;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using VehicleRegistrationAPI.Data;
 using VehicleRegistrationAPI.Features.Customers.Endpoints;
-using VehicleRegistrationAPI.Features.Customers.Repositories;
-using VehicleRegistrationAPI.Features.Customers.Services;
 using VehicleRegistrationAPI.Features.Vehicles.Endpoints;
-using VehicleRegistrationAPI.Features.Vehicles.Repositories;
-using VehicleRegistrationAPI.Features.Vehicles.Services;
 using VehicleInsurance.Shared.Extensions;
 using VehicleRegistrationAPI.Extensions;
 
@@ -59,7 +55,11 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<VehicleRegistrationDbContext>();
-    dbContext.Database.Migrate();
+    var databaseCreator = dbContext.Database.GetService<IDatabaseCreator>();
+    if (databaseCreator is RelationalDatabaseCreator)
+    {
+        dbContext.Database.Migrate();
+    }
     // Seed data is handled by EF Core if configured with HasData
 }
 

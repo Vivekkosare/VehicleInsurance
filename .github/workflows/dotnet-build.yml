@@ -1,0 +1,73 @@
+name: .NET CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: Frankenstein@123
+          POSTGRES_DB: InsuranceDB
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+
+    env:
+      ConnectionStrings__DefaultConnection: Host=localhost;Port=5432;Database=InsuranceDB;Username=postgres;Password=Frankenstein@123
+      ConnectionStrings__Redis: localhost:6379
+      ASPNETCORE_ENVIRONMENT: Development
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore VehicleInsurance.sln
+
+      - name: Build solution
+        run: dotnet build VehicleInsurance.sln --configuration Release --no-restore
+
+      - name: Run unit tests
+        run: dotnet test VehicleInsurance.sln --configuration Release --no-build --filter "TestCategory!=Integration"
+
+      - name: Run integration tests
+        run: dotnet test VehicleInsurance.sln --configuration Release --no-build --filter "TestCategory=Integration"
+
+      - name: Publish InsuranceAPI
+        run: dotnet publish InsuranceAPI/InsuranceAPI.csproj --configuration Release --output ./artifacts/InsuranceAPI
+
+      - name: Publish VehicleRegistrationAPI
+        run: dotnet publish VehicleRegistrationAPI/VehicleRegistrationAPI.csproj --configuration Release --output ./artifacts/VehicleRegistrationAPI
+
+      - name: Upload InsuranceAPI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: InsuranceAPI
+          path: ./artifacts/InsuranceAPI
+
+      - name: Upload VehicleRegistrationAPI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: VehicleRegistrationAPI
+          path: ./artifacts/VehicleRegistrationAPI
