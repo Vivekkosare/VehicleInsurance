@@ -142,7 +142,6 @@
           "Microsoft.Extensions.Features": "9.0.0.0",
           "Microsoft.Extensions.FileProviders.Composite": "9.0.0.0",
           "Microsoft.Extensions.FileProviders.Embedded": "9.0.0.0",
-          "Microsoft.Extensions.Http": "9.0.0.0",
           "Microsoft.Extensions.Identity.Core": "9.0.0.0",
           "Microsoft.Extensions.Identity.Stores": "9.0.0.0",
           "Microsoft.Extensions.Localization.Abstractions": "9.0.0.0",
@@ -997,7 +996,7 @@
           "Microsoft.Extensions.Caching.Abstractions": "9.0.6",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.6",
           "Microsoft.Extensions.Options": "9.0.6",
-          "StackExchange.Redis": "2.7.27"
+          "StackExchange.Redis": "2.8.41"
         },
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll": {
@@ -1293,6 +1292,41 @@
         },
         "compile": {
           "lib/net9.0/Microsoft.Extensions.Hosting.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Http/9.0.6": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.6",
+          "Microsoft.Extensions.Diagnostics": "9.0.6",
+          "Microsoft.Extensions.Logging": "9.0.6",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.6",
+          "Microsoft.Extensions.Options": "9.0.6"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Http.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.625.26613"
+          }
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.Extensions.Http.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Http.Polly/9.0.6": {
+        "dependencies": {
+          "Microsoft.Extensions.Http": "9.0.6",
+          "Polly": "7.2.4",
+          "Polly.Extensions.Http": "3.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.Polly.dll": {
+            "assemblyVersion": "9.0.6.0",
+            "fileVersion": "9.0.625.26701"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.Polly.dll": {}
         }
       },
       "Microsoft.Extensions.Logging/9.0.6": {
@@ -2069,6 +2103,31 @@
           "lib/net5.0/Pipelines.Sockets.Unofficial.dll": {}
         }
       },
+      "Polly/7.2.4": {
+        "runtime": {
+          "lib/netstandard2.0/Polly.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.2.4.982"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Polly.dll": {}
+        }
+      },
+      "Polly.Extensions.Http/3.0.0": {
+        "dependencies": {
+          "Polly": "7.2.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Polly.Extensions.Http.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Polly.Extensions.Http.dll": {}
+        }
+      },
       "Serilog/4.2.0": {
         "runtime": {
           "lib/net9.0/Serilog.dll": {
@@ -2219,19 +2278,19 @@
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
         }
       },
-      "StackExchange.Redis/2.7.27": {
+      "StackExchange.Redis/2.8.41": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "9.0.6",
           "Pipelines.Sockets.Unofficial": "2.2.8"
         },
         "runtime": {
-          "lib/net6.0/StackExchange.Redis.dll": {
+          "lib/net8.0/StackExchange.Redis.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.7.27.49176"
+            "fileVersion": "2.8.41.44383"
           }
         },
         "compile": {
-          "lib/net6.0/StackExchange.Redis.dll": {}
+          "lib/net8.0/StackExchange.Redis.dll": {}
         }
       },
       "System.Buffers/4.6.0": {},
@@ -2502,6 +2561,7 @@
           "EFCore.BulkExtensions": "9.0.1",
           "FluentValidation.AspNetCore": "11.3.1",
           "Microsoft.AspNetCore.OpenApi": "9.0.0-rc.1.24452.1",
+          "Microsoft.Extensions.Http.Polly": "9.0.6",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
           "Serilog.AspNetCore": "9.0.0",
           "Serilog.Sinks.Console": "6.0.0",
@@ -2525,12 +2585,13 @@
           "Microsoft.AspNetCore.Mvc.Core": "2.3.0",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.6",
           "Newtonsoft.Json": "13.0.3",
-          "Serilog.AspNetCore": "9.0.0"
+          "Serilog.AspNetCore": "9.0.0",
+          "StackExchange.Redis": "2.8.41"
         },
         "runtime": {
           "VehicleInsurance.Shared.dll": {
             "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
+            "fileVersion": ""
           }
         },
         "compile": {
@@ -3132,12 +3193,6 @@
       "Microsoft.Extensions.FileProviders.Embedded/9.0.0.0": {
         "compile": {
           "Microsoft.Extensions.FileProviders.Embedded.dll": {}
-        },
-        "compileOnly": true
-      },
-      "Microsoft.Extensions.Http/9.0.0.0": {
-        "compile": {
-          "Microsoft.Extensions.Http.dll": {}
         },
         "compileOnly": true
       },
@@ -4677,6 +4732,20 @@
       "path": "microsoft.extensions.hosting.abstractions/9.0.6",
       "hashPath": "microsoft.extensions.hosting.abstractions.9.0.6.nupkg.sha512"
     },
+    "Microsoft.Extensions.Http/9.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YoCEkjHHeeKsOzaJaGKuwsi1Ijckkm/+bv5RXmsKA0/qW4veY0eh5lVtkOXxkqQbVRuK3sObhxRM0UeuF6yAgA==",
+      "path": "microsoft.extensions.http/9.0.6",
+      "hashPath": "microsoft.extensions.http.9.0.6.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Http.Polly/9.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eui0JinN+aOSMt6oeAGhSk+wAw5nJbeHt+JyOltn4+zjA7FhYDDLdsUW+Md3x18p+NxUdTwh7W/4EbB5RJ90Aw==",
+      "path": "microsoft.extensions.http.polly/9.0.6",
+      "hashPath": "microsoft.extensions.http.polly.9.0.6.nupkg.sha512"
+    },
     "Microsoft.Extensions.Logging/9.0.6": {
       "type": "package",
       "serviceable": true,
@@ -4929,6 +4998,20 @@
       "path": "pipelines.sockets.unofficial/2.2.8",
       "hashPath": "pipelines.sockets.unofficial.2.2.8.nupkg.sha512"
     },
+    "Polly/7.2.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bw00Ck5sh6ekduDE3mnCo1ohzuad946uslCDEENu3091+6UKnBuKLo4e+yaNcCzXxOZCXWY2gV4a35+K1d4LDA==",
+      "path": "polly/7.2.4",
+      "hashPath": "polly.7.2.4.nupkg.sha512"
+    },
+    "Polly.Extensions.Http/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-drrG+hB3pYFY7w1c3BD+lSGYvH2oIclH8GRSehgfyP5kjnFnHKQuuBhuHLv+PWyFuaTDyk/vfRpnxOzd11+J8g==",
+      "path": "polly.extensions.http/3.0.0",
+      "hashPath": "polly.extensions.http.3.0.0.nupkg.sha512"
+    },
     "Serilog/4.2.0": {
       "type": "package",
       "serviceable": true,
@@ -4999,12 +5082,12 @@
       "path": "sqlitepclraw.core/2.1.10",
       "hashPath": "sqlitepclraw.core.2.1.10.nupkg.sha512"
     },
-    "StackExchange.Redis/2.7.27": {
+    "StackExchange.Redis/2.8.41": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Uqc2OQHglqj9/FfGQ6RkKFkZfHySfZlfmbCl+hc+u2I/IqunfelQ7QJi7ZhvAJxUtu80pildVX6NPLdDaUffOw==",
-      "path": "stackexchange.redis/2.7.27",
-      "hashPath": "stackexchange.redis.2.7.27.nupkg.sha512"
+      "sha512": "sha512-EgtQzlucry9V2Gces1K19Xi8Sz/8DfoZlGQEmL/hSM/SXO/ucDS5RPmLzcmT489ZNGFbj9CGhlpscPLOXtYWwA==",
+      "path": "stackexchange.redis/2.8.41",
+      "hashPath": "stackexchange.redis.2.8.41.nupkg.sha512"
     },
     "System.Buffers/4.6.0": {
       "type": "package",
@@ -5686,11 +5769,6 @@
       "sha512": ""
     },
     "Microsoft.Extensions.FileProviders.Embedded/9.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.Extensions.Http/9.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

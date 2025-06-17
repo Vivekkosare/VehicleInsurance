@@ -1,5 +1,5 @@
 {
   "InsuranceAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/vivekkosare\/Development\/VehicleInsurance\/InsuranceAPI",
-  "VehicleInsurance.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/vivekkosare\/Development\/VehicleInsurance\/VehicleInsurance.Shared",
+  "VehicleInsurance.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/vivekkosare\/Development\/VehicleInsurance\/VehicleInsurance.Shared",
   "VehicleRegistrationAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/vivekkosare\/Development\/VehicleInsurance\/VehicleRegistrationAPI"
 }

@@ -114,7 +114,6 @@
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/bin/Debug/net9.0/refs/Microsoft.Extensions.Features.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/bin/Debug/net9.0/refs/Microsoft.Extensions.FileProviders.Composite.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/bin/Debug/net9.0/refs/Microsoft.Extensions.FileProviders.Embedded.dll
-/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/bin/Debug/net9.0/refs/Microsoft.Extensions.Http.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/bin/Debug/net9.0/refs/Microsoft.Extensions.Identity.Core.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/bin/Debug/net9.0/refs/Microsoft.Extensions.Identity.Stores.dll
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/bin/Debug/net9.0/refs/Microsoft.Extensions.Localization.Abstractions.dll
@@ -523,3 +522,7 @@
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/obj/Debug/net9.0/InsuranceAPI.Tests.pdb
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/obj/Debug/net9.0/InsuranceAPI.Tests.genruntimeconfig.cache
 /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/obj/Debug/net9.0/ref/InsuranceAPI.Tests.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/bin/Debug/net9.0/Microsoft.Extensions.Http.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/bin/Debug/net9.0/Microsoft.Extensions.Http.Polly.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/bin/Debug/net9.0/Polly.dll
+/Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI.Tests/bin/Debug/net9.0/Polly.Extensions.Http.dll

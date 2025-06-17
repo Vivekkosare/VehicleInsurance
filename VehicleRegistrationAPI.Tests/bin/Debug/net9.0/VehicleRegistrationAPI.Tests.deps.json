@@ -582,7 +582,7 @@
           "Microsoft.Extensions.Caching.Abstractions": "9.0.6",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.6",
           "Microsoft.Extensions.Options": "9.0.6",
-          "StackExchange.Redis": "2.7.27"
+          "StackExchange.Redis": "2.8.41"
         },
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll": {
@@ -1373,15 +1373,15 @@
           }
         }
       },
-      "StackExchange.Redis/2.7.27": {
+      "StackExchange.Redis/2.8.41": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "9.0.6",
           "Pipelines.Sockets.Unofficial": "2.2.8"
         },
         "runtime": {
-          "lib/net6.0/StackExchange.Redis.dll": {
+          "lib/net8.0/StackExchange.Redis.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.7.27.49176"
+            "fileVersion": "2.8.41.44383"
           }
         }
       },
@@ -1610,12 +1610,13 @@
           "Microsoft.AspNetCore.Mvc.Core": "2.3.0",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.6",
           "Newtonsoft.Json": "13.0.3",
-          "Serilog.AspNetCore": "9.0.0"
+          "Serilog.AspNetCore": "9.0.0",
+          "StackExchange.Redis": "2.8.41"
         },
         "runtime": {
           "VehicleInsurance.Shared.dll": {
             "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
+            "fileVersion": ""
           }
         }
       },
@@ -2332,12 +2333,12 @@
       "path": "sqlitepclraw.core/2.1.10",
       "hashPath": "sqlitepclraw.core.2.1.10.nupkg.sha512"
     },
-    "StackExchange.Redis/2.7.27": {
+    "StackExchange.Redis/2.8.41": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Uqc2OQHglqj9/FfGQ6RkKFkZfHySfZlfmbCl+hc+u2I/IqunfelQ7QJi7ZhvAJxUtu80pildVX6NPLdDaUffOw==",
-      "path": "stackexchange.redis/2.7.27",
-      "hashPath": "stackexchange.redis.2.7.27.nupkg.sha512"
+      "sha512": "sha512-EgtQzlucry9V2Gces1K19Xi8Sz/8DfoZlGQEmL/hSM/SXO/ucDS5RPmLzcmT489ZNGFbj9CGhlpscPLOXtYWwA==",
+      "path": "stackexchange.redis/2.8.41",
+      "hashPath": "stackexchange.redis.2.8.41.nupkg.sha512"
     },
     "System.Buffers/4.6.0": {
       "type": "package",
