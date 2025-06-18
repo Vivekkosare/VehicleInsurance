@@ -1,5 +1,5 @@
 using FluentValidation;
-using InsuranceAPI.DTOs;
+using InsuranceAPI.Features.Insurance.DTOs;
 
 namespace InsuranceAPI.Features.Insurance.Validators;
 

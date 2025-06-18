@@ -1,4 +1,5 @@
 using InsuranceAPI.Data;
+using InsuranceAPI.Features.FeatureManagement.DTOs;
 using InsuranceAPI.Features.FeatureManagement.Entities;
 using Microsoft.EntityFrameworkCore;
 using VehicleInsurance.Shared.DTOs;
@@ -77,6 +78,9 @@ namespace InsuranceAPI.Features.FeatureManagement.Repositories
 
                 var cacheKeyByName = $"FeatureToggle_{featureToggle.Value.Name}";
                 await _cache.RemoveAsync(cacheKeyByName);
+
+                var cacheKeyEnabled = $"FeatureToggleEnabled_{featureToggle.Value.Name}";
+                await _cache.RemoveAsync(cacheKeyEnabled);
 
                 return Result<bool>.Success(true);
             }
@@ -177,11 +181,17 @@ namespace InsuranceAPI.Features.FeatureManagement.Repositories
             {
                 existingToggle.UpdatedAt = DateTime.UtcNow;
                 await _dbContext.SaveChangesAsync();
+
                 // Update cache
                 var cacheKeyById = $"FeatureToggle_{existingToggle.Id}";
                 await _cache.SetAsync(cacheKeyById, existingToggle, _cacheTimeout);
+
                 var cacheKeyByName = $"FeatureToggle_{existingToggle.Name}";
                 await _cache.SetAsync(cacheKeyByName, existingToggle, _cacheTimeout);
+
+                var cacheKeyEnabled = $"FeatureToggleEnabled_{existingToggle.Name}";
+                await _cache.SetAsync(cacheKeyEnabled, existingToggle.IsEnabled, _cacheTimeout);
+
                 _logger.LogInformation("Feature toggle with ID {FeatureToggleId} patched successfully.", existingToggle.Id);
             }
             else
@@ -189,6 +199,31 @@ namespace InsuranceAPI.Features.FeatureManagement.Repositories
                 _logger.LogInformation("No changes detected for feature toggle with ID {FeatureToggleId}.", existingToggle.Id);
             }
             return Result<FeatureToggle>.Success(existingToggle);
+        }
+
+        public async Task<Result<bool>> IsFeatureToggleEnabledAsync(FeatureToggleNameInput input)
+        {
+            var cacheKey = $"FeatureToggleEnabled_{string.Join("_", input.Names)}";
+            // Check cache first
+            var cachedResult = await _cache.GetAsync<bool>(cacheKey);
+            if (cachedResult.IsSuccess)
+            {
+                _logger.LogInformation("Found feature toggle enabled status in cache for key: {CacheKey}", cacheKey);
+                return Result<bool>.Success(cachedResult.Value);
+            }
+            // If not in cache, retrieve from the database
+            var featureToggle = await _dbContext.FeatureToggles
+                .AsNoTracking()
+                .FirstOrDefaultAsync(ft => ft.Name == name);
+            if (featureToggle == null)
+            {
+                _logger.LogWarning("Feature toggle with Name {FeatureToggleName} not found.", name);
+                return Result<bool>.Failure($"Feature toggle with Name {name} not found.");
+            }
+            _logger.LogInformation("Feature toggle with Name {FeatureToggleName} retrieved successfully.", name);
+            // Cache the result
+            await _cache.SetAsync(cacheKey, featureToggle.IsEnabled, _cacheTimeout);
+            return Result<bool>.Success(featureToggle.IsEnabled);
         }
     }
 }

@@ -58,7 +58,7 @@ public class FeatureToggleConfiguration : IEntityTypeConfiguration<FeatureToggle
             new FeatureToggle
             {
                 Id = Guid.Parse("e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b"),
-                Name = "Discounts",
+                Name = "ApplyDiscounts",
                 Description = "Enable or disable discounts on insurance products",
                 IsEnabled = false,
                 CreatedAt = DateTime.UtcNow,

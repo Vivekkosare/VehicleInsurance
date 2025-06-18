@@ -31,7 +31,7 @@ public class InsuranceProductConfiguration : IEntityTypeConfiguration<InsuranceP
             .IsRequired()
             .HasColumnType("numeric(18,2)");
 
-        builder.Property(ip => ip.Discount)
+        builder.Property(ip => ip.DiscountPercentage)
             .HasColumnName("Discount")
             .IsRequired()
             .HasColumnType("numeric(18,2)");
@@ -63,7 +63,7 @@ public class InsuranceProductConfiguration : IEntityTypeConfiguration<InsuranceP
                 Name = "Pet insurance",
                 Code = "PET",
                 Price = 10,
-                Discount = 15
+                DiscountPercentage = 15
             },
             new InsuranceProduct
             {
@@ -71,7 +71,7 @@ public class InsuranceProductConfiguration : IEntityTypeConfiguration<InsuranceP
                 Name = "Personal health insurance",
                 Code = "HEALTH",
                 Price = 20,
-                Discount = 10
+                DiscountPercentage = 10
             },
             new InsuranceProduct
             {
@@ -79,7 +79,7 @@ public class InsuranceProductConfiguration : IEntityTypeConfiguration<InsuranceP
                 Name = "Car insurance",
                 Code = "CAR",
                 Price = 30,
-                Discount = 5
+                DiscountPercentage = 5
             }
         );
     }

@@ -1,10 +1,7 @@
 using FluentValidation;
 using InsuranceAPI.Features.FeatureManagement.DTOs;
 using InsuranceAPI.Features.FeatureManagement.Services;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 namespace InsuranceAPI.Features.FeatureManagement.Endpoints
 {
     public static class FeatureManagementEndpoints
@@ -74,6 +71,33 @@ namespace InsuranceAPI.Features.FeatureManagement.Endpoints
                     return Results.BadRequest("Invalid feature toggle ID.");
                 }
                 var result = await service.GetFeatureToggleByIdAsync(id);
+                return result.IsSuccess ? Results.Ok(result.Value) : Results.Problem(result.Error);
+            })
+            .WithName("GetFeatureToggleById")
+            .Produces<FeatureToggleOutput>(StatusCodes.Status200OK)
+            .ProducesProblem(StatusCodes.Status404NotFound)
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
+
+
+            /// <summary>
+            /// Get a feature toggle by its ID.
+            /// </summary>
+            /// <param name="id">The unique identifier of the feature toggle.</param>
+            /// <returns>The feature toggle if found, otherwise a 404 Not Found response.</returns>
+            /// <response code="200">Returns the feature toggle.</response>
+            /// <response code="404">If the feature toggle with the specified ID is not found.</response>
+            /// <response code="500">If an error occurs while retrieving the feature toggle.</response>
+            group.MapGet("/{name:string}", async ([FromBody] FeatureToggleNameInput input,
+            [FromServices] IFeatureManagementService service,
+            [FromServices] IValidator<FeatureToggleNameInput> validator) =>
+            {
+
+                var validationResult = await validator.ValidateAsync(input);
+                if (!validationResult.IsValid)
+                {
+                    return Results.ValidationProblem(validationResult.ToDictionary());
+                }
+                var result = await service.IsFeatureToggleEnabledAsync(input);
                 return result.IsSuccess ? Results.Ok(result.Value) : Results.Problem(result.Error);
             })
             .WithName("GetFeatureToggleById")

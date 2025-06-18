@@ -91,6 +91,24 @@ namespace InsuranceAPI.Features.FeatureManagement.Services
             }
         }
 
+        public async Task<Result<bool>> IsFeatureToggleEnabledAsync(FeatureToggleNameInput input)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(input?.Name))
+                {
+                    _logger.LogError("Feature toggle name is null or empty");
+                    return Result<bool>.Failure("Feature toggle name cannot be null or empty.");
+                }
+                return await _repo.IsFeatureToggleEnabledAsync(name);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, "Error checking if feature toggle is enabled");
+                return Result<bool>.Failure("An error occurred while checking if the feature toggle is enabled.");
+            }
+        }
+
         public async Task<Result<FeatureToggleOutput>> PatchFeatureToggleAsync(Guid id, FeatureToggleInput featureToggleInput)
         {
             try
