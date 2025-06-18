@@ -1,4 +1,4 @@
-using InsuranceAPI.DTOs;
+using InsuranceAPI.Features.Insurance.DTOs;
 using InsuranceAPI.Features.Insurance.Extensions;
 using InsuranceAPI.Features.Insurance.Repositories;
 using InsuranceAPI.HttpClients;
@@ -86,8 +86,8 @@ ILogger<InsuranceService> _logger) : IInsuranceService
             if (!carInsurances.Any())
             {
                 _logger.LogInformation("No car insurances. Fetching all insurances without car details.");
-                return Result<IEnumerable<InsuranceOutput>>.Success(insuranceValue
-                    .Select(i => i.ToOutput()));
+                return Result<IEnumerable<InsuranceOutput>>.Success(
+                    insuranceValue.Select(i => i.ToOutput()));
             }
 
             //Make an Http call to Vehicle Registration API to get car details for Car insurances

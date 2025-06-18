@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace InsuranceAPI.DTOs;
+namespace InsuranceAPI.Features.Insurance.DTOs;
 
 public record OwnerDto(
     [property: JsonPropertyName("id")] Guid Id,

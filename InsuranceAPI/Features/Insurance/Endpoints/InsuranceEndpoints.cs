@@ -2,14 +2,17 @@ using InsuranceAPI.DTOs;
 using InsuranceAPI.Features.Insurance.Services;
 using Microsoft.AspNetCore.Mvc;
 using FluentValidation;
+using InsuranceAPI.Features.Insurance.DTOs;
 
 namespace InsuranceAPI.Features.Insurance.Endpoints;
 
 public static class InsuranceEndpoints
 {
-    public static void MapInsuranceEndpoints(this WebApplication app)
+    public static IEndpointRouteBuilder MapInsuranceEndpoints(this IEndpointRouteBuilder builder)
     {
-        var group = app.MapGroup("/api/v1/insurances");
+        // Use versioned route group
+        var group = builder.MapGroup("/api/v{version:apiVersion}/insurances")
+        .WithTags("Insurances");
 
         /// <summary>
         /// Maps the insurance endpoints for managing insurance records.
@@ -124,5 +127,7 @@ public static class InsuranceEndpoints
         .Produces<InsuranceOutput>(StatusCodes.Status200OK)
         .ProducesValidationProblem()
         .Produces(StatusCodes.Status400BadRequest);
+
+        return group;
     }
 }

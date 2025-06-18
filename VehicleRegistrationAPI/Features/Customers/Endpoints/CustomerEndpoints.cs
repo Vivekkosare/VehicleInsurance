@@ -7,10 +7,11 @@ namespace VehicleRegistrationAPI.Features.Customers.Endpoints;
 
 public static class CustomerEndpoints
 {
-    public static void MapCustomerEndpoints(this IEndpointRouteBuilder app)
+    public static IEndpointRouteBuilder MapCustomerEndpoints(this IEndpointRouteBuilder builder)
     {
         // Define the base route for customer endpoints
-        var group = app.MapGroup("/api/v1/customers").WithTags("Customers");
+        var group = builder.MapGroup("/api/v{version:apiVersion}/customers")
+                .WithTags("Customers");
 
         /// <summary>
         /// Retrieves a customer by ID.
@@ -124,5 +125,8 @@ public static class CustomerEndpoints
         .WithName("GetCustomerByPersonalIdentificationNumber")
         .Produces<CustomerOutput>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status500InternalServerError);
+
+
+        return builder;
     }
 }

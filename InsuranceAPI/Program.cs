@@ -39,6 +39,16 @@ builder.Services.AddVehicleRegistrationAPIHttpClient(builder.Configuration);
 builder.Services.AddValidatorsFromAssemblyContaining<InsuranceInputValidator>();
 builder.Services.AddFluentValidationAutoValidation();
 
+// Add API versioning
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ReportApiVersions = true;
+    // Use URL segment versioning (e.g., /api/v1/)
+    options.ApiVersionReader = new Microsoft.AspNetCore.Mvc.Versioning.UrlSegmentApiVersionReader();
+});
+
 var app = builder.Build();
 
 // Apply migrations and seed data at startup

@@ -1,4 +1,4 @@
-using InsuranceAPI.DTOs;
+using InsuranceAPI.Features.Insurance.DTOs;
 using InsuranceAPI.Features.Insurance.Entities;
 
 namespace InsuranceAPI.Features.Insurance.Extensions;

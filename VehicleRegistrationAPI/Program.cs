@@ -18,7 +18,7 @@ builder.RegisterSerilog(builder.Configuration);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-// Conditionally register the DbContext with SQL Server or InMemory for tests
+// Conditionally register the DbContext with PostgreSQL or InMemory for tests
 var useInMemory = Environment.GetEnvironmentVariable("USE_INMEMORY_DB") == "true";
 if (useInMemory)
 {
@@ -29,7 +29,7 @@ if (useInMemory)
 }
 else
 {
-    //Register the DbContext with SQL Server
+    //Register the DbContext with PostgreSQL
     builder.Services.AddDbContext<VehicleRegistrationDbContext>(options =>
     {
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -48,6 +48,15 @@ builder.Services.AddValidatorsFromAssemblyContaining<VehicleRegistrationAPI.Feat
 
 // Optionally enable automatic validation for minimal APIs
 builder.Services.AddFluentValidationAutoValidation();
+
+// Add API versioning
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ReportApiVersions = true;
+    options.ApiVersionReader = new Microsoft.AspNetCore.Mvc.Versioning.UrlSegmentApiVersionReader();
+});
 
 var app = builder.Build();
 

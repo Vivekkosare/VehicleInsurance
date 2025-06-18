@@ -9,9 +9,9 @@ namespace VehicleRegistrationAPI.Features.Vehicles.Endpoints;
 
 public static class VehicleEndpoints
 {
-    public static void MapVehicleEndpoints(this IEndpointRouteBuilder app)
+    public static IEndpointRouteBuilder MapVehicleEndpoints(this IEndpointRouteBuilder builder)
     {
-        var group = app.MapGroup("api/v1/vehicles");
+        var group = builder.MapGroup("/api/v{version:apiVersion}/vehicles");
         group.WithTags("Vehicles");
 
         /// <summary>
@@ -162,5 +162,8 @@ public static class VehicleEndpoints
         .WithName("GetVehiclesByPersonalIdentifiers")
         .Produces<IEnumerable<VehicleOutput>>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status500InternalServerError);
+
+
+        return builder;
     }
 }
