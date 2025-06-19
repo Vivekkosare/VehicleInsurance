@@ -3,11 +3,16 @@ using InsuranceAPI.Features.Insurance.Extensions;
 using InsuranceAPI.Features.Insurance.Repositories;
 using InsuranceAPI.HttpClients;
 using VehicleInsurance.Shared.DTOs;
+using InsuranceAPI.Features.Insurance.Pricing;
+using InsuranceAPI.Features.FeatureManagement.Services;
+using InsuranceAPI.Features.FeatureManagement.DTOs;
 namespace InsuranceAPI.Features.Insurance.Services;
 
 public class InsuranceService(IInsuranceRepository _insuranceRepo,
 ICarRegistrationAPIClient _apiClient,
-ILogger<InsuranceService> _logger) : IInsuranceService
+ILogger<InsuranceService> _logger,
+IFeatureManagementService _featureManagementService,
+IPriceCalculatorFactory _priceCalculatorFactory) : IInsuranceService
 {
     public async Task<Result<InsuranceOutput>> AddInsuranceAsync(InsuranceInput insuranceInput)
     {
@@ -43,6 +48,11 @@ ILogger<InsuranceService> _logger) : IInsuranceService
                     return Result<InsuranceOutput>.Failure("Car details not found for the provided personal identification number.");
                 }
             }
+
+            //Get feature toggles status
+            var featureToggleNamesInput = new FeatureToggleNameInput(new List<string> { "ShowCarDetails", "ApplyDiscounts" });
+            var featureTogglesResult = await _featureManagementService.GetFeatureTogglesByNamesAsync(featureToggleNamesInput);
+
             //Add the insurance to the repository
             var insuranceEntity = insuranceInput.ToEntity();
             var newInsurance = await _insuranceRepo.AddInsuranceAsync(insuranceEntity);
