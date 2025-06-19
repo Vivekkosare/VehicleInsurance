@@ -8,7 +8,7 @@ public interface IFeatureManagementService
 {
     Task<Result<IEnumerable<FeatureToggleOutput>>> GetAllFeatureTogglesAsync();
     Task<Result<FeatureToggleOutput>> GetFeatureToggleByIdAsync(Guid id);
-    Task<Result<bool>> IsFeatureToggleEnabledAsync(FeatureToggleNameInput input);
+    Task<Result<FeatureToggleNameOutput>> GetFeatureTogglesByNamesAsync(FeatureToggleNameInput input);
     Task<Result<FeatureToggleOutput>> AddFeatureToggleAsync(FeatureToggleInput featureToggleInput);
     Task<Result<FeatureToggleOutput>> PatchFeatureToggleAsync(Guid id, FeatureToggleInput featureToggleInput);
     Task<Result<bool>> DeleteFeatureToggleAsync(Guid id);

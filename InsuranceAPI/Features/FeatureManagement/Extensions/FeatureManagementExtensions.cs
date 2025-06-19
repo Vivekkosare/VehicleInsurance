@@ -29,6 +29,18 @@ namespace InsuranceAPI.Features.FeatureManagement.Extensions
 
             return new FeatureToggleOutput(toggle.Id, toggle.Name, toggle.Description, toggle.IsEnabled);
         }
+
+        public static List<string> ToFeatureToggleNames(this FeatureToggleNameInput input)
+        {
+            if (input == null) throw new ArgumentNullException(nameof(input));
+            return input.Names ?? throw new ArgumentNullException(nameof(input.Names), "Feature toggle names cannot be null.");
+        }
+
+        public static FeatureToggleNameOutput ToFeatureToggleNameOutput(this IEnumerable<bool> togglesStatus)
+        {
+            if (togglesStatus == null) throw new ArgumentNullException(nameof(togglesStatus));
+            return new FeatureToggleNameOutput(togglesStatus.ToList());
+        }
     }
 
 }

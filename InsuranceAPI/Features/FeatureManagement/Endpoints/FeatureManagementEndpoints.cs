@@ -87,7 +87,7 @@ namespace InsuranceAPI.Features.FeatureManagement.Endpoints
             /// <response code="200">Returns the feature toggle.</response>
             /// <response code="404">If the feature toggle with the specified ID is not found.</response>
             /// <response code="500">If an error occurs while retrieving the feature toggle.</response>
-            group.MapGet("/{name:string}", async ([FromBody] FeatureToggleNameInput input,
+            group.MapPost("/feature-toggles/by-names", async ([FromBody] FeatureToggleNameInput input,
             [FromServices] IFeatureManagementService service,
             [FromServices] IValidator<FeatureToggleNameInput> validator) =>
             {
@@ -97,10 +97,10 @@ namespace InsuranceAPI.Features.FeatureManagement.Endpoints
                 {
                     return Results.ValidationProblem(validationResult.ToDictionary());
                 }
-                var result = await service.IsFeatureToggleEnabledAsync(input);
+                var result = await service.GetFeatureTogglesByNamesAsync(input);
                 return result.IsSuccess ? Results.Ok(result.Value) : Results.Problem(result.Error);
             })
-            .WithName("GetFeatureToggleById")
+            .WithName("GetFeatureTogglesByNamesAsync")
             .Produces<FeatureToggleOutput>(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status404NotFound)
             .ProducesProblem(StatusCodes.Status500InternalServerError);

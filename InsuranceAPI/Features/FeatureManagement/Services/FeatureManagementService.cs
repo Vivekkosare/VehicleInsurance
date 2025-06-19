@@ -91,21 +91,28 @@ namespace InsuranceAPI.Features.FeatureManagement.Services
             }
         }
 
-        public async Task<Result<bool>> IsFeatureToggleEnabledAsync(FeatureToggleNameInput input)
+        public async Task<Result<FeatureToggleNameOutput>> GetFeatureTogglesByNamesAsync(FeatureToggleNameInput input)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(input?.Name))
+                if (input is null || input.Names is null || !input.Names.Any())
                 {
-                    _logger.LogError("Feature toggle name is null or empty");
-                    return Result<bool>.Failure("Feature toggle name cannot be null or empty.");
+                    _logger.LogError("Feature toggle names input is null or empty");
+                    return Result<FeatureToggleNameOutput>.Failure("Feature toggle names cannot be null or empty.");
                 }
-                return await _repo.IsFeatureToggleEnabledAsync(name);
+                var featureToggleNames = input.ToFeatureToggleNames();
+                var featureTogglesStatus = await _repo.GetFeatureTogglesByNamesAsync(featureToggleNames);
+                if (!featureTogglesStatus.IsSuccess)
+                {
+                    _logger.LogError("Error retrieving feature toggles by names: {Error}", featureTogglesStatus.Error);
+                    return Result<FeatureToggleNameOutput>.Failure(featureTogglesStatus.Error);
+                }
+                return Result<FeatureToggleNameOutput>.Success(featureTogglesStatus.Value.ToFeatureToggleNameOutput());
             }
             catch (System.Exception ex)
             {
                 _logger.LogError(ex, "Error checking if feature toggle is enabled");
-                return Result<bool>.Failure("An error occurred while checking if the feature toggle is enabled.");
+                return Result<FeatureToggleNameOutput>.Failure("An error occurred while checking if the feature toggle is enabled.");
             }
         }
 
