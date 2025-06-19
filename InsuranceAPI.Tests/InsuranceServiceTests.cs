@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using InsuranceAPI.DTOs;
+using InsuranceAPI.Features.Insurance.DTOs;
 using InsuranceAPI.Features.Insurance.Entities;
 using InsuranceAPI.Features.Insurance.Repositories;
 using InsuranceAPI.Features.Insurance.Services;
@@ -10,7 +6,6 @@ using InsuranceAPI.HttpClients;
 using Microsoft.Extensions.Logging;
 using Moq;
 using VehicleInsurance.Shared.DTOs;
-using Xunit;
 
 namespace InsuranceAPI.Tests
 {

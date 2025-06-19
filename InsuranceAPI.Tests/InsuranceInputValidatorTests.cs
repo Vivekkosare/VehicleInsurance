@@ -1,7 +1,5 @@
-using System;
-using InsuranceAPI.DTOs;
+using InsuranceAPI.Features.Insurance.DTOs;
 using InsuranceAPI.Features.Insurance.Validators;
-using Xunit;
 
 namespace InsuranceAPI.Tests;
 

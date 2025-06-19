@@ -1,4 +1,3 @@
-using Microsoft.Identity.Client;
 using VehicleInsurance.Shared.DTOs;
 using VehicleRegistrationAPI.Entities;
 using VehicleRegistrationAPI.Features.Customers.DTOs;
