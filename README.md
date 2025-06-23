@@ -16,6 +16,7 @@ If the person has CAR Insurance, while showing the details. The API endpoint sho
 - [Endpoints](#endpoints)
   - [VehicleRegistrationAPI](#vehicleregistrationapi-endpoints)
   - [InsuranceAPI](#insuranceapi-endpoints)
+  - [FeatureManagement](#featuremanagement-endpoints)
 - [Inter-Service Communication](#inter-service-communication)
 - [Testing](#testing)
 - [Docker Compose Setup](#docker-compose-setup)
@@ -62,6 +63,24 @@ Base URL: `http://localhost:5096/api/v1`
 - `GET /insurances/personal/{personalIdentificationNumber}`: Get insurances by personal identification number
 - `POST /insurances`: Add a new insurance
 
+### FeatureManagement Endpoints
+Base URL: `http://localhost:5096/api/v1`
+
+#### Feature Toggles
+- `GET /featuretoggles`: Get all feature toggles
+- `GET /featuretoggles/{id}`: Get feature toggle by ID
+- `GET /featuretoggles/{name}`: Get feature toggle by name
+- `POST /featuretoggles/by-names`: Get multiple feature toggles by names
+. `DELETE /featuretoggles/{id}`: Delete a feature toggle
+- `POST /featuretoggles`: Create a new feature toggle
+- `PATCH /featuretoggles/{name}`: Update description and enabled status of a feature toggle (partial update)
+
+There are two feature toggles added by default ``ApplyDiscounts and ShowCarDetails```.
+`ApplyDiscounts: false` and `ShowCarDetails: true`
+By setting the `ShowCarDetails` value, Car details display can be enabled or disabled in the Insurance GET (display) sections
+
+By setting `ApplyDiscounts` value, Discounts can be enabled or disabled while adding or creating a new insurance.
+
 ---
 
 ## Inter-Service Communication
@@ -77,6 +96,7 @@ Base URL: `http://localhost:5096/api/v1`
 - **Unit Tests**: Cover core business logic, validation, and repository methods for both APIs.
 - **Integration Tests**: Cover API endpoints and inter-service communication, including:
   - InsuranceAPI integration with VehicleRegistrationAPI using a test server
+  - FeatureManagement endpoints (feature toggle CRUD, PATCH, and cache scenarios)
   - Database operations with in-memory and real PostgreSQL providers
 - Tests are located in `InsuranceAPI.Tests/` and `VehicleRegistrationAPI.Tests/`.
 
