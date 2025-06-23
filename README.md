@@ -258,5 +258,20 @@ You can run the CI pipeline locally using [`act`](https://github.com/nektos/act)
 
 ---
 
+## Continuous Integration (CI)
+
+This repository uses GitHub Actions for CI/CD. The workflow is defined in [`.github/workflows/dotnet-build.yml`](.github/workflows/dotnet-build.yml) and includes:
+
+- Restoring dependencies (`dotnet restore`)
+- Building the solution (`dotnet build`)
+- Running unit tests (excluding integration tests)
+- Running integration tests
+- Publishing build artifacts for both InsuranceAPI and VehicleRegistrationAPI
+- Uploading build artifacts for use in deployments or further pipelines
+
+The workflow runs automatically on every push or pull request to the `main` and `develop` branches.
+
+---
+
 ## Contact
 For questions or contributions, please open an issue or submit a pull request.
