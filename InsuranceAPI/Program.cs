@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using InsuranceAPI.ServiceRegistrations;
 using VehicleInsurance.Shared.Extensions;
 using InsuranceAPI.Features.Insurance.ServiceRegistrations;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +19,7 @@ builder.RegisterSerilog(builder.Configuration);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-//Register the DbContext with SQL Server or InMemory for tests
+//Register the DbContext with Postgres or InMemory for tests
 if (Environment.GetEnvironmentVariable("USE_INMEMORY_DB") == "true")
 {
     builder.Services.AddDbContext<InsuranceDbContext>(options =>
@@ -37,10 +37,6 @@ else
 
 //Add and Register the Redis cache service
 builder.Services.AddRedisCache(builder.Configuration);
-
-// Register the repositories and services
-builder.Services.AddScoped<IInsuranceRepository, InsuranceRepository>();
-builder.Services.AddScoped<IInsuranceService, InsuranceService>();
 
 //Register the http client for the Vehicle Registration API
 builder.Services.AddVehicleRegistrationAPIHttpClient(builder.Configuration);
@@ -63,12 +59,24 @@ builder.Services.AddVersionedApiExplorer(options =>
 
 var app = builder.Build();
 
+// Apply migrations and seed data at startup
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<InsuranceDbContext>();
+    var databaseCreator = dbContext.Database.GetService<IDatabaseCreator>();
+    if (databaseCreator is RelationalDatabaseCreator)
+    {
+        dbContext.Database.Migrate();
+    }
+    // Seed data is handled by EF Core if configured with HasData
+}
+
 // Map the insurance endpoints
 app.MapInsuranceEndpoints();
 // Map the feature management endpoints
 app.MapFeatureManagementEndpoints();
 
-if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Testing")
+if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.MapOpenApi();
