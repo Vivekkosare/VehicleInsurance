@@ -1,12 +1,9 @@
-using System;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using VehicleRegistrationAPI;
 using VehicleRegistrationAPI.Data;
 
-namespace InsuranceAPI.Tests.Integration
+namespace InsuranceAPI.Tests.Insurance.Integration
 {
     // Custom factory to seed test data
     public class TestVehicleRegistrationApiFactory : WebApplicationFactory<VehicleRegistrationAPI.Program>

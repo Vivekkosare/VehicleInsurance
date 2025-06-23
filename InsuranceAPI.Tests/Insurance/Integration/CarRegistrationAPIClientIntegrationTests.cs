@@ -1,8 +1,7 @@
 using InsuranceAPI.HttpClients;
 using VehicleInsurance.Shared.DTOs;
-using Xunit;
 
-namespace InsuranceAPI.Tests.Integration
+namespace InsuranceAPI.Tests.Insurance.Integration
 {
     [Trait("TestCategory", "Integration")]
     public class CarRegistrationAPIClientIntegrationTests : IClassFixture<TestVehicleRegistrationApiFactory>

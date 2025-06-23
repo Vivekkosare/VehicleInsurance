@@ -6,11 +6,11 @@ using Xunit;
 namespace InsuranceAPI.Tests.FeatureManagement.Integration
 {
     [Trait("TestCategory", "Integration")]
-    public class FeatureManagementApiPatchIntegrationTests : IClassFixture<InsuranceAPI.Tests.Integration.TestInsuranceApiFactory>
+    public class FeatureManagementApiPatchIntegrationTests : IClassFixture<Insurance.Integration.TestInsuranceApiFactory>
     {
         private readonly HttpClient _client;
 
-        public FeatureManagementApiPatchIntegrationTests(InsuranceAPI.Tests.Integration.TestInsuranceApiFactory factory)
+        public FeatureManagementApiPatchIntegrationTests(Insurance.Integration.TestInsuranceApiFactory factory)
         {
             _client = factory.CreateClient();
         }

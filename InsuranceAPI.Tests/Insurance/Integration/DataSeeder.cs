@@ -1,9 +1,7 @@
-using System;
-using System.Linq;
 using VehicleRegistrationAPI.Data;
 using VehicleRegistrationAPI.Entities;
 
-namespace InsuranceAPI.Tests.Integration
+namespace InsuranceAPI.Tests.Insurance.Integration
 {
     public static class DataSeeder
     {

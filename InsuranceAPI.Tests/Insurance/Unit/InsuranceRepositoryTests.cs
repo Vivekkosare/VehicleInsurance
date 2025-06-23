@@ -2,13 +2,12 @@ using Moq;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using InsuranceAPI.Features.Insurance.Repositories;
-using InsuranceAPI.Features.Insurance.Entities;
 using InsuranceAPI.Data;
 using VehicleInsurance.Shared.Services;
 using Microsoft.EntityFrameworkCore;
 using VehicleInsurance.Shared.DTOs;
 
-namespace InsuranceAPI.Tests
+namespace InsuranceAPI.Tests.Insurance.Unit
 {
     public class InsuranceRepositoryTests
     {
@@ -34,7 +33,7 @@ namespace InsuranceAPI.Tests
             using var dbContext = new InsuranceDbContext(_dbContextOptions);
             var repository = new InsuranceRepository(dbContext, _logger, _cacheMock.Object, _configMock.Object);
 
-            var insurance = new Insurance
+            var insurance = new Features.Insurance.Entities.Insurance
             {
                 Id = Guid.NewGuid(),
                 PersonalIdentificationNumber = "123",
@@ -43,8 +42,8 @@ namespace InsuranceAPI.Tests
             };
 
             _cacheMock
-            .Setup(c => c.GetAsync<Insurance>(It.IsAny<string>()))
-            .ReturnsAsync(Result<Insurance?>.Failure("Not found"));
+            .Setup(c => c.GetAsync<Features.Insurance.Entities.Insurance>(It.IsAny<string>()))
+            .ReturnsAsync(Result<Features.Insurance.Entities.Insurance?>.Failure("Not found"));
 
             var result = await repository.AddInsuranceAsync(insurance);
 
@@ -58,17 +57,17 @@ namespace InsuranceAPI.Tests
             var repository = new InsuranceRepository(dbContext, _logger, _cacheMock.Object, _configMock.Object);
             var pin = "123";
 
-            var insurances = new List<Insurance>
+            var insurances = new List<Features.Insurance.Entities.Insurance>
             {
-                new Insurance { Id = Guid.NewGuid(),
+                new Features.Insurance.Entities.Insurance { Id = Guid.NewGuid(),
                 PersonalIdentificationNumber = pin,
                 InsuredItemIdentity = "Car",
                 InsuranceProductId = Guid.NewGuid()
             } };
 
             _cacheMock
-            .Setup(c => c.GetAsync<IEnumerable<Insurance>>(It.IsAny<string>()))
-            .ReturnsAsync(Result<IEnumerable<Insurance>?>.Success(insurances));
+            .Setup(c => c.GetAsync<IEnumerable<Features.Insurance.Entities.Insurance>>(It.IsAny<string>()))
+            .ReturnsAsync(Result<IEnumerable<Features.Insurance.Entities.Insurance>?>.Success(insurances));
 
             var result = await repository.GetInsurancesByPersonalIdentificationNumberAsync(pin);
 

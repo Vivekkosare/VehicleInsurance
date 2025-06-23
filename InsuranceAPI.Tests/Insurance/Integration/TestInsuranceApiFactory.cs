@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using InsuranceAPI.Data;
 
-namespace InsuranceAPI.Tests.Integration
+namespace InsuranceAPI.Tests.Insurance.Integration
 {
     public class TestInsuranceApiFactory : WebApplicationFactory<Program>
     {

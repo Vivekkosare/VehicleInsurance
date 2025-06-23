@@ -1,7 +1,7 @@
 using InsuranceAPI.Features.Insurance.DTOs;
 using InsuranceAPI.Features.Insurance.Validators;
 
-namespace InsuranceAPI.Tests;
+namespace InsuranceAPI.Tests.Insurance.Unit;
 
 public class InsuranceInputValidatorTests
 {
