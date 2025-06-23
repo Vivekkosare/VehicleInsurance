@@ -34,6 +34,26 @@ When `ApplyDiscounts : true`, then there will be discounts of `5% on CAR`, `10% 
 
 ---
 
+## Requirements
+
+To run this application, you need one of the following setups:
+
+### Recommended: Docker Desktop
+- **Docker Desktop** (Windows, macOS, or Linux)
+- All dependencies (PostgreSQL, Redis, .NET 9 SDK/runtime) are automatically provisioned via Docker Compose.
+- No manual installation of databases or runtimes is required.
+
+### Alternative: Manual Setup
+If you do not use Docker Desktop, you must install the following on your computer:
+- **.NET 9 SDK and Runtime**
+- **PostgreSQL** (version 15 or higher recommended)
+- **Redis**
+- Configure connection strings and environment variables as needed in `appsettings.json` or your environment.
+
+> **Note:** Docker Desktop is the easiest and most reliable way to run the full solution with all dependencies.
+
+---
+
 ## Architecture
 - **.NET 9** microservices
 - Minimal APIs with Results pattern (to handle the responses gracefully)
