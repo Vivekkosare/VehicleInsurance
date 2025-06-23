@@ -287,6 +287,11 @@ namespace InsuranceAPI.Features.FeatureManagement.Repositories
             // Remove the cache for all insurances by prefix
             await _cache.ClearByPatternAsync($"{prefix}*");
             _logger.LogInformation($"Removed All insurances cache with prefix {prefix}.");
+
+            var allInsuracesCacheKey = "AllInsurances";
+            // Remove the cache for vehicles by personal identification numbers
+            await _cache.RemoveAsync(allInsuracesCacheKey);
+            _logger.LogInformation($"Removed All insurances cache with key {allInsuracesCacheKey}.");
         }
 
         /// <summary>
