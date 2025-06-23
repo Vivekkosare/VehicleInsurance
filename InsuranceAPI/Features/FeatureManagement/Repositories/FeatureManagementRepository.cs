@@ -149,81 +149,33 @@ namespace InsuranceAPI.Features.FeatureManagement.Repositories
 
         public async Task<Result<FeatureToggle>> PatchFeatureToggleAsync(string name, FeatureTogglePatchDto featureTogglePatchDto)
         {
-            var existingToggle = await _dbContext.FeatureToggles
-                .AsNoTracking()
-                .FirstOrDefaultAsync(ft => ft.Name == name);
+            var existingToggle = await FetchExistingToggleForPatchAsync(name);
             if (existingToggle == null)
             {
                 _logger.LogWarning("Feature toggle with ID {FeatureToggleId} not found for patching.", name);
                 return Result<FeatureToggle>.Failure($"Feature toggle with Name {name} not found.");
             }
-            bool updated = false;
 
-            // Patch Description if changed
-            if (featureTogglePatchDto.Description != null && featureTogglePatchDto.Description != existingToggle.Description)
-            {
-                existingToggle.Description = featureTogglePatchDto.Description;
-                updated = true;
-            }
-            // Patch IsEnabled if changed
-            if (featureTogglePatchDto.IsEnabled.HasValue && featureTogglePatchDto.IsEnabled != existingToggle.IsEnabled)
-            {
-                existingToggle.IsEnabled = featureTogglePatchDto.IsEnabled.GetValueOrDefault();
-                updated = true;
-            }
+            bool updated = false;
+            // If PatchDescription returns true, updated becomes true and stays true for any subsequent true result
+            updated |= PatchDescription(existingToggle, featureTogglePatchDto); // Accumulate if description was changed
+            updated |= PatchIsEnabled(existingToggle, featureTogglePatchDto);   // Accumulate if enabled status was changed
+
             if (updated)
             {
                 existingToggle.UpdatedAt = DateTime.UtcNow;
 
-                // Detect provider
-                var providerName = _dbContext.Database.ProviderName;
-                if (!string.IsNullOrEmpty(providerName) && providerName.Contains("InMemory", StringComparison.OrdinalIgnoreCase))
-                {
-                    // InMemory fallback: fetch, update, save
-                    var trackedToggle = await _dbContext.FeatureToggles.FirstOrDefaultAsync(ft => ft.Name == name);
-                    if (trackedToggle == null)
-                    {
-                        _logger.LogError("Feature toggle with Name {FeatureToggleName} not found for in-memory patching.", name);
-                        return Result<FeatureToggle>.Failure($"Feature toggle with Name {name} not found for in-memory patching.");
-                    }
-                    trackedToggle.Description = existingToggle.Description;
-                    trackedToggle.IsEnabled = existingToggle.IsEnabled;
-                    trackedToggle.UpdatedAt = existingToggle.UpdatedAt;
-                    await _dbContext.SaveChangesAsync();
-                }
-                else
-                {
-                    // Production: use ExecuteUpdateAsync
-                    await _dbContext.FeatureToggles
-                        .Where(f => f.Name == name)
-                        .ExecuteUpdateAsync(ft => ft
-                            .SetProperty(f => f.Description, existingToggle.Description)
-                            .SetProperty(f => f.IsEnabled, existingToggle.IsEnabled)
-                            .SetProperty(f => f.UpdatedAt, existingToggle.UpdatedAt));
-                }
+                // Save the patched toggle to the database
+                await SavePatchedToggleAsync(existingToggle, name);
 
-                // Fetch the updated entity from the database
-                var updatedToggle = await _dbContext.FeatureToggles
-                    .AsNoTracking()
-                    .FirstOrDefaultAsync(ft => ft.Name == name);
+                // Fetch existing toggle again to ensure we have the latest state
+                var updatedToggle = await FetchExistingToggleForPatchAsync(name);
                 if (updatedToggle == null)
                 {
                     _logger.LogError("Feature toggle with Name {FeatureToggleName} not found after patching.", name);
                     return Result<FeatureToggle>.Failure($"Feature toggle with Name {name} not found after patching.");
                 }
-
-                // Update cache
-                var cacheKeyById = $"FeatureToggle_{updatedToggle.Id}";
-                await _cache.SetAsync(cacheKeyById, updatedToggle, _cacheTimeout);
-
-                var cacheKeyByName = $"FeatureToggle_{updatedToggle.Name}";
-                await _cache.SetAsync(cacheKeyByName, updatedToggle, _cacheTimeout);
-
-                //Remove cache for FeatureToggles and All Insurances
-                await RemoveCacheForAllFeatureTogglesAsync();
-                await RemoveCacheForFeatureTogglesByNamesPrefixAsync();
-                await RemoveCacheForAllInsurancesByInsurancePrefixAsync();
-
+                await UpdateFeatureToggleCacheAsync(updatedToggle);
                 _logger.LogInformation("Feature toggle with ID {FeatureToggleId} patched successfully.", updatedToggle.Id);
                 return Result<FeatureToggle>.Success(updatedToggle);
             }
@@ -232,6 +184,82 @@ namespace InsuranceAPI.Features.FeatureManagement.Repositories
                 _logger.LogInformation("No changes detected for feature toggle with ID {FeatureToggleId}.", existingToggle.Id);
                 return Result<FeatureToggle>.Success(existingToggle);
             }
+        }
+
+        /// <summary>
+        /// Fetches an existing feature toggle for patching by its name.
+        /// </summary>
+        /// <param name="name">The name of the feature toggle.</param>
+        /// <returns>The feature toggle if found, otherwise null.</returns>
+        private async Task<FeatureToggle?> FetchExistingToggleForPatchAsync(string name)
+        {
+            return await _dbContext.FeatureToggles
+                .AsNoTracking()
+                .FirstOrDefaultAsync(ft => ft.Name == name);
+        }
+
+        private bool PatchDescription(FeatureToggle toggle, FeatureTogglePatchDto patchDto)
+        {
+            if (patchDto.Description != null && patchDto.Description != toggle.Description)
+            {
+                toggle.Description = patchDto.Description;
+                return true;
+            }
+            return false;
+        }
+
+        private bool PatchIsEnabled(FeatureToggle toggle, FeatureTogglePatchDto patchDto)
+        {
+            if (patchDto.IsEnabled.HasValue && patchDto.IsEnabled != toggle.IsEnabled)
+            {
+                toggle.IsEnabled = patchDto.IsEnabled.GetValueOrDefault();
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Saves the patched feature toggle to the database.
+        /// </summary>
+        /// <param name="toggle">The feature toggle to save.</param>
+        /// <param name="name">The name of the feature toggle.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        private async Task SavePatchedToggleAsync(FeatureToggle toggle, string name)
+        {
+            var providerName = _dbContext.Database.ProviderName;
+            if (!string.IsNullOrEmpty(providerName) && providerName.Contains("InMemory", StringComparison.OrdinalIgnoreCase))
+            {
+                var trackedToggle = await _dbContext.FeatureToggles.FirstOrDefaultAsync(ft => ft.Name == name);
+                if (trackedToggle != null)
+                {
+                    trackedToggle.Description = toggle.Description;
+                    trackedToggle.IsEnabled = toggle.IsEnabled;
+                    trackedToggle.UpdatedAt = toggle.UpdatedAt;
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            else
+            {
+                await _dbContext.FeatureToggles
+                    .Where(f => f.Name == name)
+                    .ExecuteUpdateAsync(ft => ft
+                        .SetProperty(f => f.Description, toggle.Description)
+                        .SetProperty(f => f.IsEnabled, toggle.IsEnabled)
+                        .SetProperty(f => f.UpdatedAt, toggle.UpdatedAt));
+            }
+        }
+
+        private async Task UpdateFeatureToggleCacheAsync(FeatureToggle updatedToggle)
+        {
+            var cacheKeyById = $"FeatureToggle_{updatedToggle.Id}";
+            await _cache.SetAsync(cacheKeyById, updatedToggle, _cacheTimeout);
+
+            var cacheKeyByName = $"FeatureToggle_{updatedToggle.Name}";
+            await _cache.SetAsync(cacheKeyByName, updatedToggle, _cacheTimeout);
+
+            await RemoveCacheForAllFeatureTogglesAsync();
+            await RemoveCacheForFeatureTogglesByNamesPrefixAsync();
+            await RemoveCacheForAllInsurancesByInsurancePrefixAsync();
         }
 
         /// <summary>
