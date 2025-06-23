@@ -162,7 +162,7 @@ GET /api/v1/featuretoggles/ApplyDiscounts
 ### Business Impact
 - Feature toggles allow business stakeholders to control the rollout of features (such as discounts or car details display) without redeploying the service.
 - Changes to toggles take effect immediately and are cached for performance.
-- After toggling features like `ShowCarDetails` and `ApplyDiscounts`, Please test endpoints GetAllInsurances, GetInsuranceById etc. So that feature toggled effects can be seen.
+- After toggling features like `ShowCarDetails` and `ApplyDiscounts`, Please test endpoints `GetAllInsurances`, `GetInsuranceById` etc. So that feature toggled effects can be seen.
 
 ### Testing
 - **Unit Tests**: Cover repository, service, and validation logic for feature management, including cache interactions and nullability handling.
