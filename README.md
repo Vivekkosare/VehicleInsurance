@@ -11,6 +11,16 @@ There are 3 types of Insurances:
 
 If the person has CAR Insurance, while showing the details. The API endpoint should also show the car details. To get the car information, InsuranceAPI calls VehicleRegistrationAPI via REST method using HttpClient in C#
 
+However, the Car details display can be enabled or disabled by a feature toggle called `ShowCarDetails`
+
+SOME EXTRA FEATURES HAVE BEEN ADDED TO API LIKE `DISCOUNTS` USING FEATURE TOGGLES
+
+While creating or adding insurance, Disounts can be applied on the insurance prices with a feature toggle called `ApplyDiscounts`
+
+When `ApplyDiscounts : true`, then there will be `5% on CAR`, `10% on HEALTH` and `15% on PET` discounts applied on the insurances.
+
+---
+
 ## Table of Contents
 - [Architecture](#architecture)
 - [Endpoints](#endpoints)
