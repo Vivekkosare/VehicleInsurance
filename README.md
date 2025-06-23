@@ -75,8 +75,8 @@ Base URL: `http://localhost:5096/api/v1`
 - `POST /featuretoggles`: Create a new feature toggle
 - `PATCH /featuretoggles/{name}`: Update description and enabled status of a feature toggle (partial update)
 
-There are two feature toggles added by default ``ApplyDiscounts and ShowCarDetails```.
-`ApplyDiscounts: false` and `ShowCarDetails: true`
+There are two feature toggles added by default `ApplyDiscounts: false` and `ShowCarDetails: true`
+
 By setting the `ShowCarDetails` value, Car details display can be enabled or disabled in the Insurance GET (display) sections
 
 By setting `ApplyDiscounts` value, Discounts can be enabled or disabled while adding or creating a new insurance.
