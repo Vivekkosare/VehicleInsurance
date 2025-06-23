@@ -45,6 +45,23 @@ When `ApplyDiscounts : true`, then there will be discounts of `5% on CAR`, `10% 
 
 ---
 
+## Design Patterns & Caching
+
+### Redis Caching
+- **Redis** is used to cache frequently accessed data such as feature toggles and insurance information.
+- This improves performance by reducing database load and providing faster responses for repeated requests.
+- Cache invalidation and refresh are handled automatically when feature toggles or insurance data are updated.
+
+### Strategy & Factory Patterns for Discount Calculation
+- The InsuranceAPI uses the **Strategy** and **Factory** design patterns to calculate discounts for different types of insurances.
+- **Strategy Pattern**: There are two strategy classes:
+  - `DefaultPriceCalculator`: Calculates the standard price without any discount.
+  - `DiscountedPriceCalculator`: Calculates the price by applying a discount percentage, where the discount value is stored in the database for each insurance type.
+- **Factory Pattern**: A factory is used to select and instantiate the appropriate discount calculation strategy at runtime based on the insurance type.
+- This approach makes the discount logic extensible, testable, and easy to maintain, allowing new discount strategies to be added with minimal changes to existing code.
+
+---
+
 ## Endpoints
 
 ### VehicleRegistrationAPI Endpoints
@@ -72,24 +89,6 @@ Base URL: `http://localhost:5096/api/v1`
 - `GET /insurances/{insuranceId}`: Get insurance by ID
 - `GET /insurances/personal/{personalIdentificationNumber}`: Get insurances by personal identification number
 - `POST /insurances`: Add a new insurance
-
-### FeatureManagement Endpoints
-Base URL: `http://localhost:5096/api/v1`
-
-#### Feature Toggles
-- `GET /featuretoggles`: Get all feature toggles
-- `GET /featuretoggles/{id}`: Get feature toggle by ID
-- `GET /featuretoggles/{name}`: Get feature toggle by name
-- `POST /featuretoggles/by-names`: Get multiple feature toggles by names
-. `DELETE /featuretoggles/{id}`: Delete a feature toggle
-- `POST /featuretoggles`: Create a new feature toggle
-- `PATCH /featuretoggles/{name}`: Update description and enabled status of a feature toggle (partial update)
-
-There are two feature toggles added by default `ApplyDiscounts: false` and `ShowCarDetails: true`
-
-By setting the `ShowCarDetails` value, Car details display can be enabled or disabled in the Insurance GET (display) sections
-
-By setting `ApplyDiscounts` value, Discounts can be enabled or disabled while adding or creating a new insurance.
 
 ---
 
