@@ -44,6 +44,17 @@ public class InsuranceConfiguration : IEntityTypeConfiguration<Entities.Insuranc
             .HasDefaultValueSql("NOW()")
             .ValueGeneratedOnUpdate();
 
+        builder.Property(i => i.DiscountApplied)
+            .HasColumnName("DiscountApplied")
+            .IsRequired()
+            .HasColumnType("boolean")
+            .HasDefaultValue(false);
+
+        builder.Property(i => i.Price)
+            .HasColumnName("Price")
+            .IsRequired()
+            .HasColumnType("decimal(18,2)");
+
         builder.HasOne(i => i.InsuranceProduct)
             .WithMany()
             .HasForeignKey(i => i.InsuranceProductId)

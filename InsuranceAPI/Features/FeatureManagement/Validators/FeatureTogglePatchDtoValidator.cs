@@ -1,7 +1,7 @@
 using FluentValidation;
 using InsuranceAPI.Features.FeatureManagement.DTOs;
 
-namespace InsuranceAPI.Features.FeatureManagement.Configurations;
+namespace InsuranceAPI.Features.FeatureManagement.Validators;
 
 public class FeatureTogglePatchDtoConfiguration: AbstractValidator<FeatureTogglePatchDto>
 {
