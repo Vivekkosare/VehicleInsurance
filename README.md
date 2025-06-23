@@ -129,7 +129,7 @@ PATCH /api/v1/featuretoggles/ShowCarDetails
 Content-Type: application/json
 
 {
-  "enabled": false,
+  "IsEnabled": false,
   "description": "Temporarily hide car details from insurance responses."
 }
 ```
