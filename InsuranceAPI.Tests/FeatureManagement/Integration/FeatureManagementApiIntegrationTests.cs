@@ -6,6 +6,7 @@ using Xunit;
 
 namespace InsuranceAPI.Tests.FeatureManagement.Integration
 {
+    [Trait("TestCategory", "Integration")]
     public class FeatureManagementApiIntegrationTests : IClassFixture<InsuranceAPI.Tests.Integration.TestInsuranceApiFactory>
     {
         private readonly HttpClient _client;
