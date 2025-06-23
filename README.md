@@ -93,6 +93,58 @@ By setting `ApplyDiscounts` value, Discounts can be enabled or disabled while ad
 
 ---
 
+## Feature Management
+
+Feature management in this solution allows dynamic enabling or disabling of specific business features at runtime using feature toggles. This is implemented via a dedicated set of endpoints in the InsuranceAPI.
+
+### Default Feature Toggles
+- `ShowCarDetails` (default: `true`):
+  - When enabled, car details are included in insurance responses for car insurance policies.
+  - When disabled, car details are omitted from the response.
+- `ApplyDiscounts` (default: `false`):
+  - When enabled, discounts are applied to insurance prices:
+    - Car Insurance: 5%
+    - Health Insurance: 10%
+    - Pet Insurance: 15%
+  - When disabled, no discounts are applied.
+
+### FeatureManagement Endpoints
+Base URL: `http://localhost:5096/api/v1`
+
+- `GET /featuretoggles`: Get all feature toggles
+- `GET /featuretoggles/{id}`: Get feature toggle by ID
+- `GET /featuretoggles/{name}`: Get feature toggle by name
+- `POST /featuretoggles/by-names`: Get multiple feature toggles by names
+- `POST /featuretoggles`: Create a new feature toggle
+- `PATCH /featuretoggles/{name}`: Update description and enabled status of a feature toggle (partial update)
+- `DELETE /featuretoggles/{id}`: Delete a feature toggle
+
+#### Example: Update a Feature Toggle (PATCH)
+```http
+PATCH /api/v1/featuretoggles/ShowCarDetails
+Content-Type: application/json
+
+{
+  "enabled": false,
+  "description": "Temporarily hide car details from insurance responses."
+}
+```
+
+#### Example: Retrieve a Feature Toggle
+```http
+GET /api/v1/featuretoggles/ApplyDiscounts
+```
+
+### Business Impact
+- Feature toggles allow business stakeholders to control the rollout of features (such as discounts or car details display) without redeploying the service.
+- Changes to toggles take effect immediately and are cached for performance.
+
+### Testing
+- **Unit Tests**: Cover repository, service, and validation logic for feature management, including cache interactions and nullability handling.
+- **Integration Tests**: Cover all feature management endpoints (CRUD, PATCH), cache scenarios, and ensure correct API versioning. Integration tests are tagged with `[Trait("TestCategory", "Integration")]` for CI discovery.
+
+---
+
 ## Inter-Service Communication
 - **InsuranceAPI** uses `HttpClient` to call **VehicleRegistrationAPI** for:
   1. Fetching customer details by personal identification number
