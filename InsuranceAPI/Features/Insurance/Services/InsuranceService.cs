@@ -87,8 +87,10 @@ IPriceCalculatorFactory _priceCalculatorFactory) : IInsuranceService
     private async Task<Result<InsurancePriceWithDiscountDto>> GetInsurancePriceBasedOnFeatureToggleAsync(InsuranceProduct insuranceProduct)
     {
         //Get feature toggles
-        var featureToggleNamesInput = new FeatureToggleNameInput(new List<string> { "ApplyDiscounts" });
-        var featureTogglesResult = await _featureManagementService.GetFeatureTogglesByNamesAsync(featureToggleNamesInput);
+        var featureTogglesResult = await _featureManagementService.GetFeatureToggleByNameAsync("ApplyDiscounts");
+
+        //Check if the feature toggles retrieval was successful
+        _logger.LogInformation("Retrieved feature toggles: {FeatureToggles}", featureTogglesResult);
         if (!featureTogglesResult.IsSuccess)
         {
             _logger.LogError("Failed to retrieve feature toggles: {Error}", featureTogglesResult.Error);
@@ -96,7 +98,7 @@ IPriceCalculatorFactory _priceCalculatorFactory) : IInsuranceService
         }
 
         //Get ApplyDiscounts feature toggle from the result
-        bool applyDiscounts = featureTogglesResult.Value.First(ft => ft.Name == "ApplyDiscounts").IsEnabled;
+        bool applyDiscounts = featureTogglesResult.Value.IsEnabled;
 
         //Get PriceCalculator based on ApplyDiscounts feature toggle
         _logger.LogInformation("Using PriceCalculator with ApplyDiscounts: {ApplyDiscounts}", applyDiscounts);

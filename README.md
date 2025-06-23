@@ -68,10 +68,12 @@ When `ApplyDiscounts : true`, then there will be discounts of `5% on CAR`, `10% 
 Base URL: `http://localhost:5059/api/v1`
 
 #### Customers
-- `GET /customers/{customerId}`: Get customer by ID
-- `GET /customers/personal/{personalIdentificationNumber}`: Get customer by personal identification number
-- `GET /customers`: Get all customers
-- `POST /customers`: Add a new customer
+- `GET /api/v1/customers/{id}`: Get customer by ID
+- `GET /api/v1/customers`: Get all customers
+- `POST /api/v1/customers/add`: Add a new customer
+- `PUT /api/v1/customers/{id}`: Update an existing customer
+- `DELETE /api/v1/customers/{id}`: Delete an existing customer
+- `GET /api/v1/customers/{personalIdentificationNumber}`: Get a customer by personal identification number
 
 #### Vehicles
 - `GET /vehicles/{vehicleId}`: Get vehicle by ID
@@ -79,16 +81,19 @@ Base URL: `http://localhost:5059/api/v1`
 - `GET /vehicles/personal/{personalIdentificationNumber}`: Get vehicles by personal identification number
 - `GET /vehicles`: Get all vehicles
 - `POST /vehicles/add`: Add a new vehicle
+- `UPDATE /vehicles/{vehicleId}`: Update vehicle by ID
 - `DELETE /vehicles/{vehicleId}`: Delete vehicle by ID
+- `GET /vehicles/personal/`: Get all vehicles by multiple personal identifiers
 
 ### InsuranceAPI Endpoints
 Base URL: `http://localhost:5096/api/v1`
 
 #### Insurances
-- `GET /insurances`: Get all insurances
-- `GET /insurances/{insuranceId}`: Get insurance by ID
-- `GET /insurances/personal/{personalIdentificationNumber}`: Get insurances by personal identification number
-- `POST /insurances`: Add a new insurance
+- `GET /api/v1/insurances`: Get all insurances
+- `GET /api/v1/insurances/{id}`: Get insurance by ID
+- `GET /api/v1/insurances/pin/{personalIdentificationNumber}`: Get insurances by personal identification number
+- `POST /api/v1/insurances`: Add a new insurance
+- `PUT /api/v1/insurances/{id}`: Update an existing insurance
 
 ---
 
