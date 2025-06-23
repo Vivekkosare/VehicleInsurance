@@ -35,8 +35,13 @@ namespace InsuranceAPI.Features.FeatureManagement.Repositories
 
             // Cache the newly created feature toggle
             await _cache.SetAsync(cacheKey, newFeatureToggle.Entity, _cacheTimeout);
+
+            await RemoveCacheForAllFeatureTogglesAsync();
+
+            await RemoveCacheForFeatureTogglesByNamesPrefixAsync();
+
             return Result<FeatureToggle>.Success(newFeatureToggle.Entity);
-            
+
         }
 
         private async Task<Result<bool>> FeatureToggleExistsAsync(string name)
