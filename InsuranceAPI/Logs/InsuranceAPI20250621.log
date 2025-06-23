@@ -1,0 +1,951 @@
+2025-06-21 18:44:07.833 +02:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 18:44:08.034 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-21 18:44:08.040 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-21 18:44:08.040 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-21 18:44:08.041 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 18:44:08.043 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-21 18:44:08.108 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-21 18:44:08.110 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-21 18:44:08.110 +02:00 [INF] Hosting environment: Development
+2025-06-21 18:44:08.110 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-21 18:44:08.302 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-21 18:44:08.545 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The constraint reference 'string' could not be resolved to a type. Register the constraint type with 'Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap'.
+   at Microsoft.AspNetCore.Routing.DefaultParameterPolicyFactory.Create(RoutePatternParameterPart parameter, String inlineText)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcherBuilder.CachingParameterPolicyFactory.Create(RoutePatternParameterPart parameter, String inlineText)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcherBuilder.DfaBuilderWorker.AddParentsWithMatchingLiteralConstraints(List`1 nextParents, DfaNode parent, RoutePatternParameterPart parameterPart, IReadOnlyList`1 parameterPolicyReferences)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcherBuilder.DfaBuilderWorker.ProcessSegment(RouteEndpoint endpoint, List`1 parents, List`1 nextParents, RoutePatternPathSegment segment)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcherBuilder.DfaBuilderWorker.ProcessLevel(Int32 depth)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcherBuilder.BuildDfaTree(Boolean includeLabel)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcherBuilder.Build()
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.CreateMatcher(IReadOnlyList`1 endpoints)
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.Initialize()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher..ctor(EndpointDataSource dataSource, Lifetime lifetime, Func`1 matcherBuilderFactory)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcherFactory.CreateMatcher(EndpointDataSource dataSource)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.InitializeCoreAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.<Invoke>g__AwaitMatcher|10_0(EndpointRoutingMiddleware middleware, HttpContext httpContext, Task`1 matcherTask)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-06-21 18:44:08.615 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 500 null text/html; charset=utf-8 314.9515ms
+2025-06-21 18:45:44.095 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 18:45:44.297 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-21 18:45:44.302 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-21 18:45:44.303 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-21 18:45:44.304 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 18:45:44.306 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-21 18:45:44.367 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-21 18:45:44.369 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-21 18:45:44.369 +02:00 [INF] Hosting environment: Development
+2025-06-21 18:45:44.369 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-21 18:45:44.448 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-21 18:45:44.528 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-21 18:45:44.534 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 86.9483ms
+2025-06-21 18:45:44.546 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-21 18:47:13.358 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 18:47:13.366 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 18:47:13.622 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-21 18:47:13.776 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-21 18:47:13.807 +02:00 [INF] Retrieved 2 feature toggles from the database.
+2025-06-21 18:47:13.856 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-21 18:47:13.860 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-21 18:47:13.862 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 18:47:13.865 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 18:47:13.878 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 18:47:13.881 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 523.1448ms
+2025-06-21 18:53:57.635 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - application/json 116
+2025-06-21 18:53:57.636 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 18:53:57.669 +02:00 [INF] No data found in cache for key: FeatureToggle_ShowPetInsurance
+2025-06-21 18:53:57.671 +02:00 [INF] No data found in cache for key: FeatureToggleExists_ShowPetInsurance
+2025-06-21 18:53:57.780 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "FeatureToggles" AS f
+    WHERE f."Name" = @__name_0)
+2025-06-21 18:53:57.782 +02:00 [INF] Setting data in cache for key: FeatureToggleExists_ShowPetInsurance
+2025-06-21 18:53:57.783 +02:00 [INF] Successfully set data in cache for key: FeatureToggleExists_ShowPetInsurance
+2025-06-21 18:53:57.834 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FeatureToggles" ("Id", "Description", "Name", "UpdatedAt")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "CreatedAt", "IsEnabled";
+2025-06-21 18:53:57.848 +02:00 [INF] Feature toggle with ID "01979369-3fa4-7068-9f41-b78a70855a7b" created successfully.
+2025-06-21 18:53:57.848 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowPetInsurance
+2025-06-21 18:53:57.849 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowPetInsurance
+2025-06-21 18:53:57.865 +02:00 [INF] Setting HTTP status code 201.
+2025-06-21 18:53:57.865 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 18:53:57.866 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 18:53:57.866 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - 201 null application/json; charset=utf-8 231.7433ms
+2025-06-21 18:56:01.120 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/01979369-3fa4-7068-9f41-b78a70855a7b - null null
+2025-06-21 18:56:01.124 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 18:56:01.130 +02:00 [INF] No data found in cache for key: FeatureToggle_01979369-3fa4-7068-9f41-b78a70855a7b
+2025-06-21 18:56:01.169 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Id" = @__p_0
+LIMIT 1
+2025-06-21 18:56:01.170 +02:00 [INF] Feature toggle with ID "01979369-3fa4-7068-9f41-b78a70855a7b" retrieved successfully.
+2025-06-21 18:56:01.170 +02:00 [INF] Setting data in cache for key: FeatureToggle_01979369-3fa4-7068-9f41-b78a70855a7b
+2025-06-21 18:56:01.171 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_01979369-3fa4-7068-9f41-b78a70855a7b
+2025-06-21 18:56:01.171 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 18:56:01.171 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 18:56:01.171 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 18:56:01.171 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/01979369-3fa4-7068-9f41-b78a70855a7b - 200 null application/json; charset=utf-8 50.8422ms
+2025-06-21 18:56:13.371 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 18:56:13.372 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 18:56:13.374 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-21 18:56:13.376 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-21 18:56:13.376 +02:00 [INF] Retrieved 3 feature toggles from the database.
+2025-06-21 18:56:13.376 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-21 18:56:13.377 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-21 18:56:13.377 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 18:56:13.377 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 18:56:13.377 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 18:56:13.377 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 6.0272ms
+2025-06-21 18:56:27.907 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6 - null null
+2025-06-21 18:56:27.907 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 18:56:27.910 +02:00 [INF] No data found in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-21 18:56:27.913 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Id" = @__p_0
+LIMIT 1
+2025-06-21 18:56:27.914 +02:00 [INF] Feature toggle with ID "d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6" retrieved successfully.
+2025-06-21 18:56:27.914 +02:00 [INF] Setting data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-21 18:56:27.914 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-21 18:56:27.914 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 18:56:27.914 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 18:56:27.914 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 18:56:27.914 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6 - 200 null application/json; charset=utf-8 7.6662ms
+2025-06-21 18:59:20.885 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 18:59:21.113 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-21 18:59:21.118 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-21 18:59:21.119 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-21 18:59:21.120 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 18:59:21.122 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-21 18:59:21.182 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-21 18:59:21.183 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-21 18:59:21.183 +02:00 [INF] Hosting environment: Development
+2025-06-21 18:59:21.183 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-21 18:59:21.273 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-21 18:59:21.352 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-21 18:59:21.362 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 90.1245ms
+2025-06-21 18:59:21.406 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-21 19:03:45.969 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/by-names - application/json 72
+2025-06-21 19:03:45.997 +02:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2025-06-21 19:03:45.997 +02:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2025-06-21 19:03:45.997 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/by-names - 405 0 null 28.0778ms
+2025-06-21 19:03:52.100 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - application/json 72
+2025-06-21 19:03:52.108 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:03:52.357 +02:00 [INF] No data found in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:03:52.596 +02:00 [INF] Executed DbCommand (44ms) [Parameters=[@__names_0='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = ANY (@__names_0)
+2025-06-21 19:03:52.604 +02:00 [INF] Feature toggle(s) with Name(s) ShowCarDetails, ApplyDiscounts retrieved successfully.
+2025-06-21 19:03:52.656 +02:00 [INF] Setting data in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:03:52.661 +02:00 [INF] Successfully set data in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:03:52.663 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:03:52.666 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:03:52.679 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:03:52.682 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - 200 null application/json; charset=utf-8 582.2107ms
+2025-06-21 19:04:04.754 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - application/json 47
+2025-06-21 19:04:04.755 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:04:04.760 +02:00 [INF] No data found in cache for key: FeatureToggles_ShowCarDetails
+2025-06-21 19:04:04.795 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__names_0='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = ANY (@__names_0)
+2025-06-21 19:04:04.796 +02:00 [INF] Feature toggle(s) with Name(s) ShowCarDetails retrieved successfully.
+2025-06-21 19:04:04.796 +02:00 [INF] Setting data in cache for key: FeatureToggles_ShowCarDetails
+2025-06-21 19:04:04.796 +02:00 [INF] Successfully set data in cache for key: FeatureToggles_ShowCarDetails
+2025-06-21 19:04:04.797 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:04:04.797 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:04:04.797 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:04:04.797 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - 200 null application/json; charset=utf-8 43.6345ms
+2025-06-21 19:04:11.185 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - application/json 72
+2025-06-21 19:04:11.186 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:04:11.212 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:04:11.213 +02:00 [INF] Found feature toggle enabled status in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:04:11.213 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:04:11.213 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:04:11.213 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:04:11.213 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - 200 null application/json; charset=utf-8 27.9041ms
+2025-06-21 19:04:20.045 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - application/json 72
+2025-06-21 19:04:20.046 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:04:20.048 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:04:20.048 +02:00 [INF] Found feature toggle enabled status in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:04:20.048 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:04:20.048 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:04:20.049 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:04:20.049 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - 200 null application/json; charset=utf-8 3.2332ms
+2025-06-21 19:04:21.094 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - application/json 72
+2025-06-21 19:04:21.094 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:04:21.096 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:04:21.096 +02:00 [INF] Found feature toggle enabled status in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:04:21.096 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:04:21.097 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:04:21.097 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:04:21.097 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - 200 null application/json; charset=utf-8 3.5875ms
+2025-06-21 19:07:47.212 +02:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5096/api/v1/featuretoggles/01979369-3fa4-7068-9f41-b78a70855a7b - null null
+2025-06-21 19:07:47.215 +02:00 [INF] Executing endpoint 'HTTP: DELETE /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 19:07:47.218 +02:00 [INF] No data found in cache for key: FeatureToggle_01979369-3fa4-7068-9f41-b78a70855a7b
+2025-06-21 19:07:47.277 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Id" = @__p_0
+LIMIT 1
+2025-06-21 19:07:47.298 +02:00 [INF] Feature toggle with ID "01979369-3fa4-7068-9f41-b78a70855a7b" retrieved successfully.
+2025-06-21 19:07:47.299 +02:00 [INF] Setting data in cache for key: FeatureToggle_01979369-3fa4-7068-9f41-b78a70855a7b
+2025-06-21 19:07:47.299 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_01979369-3fa4-7068-9f41-b78a70855a7b
+2025-06-21 19:07:47.339 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "FeatureToggles"
+WHERE "Id" = @p0;
+2025-06-21 19:07:47.345 +02:00 [INF] Feature toggle with ID "01979369-3fa4-7068-9f41-b78a70855a7b" deleted successfully.
+2025-06-21 19:07:47.347 +02:00 [INF] Successfully removed data from cache for key: FeatureToggle_01979369-3fa4-7068-9f41-b78a70855a7b
+2025-06-21 19:07:47.347 +02:00 [INF] Successfully removed data from cache for key: FeatureToggle_ShowPetInsurance
+2025-06-21 19:07:47.348 +02:00 [INF] Successfully removed data from cache for key: FeatureToggleEnabled_ShowPetInsurance
+2025-06-21 19:07:47.354 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-21 19:07:47.355 +02:00 [INF] Setting HTTP status code 204.
+2025-06-21 19:07:47.355 +02:00 [INF] Executed endpoint 'HTTP: DELETE /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 19:07:47.355 +02:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5096/api/v1/featuretoggles/01979369-3fa4-7068-9f41-b78a70855a7b - 204 null null 142.4567ms
+2025-06-21 19:07:53.801 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 19:07:53.802 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:07:53.807 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-21 19:07:53.811 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-21 19:07:53.812 +02:00 [INF] Retrieved 2 feature toggles from the database.
+2025-06-21 19:07:53.812 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-21 19:07:53.812 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-21 19:07:53.813 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:07:53.813 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:07:53.813 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:07:53.813 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 11.7169ms
+2025-06-21 19:08:00.970 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6 - null null
+2025-06-21 19:08:00.970 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 19:08:00.975 +02:00 [INF] No data found in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-21 19:08:00.977 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Id" = @__p_0
+LIMIT 1
+2025-06-21 19:08:00.977 +02:00 [INF] Feature toggle with ID "d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6" retrieved successfully.
+2025-06-21 19:08:00.977 +02:00 [INF] Setting data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-21 19:08:00.978 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-21 19:08:00.978 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:08:00.978 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 19:08:00.979 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 19:08:00.979 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6 - 200 null application/json; charset=utf-8 9.1472ms
+2025-06-21 19:08:21.360 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - application/json 116
+2025-06-21 19:08:21.361 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:08:21.379 +02:00 [INF] No data found in cache for key: FeatureToggle_ShowPetInsurance
+2025-06-21 19:08:21.381 +02:00 [INF] No data found in cache for key: FeatureToggleExists_ShowPetInsurance
+2025-06-21 19:08:21.395 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "FeatureToggles" AS f
+    WHERE f."Name" = @__name_0)
+2025-06-21 19:08:21.397 +02:00 [INF] Setting data in cache for key: FeatureToggleExists_ShowPetInsurance
+2025-06-21 19:08:21.398 +02:00 [INF] Successfully set data in cache for key: FeatureToggleExists_ShowPetInsurance
+2025-06-21 19:08:21.419 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FeatureToggles" ("Id", "Description", "Name", "UpdatedAt")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "CreatedAt", "IsEnabled";
+2025-06-21 19:08:21.426 +02:00 [INF] Feature toggle with ID "01979376-6d21-7085-8cd7-4a176a654ced" created successfully.
+2025-06-21 19:08:21.426 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowPetInsurance
+2025-06-21 19:08:21.427 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowPetInsurance
+2025-06-21 19:08:21.444 +02:00 [INF] Setting HTTP status code 201.
+2025-06-21 19:08:21.444 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 19:08:21.444 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:08:21.444 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - 201 null application/json; charset=utf-8 83.7558ms
+2025-06-21 19:08:26.525 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 19:08:26.525 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:08:26.528 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 19:08:26.528 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 19:08:26.529 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:08:26.529 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:08:26.529 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:08:26.530 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 4.3716ms
+2025-06-21 19:08:28.626 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 19:08:28.626 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:08:28.630 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 19:08:28.630 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 19:08:28.630 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:08:28.630 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:08:28.630 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:08:28.630 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 4.3316ms
+2025-06-21 19:08:34.302 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 19:08:34.302 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:08:34.304 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 19:08:34.304 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 19:08:34.304 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:08:34.304 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:08:34.305 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:08:34.305 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 2.8232ms
+2025-06-21 19:08:35.518 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 19:08:35.518 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:08:35.522 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 19:08:35.522 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 19:08:35.522 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:08:35.522 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:08:35.522 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:08:35.522 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 4.4313ms
+2025-06-21 19:09:04.901 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - application/json 72
+2025-06-21 19:09:04.902 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:09:04.904 +02:00 [INF] No data found in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:09:04.910 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__names_0='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = ANY (@__names_0)
+2025-06-21 19:09:04.910 +02:00 [INF] Feature toggle(s) with Name(s) ShowCarDetails, ApplyDiscounts retrieved successfully.
+2025-06-21 19:09:04.910 +02:00 [INF] Setting data in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:09:04.911 +02:00 [INF] Successfully set data in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:09:04.911 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:09:04.911 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:09:04.911 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:09:04.912 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - 200 null application/json; charset=utf-8 10.1677ms
+2025-06-21 19:09:10.561 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - application/json 47
+2025-06-21 19:09:10.561 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:09:10.562 +02:00 [INF] No data found in cache for key: FeatureToggles_ShowCarDetails
+2025-06-21 19:09:10.563 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__names_0='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = ANY (@__names_0)
+2025-06-21 19:09:10.563 +02:00 [INF] Feature toggle(s) with Name(s) ShowCarDetails retrieved successfully.
+2025-06-21 19:09:10.563 +02:00 [INF] Setting data in cache for key: FeatureToggles_ShowCarDetails
+2025-06-21 19:09:10.564 +02:00 [INF] Successfully set data in cache for key: FeatureToggles_ShowCarDetails
+2025-06-21 19:09:10.564 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:09:10.564 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:09:10.564 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:09:10.564 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - 200 null application/json; charset=utf-8 3.2127ms
+2025-06-21 19:09:15.426 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - application/json 72
+2025-06-21 19:09:15.426 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:09:15.429 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:09:15.429 +02:00 [INF] Found feature toggle enabled status in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:09:15.429 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:09:15.429 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:09:15.429 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:09:15.429 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - 200 null application/json; charset=utf-8 3.6847ms
+2025-06-21 19:09:20.326 +02:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5096/api/v1/featuretoggles/01979369-3fa4-7068-9f41-b78a70855a7b - null null
+2025-06-21 19:09:20.326 +02:00 [INF] Executing endpoint 'HTTP: DELETE /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 19:09:20.329 +02:00 [INF] No data found in cache for key: FeatureToggle_01979369-3fa4-7068-9f41-b78a70855a7b
+2025-06-21 19:09:20.331 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Id" = @__p_0
+LIMIT 1
+2025-06-21 19:09:20.331 +02:00 [WRN] Feature toggle with ID "01979369-3fa4-7068-9f41-b78a70855a7b" not found.
+2025-06-21 19:09:20.331 +02:00 [WRN] Feature toggle with ID "01979369-3fa4-7068-9f41-b78a70855a7b" not found.
+2025-06-21 19:09:20.333 +02:00 [INF] Setting HTTP status code 500.
+2025-06-21 19:09:20.341 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2025-06-21 19:09:20.343 +02:00 [INF] Executed endpoint 'HTTP: DELETE /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 19:09:20.344 +02:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5096/api/v1/featuretoggles/01979369-3fa4-7068-9f41-b78a70855a7b - 500 null application/problem+json 17.7643ms
+2025-06-21 19:09:58.210 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - application/json 116
+2025-06-21 19:09:58.210 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:09:58.217 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowPetInsurance
+2025-06-21 19:09:58.217 +02:00 [WRN] Feature toggle with ID "00000000-0000-0000-0000-000000000000" already exists in cache.
+2025-06-21 19:09:58.217 +02:00 [INF] Setting HTTP status code 500.
+2025-06-21 19:09:58.217 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2025-06-21 19:09:58.218 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:09:58.218 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - 500 null application/problem+json 7.5418ms
+2025-06-21 19:10:11.310 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - application/json 72
+2025-06-21 19:10:11.310 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:10:11.312 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:10:11.313 +02:00 [INF] Found feature toggle enabled status in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts
+2025-06-21 19:10:11.313 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:10:11.313 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:10:11.313 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 19:10:11.313 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - 200 null application/json; charset=utf-8 3.4439ms
+2025-06-21 19:12:07.974 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - application/json 25
+2025-06-21 19:12:07.975 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - 404 0 null 0.7073ms
+2025-06-21 19:12:07.975 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts, Response status code: 404
+2025-06-21 19:12:16.132 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - application/json 25
+2025-06-21 19:12:16.133 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 19:12:16.151 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-21 19:12:16.152 +02:00 [INF] Setting data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 19:12:16.152 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 19:12:16.152 +02:00 [INF] Setting data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 19:12:16.152 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 19:12:16.153 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-21 19:12:16.153 +02:00 [INF] Feature toggle with ID "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b" patched successfully.
+2025-06-21 19:12:16.153 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:12:16.153 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 19:12:16.153 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 19:12:16.153 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - 200 null application/json; charset=utf-8 20.6796ms
+2025-06-21 19:12:32.825 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 19:12:32.826 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:12:32.830 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 19:12:32.830 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 19:12:32.830 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:12:32.830 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:12:32.830 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:12:32.830 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 4.8445ms
+2025-06-21 19:12:34.041 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 19:12:34.041 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:12:34.044 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 19:12:34.044 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 19:12:34.044 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:12:34.044 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 19:12:34.044 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:12:34.044 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 3.4562ms
+2025-06-21 19:13:00.191 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b - null null
+2025-06-21 19:13:00.191 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 19:13:00.220 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 19:13:00.220 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 19:13:00.220 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 19:13:00.220 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 19:13:00.220 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 19:13:00.221 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b - 200 null application/json; charset=utf-8 29.6158ms
+2025-06-21 19:41:31.683 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 19:41:31.882 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-21 19:41:31.887 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-21 19:41:31.891 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-21 19:41:31.892 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 19:41:31.894 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-21 19:41:31.959 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-21 19:41:31.961 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-21 19:41:31.961 +02:00 [INF] Hosting environment: Development
+2025-06-21 19:41:31.961 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-21 19:41:32.048 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-21 19:41:32.128 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-21 19:41:32.136 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 89.4913ms
+2025-06-21 19:41:32.140 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-21 19:42:06.266 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - application/json 36
+2025-06-21 19:42:06.278 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:42:06.527 +02:00 [INF] No data found in cache for key: FeatureToggle_ShowHealthInsurance
+2025-06-21 19:42:06.529 +02:00 [INF] No data found in cache for key: FeatureToggleExists_ShowHealthInsurance
+2025-06-21 19:42:06.705 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "FeatureToggles" AS f
+    WHERE f."Name" = @__name_0)
+2025-06-21 19:42:06.741 +02:00 [INF] Setting data in cache for key: FeatureToggleExists_ShowHealthInsurance
+2025-06-21 19:42:06.745 +02:00 [INF] Successfully set data in cache for key: FeatureToggleExists_ShowHealthInsurance
+2025-06-21 19:42:06.829 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FeatureToggles" ("Id", "Description", "Name", "UpdatedAt")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "CreatedAt", "IsEnabled";
+2025-06-21 19:42:06.843 +02:00 [INF] Feature toggle with ID "01979395-54a9-72bc-bd6a-9e83b4cd884f" created successfully.
+2025-06-21 19:42:06.862 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowHealthInsurance
+2025-06-21 19:42:06.863 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowHealthInsurance
+2025-06-21 19:42:06.881 +02:00 [INF] Setting HTTP status code 201.
+2025-06-21 19:42:06.883 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 19:42:06.892 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:42:06.895 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - 201 null application/json; charset=utf-8 629.6185ms
+2025-06-21 19:43:34.359 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - application/json 36
+2025-06-21 19:43:34.362 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 19:59:52.846 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 19:59:53.044 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-21 19:59:53.050 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-21 19:59:53.051 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-21 19:59:53.051 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 19:59:53.054 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-21 19:59:53.115 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-21 19:59:53.117 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-21 19:59:53.117 +02:00 [INF] Hosting environment: Development
+2025-06-21 19:59:53.117 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-21 19:59:53.208 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-21 19:59:53.290 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-21 19:59:53.295 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 87.0806ms
+2025-06-21 19:59:53.305 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-21 20:01:19.818 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - application/json 36
+2025-06-21 20:01:19.829 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:01:27.052 +02:00 [INF] Setting HTTP status code 400.
+2025-06-21 20:01:27.062 +02:00 [INF] Writing value of type 'HttpValidationProblemDetails' as Json.
+2025-06-21 20:01:27.077 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:01:27.078 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - 400 null application/problem+json 7259.87ms
+2025-06-21 20:01:40.852 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:01:40.855 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:01:40.912 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-21 20:01:41.057 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-21 20:01:41.090 +02:00 [INF] Retrieved 4 feature toggles from the database.
+2025-06-21 20:01:41.141 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-21 20:01:41.146 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-21 20:01:41.147 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:01:41.149 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:01:41.154 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:01:41.156 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 304.1338ms
+2025-06-21 20:08:40.819 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 20:08:41.016 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-21 20:08:41.021 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-21 20:08:41.022 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-21 20:08:41.023 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 20:08:41.025 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-21 20:08:41.085 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-21 20:08:41.087 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-21 20:08:41.087 +02:00 [INF] Hosting environment: Development
+2025-06-21 20:08:41.087 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-21 20:08:41.174 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-21 20:08:41.257 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-21 20:08:41.264 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 90.0409ms
+2025-06-21 20:08:41.270 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-21 20:09:58.831 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:09:58.840 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:09:59.084 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-21 20:09:59.222 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-21 20:09:59.256 +02:00 [INF] Retrieved 4 feature toggles from the database.
+2025-06-21 20:09:59.306 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-21 20:09:59.310 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-21 20:09:59.313 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:09:59.316 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:09:59.331 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:09:59.334 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 503.9445ms
+2025-06-21 20:10:22.095 +02:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5096/api/v1/featuretoggles/01979395-54a9-72bc-bd6a-9e83b4cd884f - null null
+2025-06-21 20:10:22.096 +02:00 [INF] Executing endpoint 'HTTP: DELETE /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 20:10:22.101 +02:00 [INF] No data found in cache for key: FeatureToggle_01979395-54a9-72bc-bd6a-9e83b4cd884f
+2025-06-21 20:10:22.219 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Id" = @__p_0
+LIMIT 1
+2025-06-21 20:10:22.220 +02:00 [INF] Feature toggle with ID "01979395-54a9-72bc-bd6a-9e83b4cd884f" retrieved successfully.
+2025-06-21 20:10:22.220 +02:00 [INF] Setting data in cache for key: FeatureToggle_01979395-54a9-72bc-bd6a-9e83b4cd884f
+2025-06-21 20:10:22.221 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_01979395-54a9-72bc-bd6a-9e83b4cd884f
+2025-06-21 20:10:22.261 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "FeatureToggles"
+WHERE "Id" = @p0;
+2025-06-21 20:10:22.267 +02:00 [INF] Feature toggle with ID "01979395-54a9-72bc-bd6a-9e83b4cd884f" deleted successfully.
+2025-06-21 20:10:22.270 +02:00 [INF] Successfully removed data from cache for key: FeatureToggle_01979395-54a9-72bc-bd6a-9e83b4cd884f
+2025-06-21 20:10:22.270 +02:00 [INF] Successfully removed data from cache for key: FeatureToggle_ShowHealthInsurance
+2025-06-21 20:10:22.270 +02:00 [INF] Successfully removed data from cache for key: FeatureToggleEnabled_ShowHealthInsurance
+2025-06-21 20:10:22.271 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-21 20:10:22.271 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-21 20:10:22.281 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-21 20:10:22.281 +02:00 [INF] Setting HTTP status code 204.
+2025-06-21 20:10:22.281 +02:00 [INF] Executed endpoint 'HTTP: DELETE /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 20:10:22.281 +02:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5096/api/v1/featuretoggles/01979395-54a9-72bc-bd6a-9e83b4cd884f - 204 null null 186.0565ms
+2025-06-21 20:10:26.653 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:10:26.654 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:10:26.659 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-21 20:10:26.660 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-21 20:10:26.661 +02:00 [INF] Retrieved 3 feature toggles from the database.
+2025-06-21 20:10:26.661 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-21 20:10:26.662 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-21 20:10:26.662 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:10:26.662 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:10:26.662 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:10:26.663 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 9.4254ms
+2025-06-21 20:10:36.606 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/01979395-54a9-72bc-bd6a-9e83b4cd884f - null null
+2025-06-21 20:10:36.607 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 20:10:36.611 +02:00 [INF] No data found in cache for key: FeatureToggle_01979395-54a9-72bc-bd6a-9e83b4cd884f
+2025-06-21 20:10:36.614 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Id" = @__p_0
+LIMIT 1
+2025-06-21 20:10:36.614 +02:00 [WRN] Feature toggle with ID "01979395-54a9-72bc-bd6a-9e83b4cd884f" not found.
+2025-06-21 20:10:36.616 +02:00 [INF] Setting HTTP status code 500.
+2025-06-21 20:10:36.626 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2025-06-21 20:10:36.628 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/{id:guid}'
+2025-06-21 20:10:36.629 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles/01979395-54a9-72bc-bd6a-9e83b4cd884f - 500 null application/problem+json 22.4989ms
+2025-06-21 20:10:58.200 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - application/json 36
+2025-06-21 20:10:58.201 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:10:58.243 +02:00 [INF] Setting HTTP status code 400.
+2025-06-21 20:10:58.243 +02:00 [INF] Writing value of type 'HttpValidationProblemDetails' as Json.
+2025-06-21 20:10:58.246 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:10:58.246 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - 400 null application/problem+json 45.4903ms
+2025-06-21 20:11:00.006 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - application/json 36
+2025-06-21 20:11:00.006 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:11:00.009 +02:00 [INF] Setting HTTP status code 400.
+2025-06-21 20:11:00.009 +02:00 [INF] Writing value of type 'HttpValidationProblemDetails' as Json.
+2025-06-21 20:11:00.009 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:11:00.009 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - 400 null application/problem+json 3.7462ms
+2025-06-21 20:11:33.992 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - application/json 106
+2025-06-21 20:11:33.993 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:11:33.995 +02:00 [INF] Setting HTTP status code 400.
+2025-06-21 20:11:33.995 +02:00 [INF] Writing value of type 'HttpValidationProblemDetails' as Json.
+2025-06-21 20:11:33.996 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:11:33.996 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles - 400 null application/problem+json 3.39ms
+2025-06-21 20:12:19.548 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - application/json 99
+2025-06-21 20:12:19.551 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 20:12:19.559 +02:00 [INF] No data found in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts_ShowPetInsurance
+2025-06-21 20:12:19.626 +02:00 [INF] Executed DbCommand (37ms) [Parameters=[@__names_0='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = ANY (@__names_0)
+2025-06-21 20:12:19.626 +02:00 [INF] Feature toggle(s) with Name(s) ShowCarDetails, ApplyDiscounts, ShowPetInsurance retrieved successfully.
+2025-06-21 20:12:19.627 +02:00 [INF] Setting data in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts_ShowPetInsurance
+2025-06-21 20:12:19.627 +02:00 [INF] Successfully set data in cache for key: FeatureToggles_ShowCarDetails_ApplyDiscounts_ShowPetInsurance
+2025-06-21 20:12:19.627 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:12:19.627 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:12:19.628 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/featuretoggles/by-names'
+2025-06-21 20:12:19.628 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/featuretoggles/by-names - 200 null application/json; charset=utf-8 80.1673ms
+2025-06-21 20:12:52.619 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:12:52.619 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:12:52.648 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 20:12:52.648 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 20:12:52.648 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:12:52.648 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:12:52.648 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:12:52.648 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 29.9155ms
+2025-06-21 20:13:00.809 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:13:00.809 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:13:00.813 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 20:13:00.813 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 20:13:00.814 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:13:00.814 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:13:00.814 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:13:00.814 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 5.2452ms
+2025-06-21 20:13:09.181 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - application/json 25
+2025-06-21 20:13:09.181 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:13:09.198 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-21 20:13:09.198 +02:00 [INF] Setting data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:13:09.199 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:13:09.199 +02:00 [INF] Setting data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:13:09.199 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:13:09.200 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-21 20:13:09.200 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-21 20:13:09.200 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-21 20:13:09.200 +02:00 [INF] Feature toggle with ID "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b" patched successfully.
+2025-06-21 20:13:09.200 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:13:09.200 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 20:13:09.201 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:13:09.201 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - 200 null application/json; charset=utf-8 19.4404ms
+2025-06-21 20:13:17.068 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:13:17.068 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:13:17.099 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-21 20:13:17.101 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-21 20:13:17.102 +02:00 [INF] Retrieved 3 feature toggles from the database.
+2025-06-21 20:13:17.102 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-21 20:13:17.103 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-21 20:13:17.103 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:13:17.103 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:13:17.103 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:13:17.103 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 35.5795ms
+2025-06-21 20:13:19.194 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:13:19.195 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:13:19.198 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 20:13:19.198 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 20:13:19.198 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:13:19.198 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:13:19.198 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:13:19.198 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 3.8998ms
+2025-06-21 20:20:27.905 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 20:20:28.102 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-21 20:20:28.107 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-21 20:20:28.108 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-21 20:20:28.109 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 20:20:28.111 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-21 20:20:28.170 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-21 20:20:28.172 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-21 20:20:28.172 +02:00 [INF] Hosting environment: Development
+2025-06-21 20:20:28.172 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-21 20:20:28.259 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-21 20:20:28.339 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-21 20:20:28.345 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 87.2713ms
+2025-06-21 20:20:28.350 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-21 20:20:46.835 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - application/json 25
+2025-06-21 20:20:46.844 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:20:47.345 +02:00 [INF] Executed DbCommand (12ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-21 20:20:47.413 +02:00 [INF] Setting data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:20:47.429 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:20:47.430 +02:00 [INF] Setting data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:20:47.430 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:20:47.432 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-21 20:20:47.433 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-21 20:20:47.439 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-21 20:20:47.440 +02:00 [INF] Feature toggle with ID "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b" patched successfully.
+2025-06-21 20:20:47.442 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:20:47.445 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 20:20:47.454 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:20:47.457 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - 200 null application/json; charset=utf-8 622.2813ms
+2025-06-21 20:20:54.517 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:20:54.519 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:20:54.529 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-21 20:20:54.568 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-21 20:20:54.593 +02:00 [INF] Retrieved 3 feature toggles from the database.
+2025-06-21 20:20:54.597 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-21 20:20:54.597 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-21 20:20:54.597 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:20:54.598 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:20:54.604 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:20:54.604 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 87.7116ms
+2025-06-21 20:20:55.881 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:20:55.882 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:20:55.908 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 20:20:55.908 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 20:20:55.909 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:20:55.909 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:20:55.909 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:20:55.909 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 27.9892ms
+2025-06-21 20:20:57.548 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:20:57.549 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:20:57.551 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 20:20:57.551 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 20:20:57.551 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:20:57.552 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:20:57.553 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:20:57.553 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 4.5005ms
+2025-06-21 20:21:29.602 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - application/json 25
+2025-06-21 20:21:29.604 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:21:32.778 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-21 20:21:55.762 +02:00 [INF] Setting data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:21:55.762 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:21:57.591 +02:00 [INF] Setting data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:21:57.591 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:22:04.455 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-21 20:22:05.117 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-21 20:22:17.762 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-21 20:22:25.344 +02:00 [INF] Feature toggle with ID "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b" patched successfully.
+2025-06-21 20:22:41.411 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:22:41.411 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 20:22:41.412 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:22:41.412 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - 200 null application/json; charset=utf-8 71812.2251ms
+2025-06-21 20:23:02.123 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:23:02.126 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:23:23.593 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-21 20:23:26.294 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-21 20:23:38.684 +02:00 [INF] Retrieved 3 feature toggles from the database.
+2025-06-21 20:23:39.173 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-21 20:23:39.174 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-21 20:42:39.092 +02:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 20:42:39.280 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-21 20:42:39.285 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-21 20:42:39.286 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-21 20:42:39.286 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-21 20:42:39.289 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-21 20:42:39.346 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-21 20:42:39.348 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-21 20:42:39.348 +02:00 [INF] Hosting environment: Development
+2025-06-21 20:42:39.348 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-21 20:42:39.447 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-21 20:42:39.525 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-21 20:42:39.530 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 84.2302ms
+2025-06-21 20:42:39.538 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-21 20:43:06.999 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - application/json 25
+2025-06-21 20:43:07.008 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:43:19.817 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-21 20:43:43.138 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__existingToggle_UpdatedAt_3='?' (DbType = DateTime), @__existingToggle_IsEnabled_2='?' (DbType = Boolean), @__existingToggle_Description_1='?', @__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FeatureToggles" AS f
+SET "UpdatedAt" = @__existingToggle_UpdatedAt_3,
+    "IsEnabled" = @__existingToggle_IsEnabled_2,
+    "Description" = @__existingToggle_Description_1
+WHERE f."Name" = @__name_0
+2025-06-21 20:43:44.669 +02:00 [INF] Setting data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:43:44.725 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:43:45.568 +02:00 [INF] Setting data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:43:45.568 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:43:46.069 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-21 20:43:46.070 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-21 20:43:46.532 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-21 20:43:48.863 +02:00 [INF] Feature toggle with ID "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b" patched successfully.
+2025-06-21 20:43:52.267 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:43:52.275 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 20:43:52.291 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:43:52.294 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - 200 null application/json; charset=utf-8 45295.9184ms
+2025-06-21 20:44:01.193 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:44:01.196 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:44:03.794 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-21 20:44:03.833 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-21 20:44:03.859 +02:00 [INF] Retrieved 3 feature toggles from the database.
+2025-06-21 20:44:03.863 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-21 20:44:03.864 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-21 20:44:03.864 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:44:03.865 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:44:03.870 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:44:03.870 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 2678.0278ms
+2025-06-21 20:44:23.330 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:44:23.330 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:44:23.357 +02:00 [INF] Successfully retrieved data from cache for key: AllFeatureToggles
+2025-06-21 20:44:23.357 +02:00 [INF] Found feature toggles in cache for key: AllFeatureToggles
+2025-06-21 20:44:23.357 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:44:23.357 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:44:23.358 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:44:23.358 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 27.9254ms
+2025-06-21 20:44:44.131 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - application/json 26
+2025-06-21 20:44:44.131 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:44:44.141 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-21 20:44:44.143 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__existingToggle_UpdatedAt_3='?' (DbType = DateTime), @__existingToggle_IsEnabled_2='?' (DbType = Boolean), @__existingToggle_Description_1='?', @__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FeatureToggles" AS f
+SET "UpdatedAt" = @__existingToggle_UpdatedAt_3,
+    "IsEnabled" = @__existingToggle_IsEnabled_2,
+    "Description" = @__existingToggle_Description_1
+WHERE f."Name" = @__name_0
+2025-06-21 20:44:44.143 +02:00 [INF] Setting data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:44:44.143 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:44:44.144 +02:00 [INF] Setting data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:44:44.144 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:44:44.144 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-21 20:44:44.144 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-21 20:44:44.145 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-21 20:44:44.145 +02:00 [INF] Feature toggle with ID "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b" patched successfully.
+2025-06-21 20:44:44.145 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:44:44.145 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 20:44:44.145 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:44:44.145 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - 200 null application/json; charset=utf-8 14.4842ms
+2025-06-21 20:44:49.421 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-21 20:44:49.421 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:44:49.424 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-21 20:44:49.425 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-21 20:44:49.426 +02:00 [INF] Retrieved 3 feature toggles from the database.
+2025-06-21 20:44:49.426 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-21 20:44:49.426 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-21 20:44:49.426 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:44:49.426 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-21 20:44:49.427 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-21 20:44:49.427 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 6.1098ms
+2025-06-21 20:45:10.746 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - application/json 25
+2025-06-21 20:45:10.746 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:45:10.751 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-21 20:45:10.753 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__existingToggle_UpdatedAt_3='?' (DbType = DateTime), @__existingToggle_IsEnabled_2='?' (DbType = Boolean), @__existingToggle_Description_1='?', @__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FeatureToggles" AS f
+SET "UpdatedAt" = @__existingToggle_UpdatedAt_3,
+    "IsEnabled" = @__existingToggle_IsEnabled_2,
+    "Description" = @__existingToggle_Description_1
+WHERE f."Name" = @__name_0
+2025-06-21 20:45:10.753 +02:00 [INF] Setting data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:45:10.754 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b
+2025-06-21 20:45:10.754 +02:00 [INF] Setting data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:45:10.754 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ApplyDiscounts
+2025-06-21 20:45:10.754 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-21 20:45:10.754 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-21 20:45:10.755 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-21 20:45:10.755 +02:00 [INF] Feature toggle with ID "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b" patched successfully.
+2025-06-21 20:45:10.755 +02:00 [INF] Setting HTTP status code 200.
+2025-06-21 20:45:10.755 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-21 20:45:10.755 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-21 20:45:10.755 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ApplyDiscounts - 200 null application/json; charset=utf-8 9.4791ms

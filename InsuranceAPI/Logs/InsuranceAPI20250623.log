@@ -1,0 +1,1300 @@
+2025-06-23 01:09:05.933 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 01:09:06.132 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-23 01:09:06.136 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-23 01:09:06.137 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-23 01:09:06.137 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 01:09:06.139 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-23 01:09:06.190 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-23 01:09:06.191 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 01:09:06.191 +02:00 [INF] Hosting environment: Development
+2025-06-23 01:09:06.191 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-23 01:09:06.295 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-23 01:09:06.388 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 01:09:06.395 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 100.7097ms
+2025-06-23 01:09:06.403 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-23 01:09:38.660 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 01:09:38.668 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:09:38.889 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-23 01:09:39.057 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-23 01:09:39.098 +02:00 [INF] Retrieved 5 insurances from the database.
+2025-06-23 01:09:39.140 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-23 01:09:39.145 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-23 01:09:39.146 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 01:09:39.155 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:09:39.160 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:09:39.366 +02:00 [INF] Received HTTP response headers after 203.7166ms - 200
+2025-06-23 01:09:39.367 +02:00 [INF] End processing HTTP request after 214.1095ms - 200
+2025-06-23 01:09:39.383 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 01:09:39.384 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:09:39.388 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 01:09:39.396 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:09:39.398 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 737.9368ms
+2025-06-23 01:11:09.721 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 01:11:09.725 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:11:09.754 +02:00 [INF] Successfully retrieved data from cache for key: AllInsurances
+2025-06-23 01:11:09.754 +02:00 [INF] Found insurances in cache for key: AllInsurances
+2025-06-23 01:11:09.754 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 01:11:09.755 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:11:09.755 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:11:09.781 +02:00 [INF] Received HTTP response headers after 26.472ms - 200
+2025-06-23 01:11:09.782 +02:00 [INF] End processing HTTP request after 26.8308ms - 200
+2025-06-23 01:11:09.782 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 01:11:09.782 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:11:09.782 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 01:11:09.782 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:11:09.783 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 62.0993ms
+2025-06-23 01:12:57.901 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 01:12:57.904 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:12:57.909 +02:00 [INF] No data found in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:12:57.966 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:12:57.990 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:12:57.999 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Discount", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:12:57.999 +02:00 [INF] Insurance with ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d" retrieved successfully.
+2025-06-23 01:12:58.000 +02:00 [INF] Setting data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:12:58.000 +02:00 [INF] Successfully set data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:12:58.000 +02:00 [INF] Successfully retrieved insurance by ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d"
+2025-06-23 01:12:58.000 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:12:58.001 +02:00 [INF] Writing value of type 'Insurance' as Json.
+2025-06-23 01:12:58.002 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:12:58.002 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 101.0755ms
+2025-06-23 01:16:08.429 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 01:16:08.586 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-23 01:16:08.591 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-23 01:16:08.591 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-23 01:16:08.592 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 01:16:08.594 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-23 01:16:08.647 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-23 01:16:08.649 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 01:16:08.649 +02:00 [INF] Hosting environment: Development
+2025-06-23 01:16:08.649 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-23 01:16:08.749 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-23 01:16:08.814 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 01:16:08.820 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 71.5629ms
+2025-06-23 01:16:08.830 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-23 01:18:54.876 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 01:18:55.039 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-23 01:18:55.043 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-23 01:18:55.044 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-23 01:18:55.045 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 01:18:55.047 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-23 01:18:55.104 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-23 01:18:55.105 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 01:18:55.105 +02:00 [INF] Hosting environment: Development
+2025-06-23 01:18:55.105 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-23 01:18:55.240 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-23 01:18:55.304 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 01:18:55.311 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 71.5139ms
+2025-06-23 01:18:55.318 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-23 01:19:10.860 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-23 01:19:10.867 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 6.6637ms
+2025-06-23 01:19:10.868 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-23 01:19:16.838 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 01:19:16.848 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:19:17.064 +02:00 [INF] No data found in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:19:17.235 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:19:17.290 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:19:17.303 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Discount", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:19:17.311 +02:00 [INF] Insurance with ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d" retrieved successfully.
+2025-06-23 01:19:17.352 +02:00 [INF] Setting data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:19:17.356 +02:00 [INF] Successfully set data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:19:17.356 +02:00 [INF] Successfully retrieved insurance by ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d"
+2025-06-23 01:19:17.358 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:19:17.364 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-23 01:19:17.374 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:19:17.376 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 538.2568ms
+2025-06-23 01:19:31.241 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 01:19:31.244 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:19:31.248 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-23 01:19:31.301 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-23 01:19:31.303 +02:00 [INF] Retrieved 5 insurances from the database.
+2025-06-23 01:19:31.306 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-23 01:19:31.307 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-23 01:19:31.308 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 01:19:31.318 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:19:31.324 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:19:31.529 +02:00 [INF] Received HTTP response headers after 203.4383ms - 200
+2025-06-23 01:19:31.531 +02:00 [INF] End processing HTTP request after 214.8288ms - 200
+2025-06-23 01:19:31.545 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 01:19:31.545 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:19:31.545 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 01:19:31.549 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:19:31.549 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 308.559ms
+2025-06-23 01:21:23.507 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - application/json 26
+2025-06-23 01:21:23.507 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:21:23.547 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 01:21:23.563 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__existingToggle_UpdatedAt_3='?' (DbType = DateTime), @__existingToggle_IsEnabled_2='?' (DbType = Boolean), @__existingToggle_Description_1='?', @__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FeatureToggles" AS f
+SET "UpdatedAt" = @__existingToggle_UpdatedAt_3,
+    "IsEnabled" = @__existingToggle_IsEnabled_2,
+    "Description" = @__existingToggle_Description_1
+WHERE f."Name" = @__name_0
+2025-06-23 01:21:23.565 +02:00 [INF] Setting data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 01:21:23.566 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 01:21:23.566 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 01:21:23.566 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 01:21:23.568 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-23 01:21:23.568 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-23 01:21:23.574 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-23 01:21:23.575 +02:00 [INF] Feature toggle with ID "d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6" patched successfully.
+2025-06-23 01:21:23.575 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:21:23.576 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-23 01:21:23.576 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:21:23.576 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - 200 null application/json; charset=utf-8 69.3478ms
+2025-06-23 01:21:29.184 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 01:21:29.185 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:21:29.212 +02:00 [INF] Successfully retrieved data from cache for key: AllInsurances
+2025-06-23 01:21:29.212 +02:00 [INF] Found insurances in cache for key: AllInsurances
+2025-06-23 01:21:29.212 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 01:21:29.212 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:21:29.212 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:21:29.249 +02:00 [INF] Received HTTP response headers after 36.6952ms - 200
+2025-06-23 01:21:29.249 +02:00 [INF] End processing HTTP request after 36.9953ms - 200
+2025-06-23 01:21:29.250 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 01:21:29.250 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:21:29.250 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 01:21:29.250 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:21:29.250 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 65.9492ms
+2025-06-23 01:21:33.099 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 01:21:33.100 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:21:33.103 +02:00 [INF] Successfully retrieved data from cache for key: AllInsurances
+2025-06-23 01:21:33.103 +02:00 [INF] Found insurances in cache for key: AllInsurances
+2025-06-23 01:21:33.103 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 01:21:33.103 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:21:33.103 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:21:33.109 +02:00 [INF] Received HTTP response headers after 5.8005ms - 200
+2025-06-23 01:21:33.109 +02:00 [INF] End processing HTTP request after 6.0491ms - 200
+2025-06-23 01:21:33.110 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 01:21:33.110 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:21:33.110 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 01:21:33.110 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:21:33.110 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 10.4486ms
+2025-06-23 01:44:29.527 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 01:44:29.690 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-23 01:44:29.694 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-23 01:44:29.694 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-23 01:44:29.695 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 01:44:29.697 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-23 01:44:29.748 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-23 01:44:29.749 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 01:44:29.749 +02:00 [INF] Hosting environment: Development
+2025-06-23 01:44:29.749 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-23 01:44:29.882 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-23 01:44:29.949 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 01:44:29.953 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 72.4155ms
+2025-06-23 01:44:29.959 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-23 01:44:56.708 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - application/json 25
+2025-06-23 01:44:56.716 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:44:57.075 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 01:44:57.098 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__existingToggle_UpdatedAt_3='?' (DbType = DateTime), @__existingToggle_IsEnabled_2='?' (DbType = Boolean), @__existingToggle_Description_1='?', @__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FeatureToggles" AS f
+SET "UpdatedAt" = @__existingToggle_UpdatedAt_3,
+    "IsEnabled" = @__existingToggle_IsEnabled_2,
+    "Description" = @__existingToggle_Description_1
+WHERE f."Name" = @__name_0
+2025-06-23 01:44:57.139 +02:00 [INF] Setting data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 01:44:57.152 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 01:44:57.153 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 01:44:57.153 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 01:44:57.155 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-23 01:44:57.155 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-23 01:44:57.160 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-23 01:44:57.167 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_ShowCarDetails
+2025-06-23 01:44:57.167 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 01:44:57.168 +02:00 [INF] Removed VehiclesByPersonIds cache with prefix Insurance.
+2025-06-23 01:44:57.168 +02:00 [INF] Feature toggle with ID "d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6" patched successfully.
+2025-06-23 01:44:57.170 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:44:57.172 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-23 01:44:57.180 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:44:57.183 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - 200 null application/json; charset=utf-8 474.7707ms
+2025-06-23 01:45:01.952 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 01:45:01.958 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:45:01.978 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-23 01:45:02.044 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-23 01:45:02.078 +02:00 [INF] Retrieved 5 insurances from the database.
+2025-06-23 01:45:02.084 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-23 01:45:02.084 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-23 01:45:02.085 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 01:45:02.093 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:45:02.099 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:45:02.328 +02:00 [INF] Received HTTP response headers after 227.2896ms - 200
+2025-06-23 01:45:02.330 +02:00 [INF] End processing HTTP request after 238.4579ms - 200
+2025-06-23 01:45:02.341 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 01:45:02.341 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:45:02.345 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 01:45:02.351 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:45:02.351 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 399.506ms
+2025-06-23 01:45:19.762 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - application/json 26
+2025-06-23 01:45:19.765 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:45:19.770 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 01:45:19.772 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__existingToggle_UpdatedAt_3='?' (DbType = DateTime), @__existingToggle_IsEnabled_2='?' (DbType = Boolean), @__existingToggle_Description_1='?', @__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FeatureToggles" AS f
+SET "UpdatedAt" = @__existingToggle_UpdatedAt_3,
+    "IsEnabled" = @__existingToggle_IsEnabled_2,
+    "Description" = @__existingToggle_Description_1
+WHERE f."Name" = @__name_0
+2025-06-23 01:45:19.772 +02:00 [INF] Setting data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 01:45:19.772 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 01:45:19.772 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 01:45:19.772 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 01:45:19.773 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-23 01:45:19.773 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-23 01:45:19.773 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-23 01:45:19.774 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:AllInsurances
+2025-06-23 01:45:19.774 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_ShowCarDetails
+2025-06-23 01:45:19.774 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 01:45:19.774 +02:00 [INF] Removed VehiclesByPersonIds cache with prefix Insurance.
+2025-06-23 01:45:19.774 +02:00 [INF] Feature toggle with ID "d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6" patched successfully.
+2025-06-23 01:45:19.774 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:45:19.774 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-23 01:45:19.774 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:45:19.774 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - 200 null application/json; charset=utf-8 12.3147ms
+2025-06-23 01:45:23.738 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 01:45:23.739 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:45:23.741 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-23 01:45:23.744 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-23 01:45:23.746 +02:00 [INF] Retrieved 5 insurances from the database.
+2025-06-23 01:45:23.746 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-23 01:45:23.747 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-23 01:45:23.747 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 01:45:23.747 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:45:23.747 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:45:23.779 +02:00 [INF] Received HTTP response headers after 31.0615ms - 200
+2025-06-23 01:45:23.779 +02:00 [INF] End processing HTTP request after 31.3863ms - 200
+2025-06-23 01:45:23.779 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 01:45:23.779 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:45:23.779 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 01:45:23.780 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:45:23.780 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 41.6568ms
+2025-06-23 01:45:26.652 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 01:45:26.653 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:45:26.685 +02:00 [INF] Successfully retrieved data from cache for key: AllInsurances
+2025-06-23 01:45:26.686 +02:00 [INF] Found insurances in cache for key: AllInsurances
+2025-06-23 01:45:26.686 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 01:45:26.686 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:45:26.686 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:45:26.690 +02:00 [INF] Received HTTP response headers after 4.6736ms - 200
+2025-06-23 01:45:26.691 +02:00 [INF] End processing HTTP request after 5.0211ms - 200
+2025-06-23 01:45:26.691 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 01:45:26.692 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:45:26.692 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 01:45:26.693 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:45:26.694 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 41.5615ms
+2025-06-23 01:45:27.822 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 01:45:27.823 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:45:27.826 +02:00 [INF] Successfully retrieved data from cache for key: AllInsurances
+2025-06-23 01:45:27.826 +02:00 [INF] Found insurances in cache for key: AllInsurances
+2025-06-23 01:45:27.826 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 01:45:27.826 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:45:27.826 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:45:27.829 +02:00 [INF] Received HTTP response headers after 3.203ms - 200
+2025-06-23 01:45:27.830 +02:00 [INF] End processing HTTP request after 3.4639ms - 200
+2025-06-23 01:45:27.830 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 01:45:27.830 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:45:27.830 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 01:45:27.830 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:45:27.830 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 8.6108ms
+2025-06-23 01:49:12.013 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 01:49:12.021 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:49:12.026 +02:00 [INF] No data found in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:12.044 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:49:12.076 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:49:12.086 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Discount", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:49:12.086 +02:00 [INF] Insurance with ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d" retrieved successfully.
+2025-06-23 01:49:12.087 +02:00 [INF] Setting data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:12.087 +02:00 [INF] Successfully set data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:12.087 +02:00 [INF] Successfully retrieved insurance by ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d"
+2025-06-23 01:49:12.087 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:49:12.088 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-23 01:49:12.088 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:49:12.088 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 75.7368ms
+2025-06-23 01:49:13.312 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 01:49:13.312 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:49:13.317 +02:00 [INF] Successfully retrieved data from cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:13.317 +02:00 [INF] Found insurance in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:13.317 +02:00 [INF] Successfully retrieved insurance by ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d"
+2025-06-23 01:49:13.317 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:49:13.317 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-23 01:49:13.317 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:49:13.317 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 5.656ms
+2025-06-23 01:49:16.594 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 01:49:16.594 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:49:16.602 +02:00 [INF] Successfully retrieved data from cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:16.602 +02:00 [INF] Found insurance in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:16.602 +02:00 [INF] Successfully retrieved insurance by ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d"
+2025-06-23 01:49:16.602 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:49:16.602 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-23 01:49:16.602 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:49:16.602 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 8.0805ms
+2025-06-23 01:49:34.086 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - application/json 23
+2025-06-23 01:49:34.089 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:49:34.103 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:49:34.104 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Http.BadHttpRequestException: Failed to read parameter "FeatureTogglePatchDto featureTogglePatchDto" from the request body as JSON.
+ ---> System.Text.Json.JsonException: Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $ | LineNumber: 1 | BytePositionInLine: 21.
+ ---> System.Text.Json.JsonReaderException: Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. LineNumber: 1 | BytePositionInLine: 21.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.ReadSingleSegment()
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.Converters.ObjectWithParameterizedConstructorConverter`1.ReadConstructorArgumentsWithContinuation(ReadStack& state, Utf8JsonReader& reader, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Converters.ObjectWithParameterizedConstructorConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.ContinueDeserialize(ReadBufferState& bufferState, JsonReaderState& jsonReaderState, ReadStack& readStack, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsObjectAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync(HttpRequest request, JsonTypeInfo jsonTypeInfo, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync(HttpRequest request, JsonTypeInfo jsonTypeInfo, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<HandleRequestBodyAndCompileRequestDelegateForJson>g__TryReadBodyAsync|101_0(HttpContext httpContext, Type bodyType, String parameterTypeName, String parameterName, Boolean allowEmptyRequestBody, Boolean throwOnBadRequest, JsonTypeInfo jsonTypeInfo)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.Log.InvalidJsonRequestBody(HttpContext httpContext, String parameterTypeName, String parameterName, Exception exception, Boolean shouldThrow)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<HandleRequestBodyAndCompileRequestDelegateForJson>g__TryReadBodyAsync|101_0(HttpContext httpContext, Type bodyType, String parameterTypeName, String parameterName, Boolean allowEmptyRequestBody, Boolean throwOnBadRequest, JsonTypeInfo jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass101_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-06-23 01:49:34.124 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - 500 null application/json; charset=utf-8 37.7568ms
+2025-06-23 01:49:35.818 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - application/json 23
+2025-06-23 01:49:35.818 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:49:35.818 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:49:35.819 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Http.BadHttpRequestException: Failed to read parameter "FeatureTogglePatchDto featureTogglePatchDto" from the request body as JSON.
+ ---> System.Text.Json.JsonException: Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $ | LineNumber: 1 | BytePositionInLine: 21.
+ ---> System.Text.Json.JsonReaderException: Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. LineNumber: 1 | BytePositionInLine: 21.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.ReadSingleSegment()
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.Converters.ObjectWithParameterizedConstructorConverter`1.ReadConstructorArgumentsWithContinuation(ReadStack& state, Utf8JsonReader& reader, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Converters.ObjectWithParameterizedConstructorConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.ContinueDeserialize(ReadBufferState& bufferState, JsonReaderState& jsonReaderState, ReadStack& readStack, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsObjectAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync(HttpRequest request, JsonTypeInfo jsonTypeInfo, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync(HttpRequest request, JsonTypeInfo jsonTypeInfo, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<HandleRequestBodyAndCompileRequestDelegateForJson>g__TryReadBodyAsync|101_0(HttpContext httpContext, Type bodyType, String parameterTypeName, String parameterName, Boolean allowEmptyRequestBody, Boolean throwOnBadRequest, JsonTypeInfo jsonTypeInfo)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.Log.InvalidJsonRequestBody(HttpContext httpContext, String parameterTypeName, String parameterName, Exception exception, Boolean shouldThrow)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<HandleRequestBodyAndCompileRequestDelegateForJson>g__TryReadBodyAsync|101_0(HttpContext httpContext, Type bodyType, String parameterTypeName, String parameterName, Boolean allowEmptyRequestBody, Boolean throwOnBadRequest, JsonTypeInfo jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass101_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-06-23 01:49:35.820 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - 500 null application/json; charset=utf-8 2.1764ms
+2025-06-23 01:49:43.496 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - application/json 25
+2025-06-23 01:49:43.497 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:49:43.517 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 01:49:43.519 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__existingToggle_UpdatedAt_3='?' (DbType = DateTime), @__existingToggle_IsEnabled_2='?' (DbType = Boolean), @__existingToggle_Description_1='?', @__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FeatureToggles" AS f
+SET "UpdatedAt" = @__existingToggle_UpdatedAt_3,
+    "IsEnabled" = @__existingToggle_IsEnabled_2,
+    "Description" = @__existingToggle_Description_1
+WHERE f."Name" = @__name_0
+2025-06-23 01:49:43.519 +02:00 [INF] Setting data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 01:49:43.519 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 01:49:43.520 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 01:49:43.520 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 01:49:43.520 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-23 01:49:43.520 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-23 01:49:43.520 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-23 01:49:43.521 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:AllInsurances
+2025-06-23 01:49:43.521 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_ShowCarDetails
+2025-06-23 01:49:43.521 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 01:49:43.521 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:43.521 +02:00 [INF] Removed VehiclesByPersonIds cache with prefix Insurance.
+2025-06-23 01:49:43.521 +02:00 [INF] Feature toggle with ID "d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6" patched successfully.
+2025-06-23 01:49:43.521 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:49:43.521 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-23 01:49:43.521 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 01:49:43.522 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - 200 null application/json; charset=utf-8 25.5089ms
+2025-06-23 01:49:47.674 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 01:49:47.674 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:49:47.679 +02:00 [INF] No data found in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:47.682 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:49:47.683 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:49:47.685 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Discount", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 01:49:47.685 +02:00 [INF] Insurance with ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d" retrieved successfully.
+2025-06-23 01:49:47.685 +02:00 [INF] Setting data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:47.686 +02:00 [INF] Successfully set data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:47.686 +02:00 [INF] Successfully retrieved insurance by ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d"
+2025-06-23 01:49:47.686 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:49:47.686 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-23 01:49:47.686 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:49:47.686 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 12.1711ms
+2025-06-23 01:49:48.581 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 01:49:48.582 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:49:48.585 +02:00 [INF] Successfully retrieved data from cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:48.585 +02:00 [INF] Found insurance in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 01:49:48.585 +02:00 [INF] Successfully retrieved insurance by ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d"
+2025-06-23 01:49:48.585 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:49:48.585 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-23 01:49:48.585 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 01:49:48.585 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 4.0656ms
+2025-06-23 01:50:04.222 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - null null
+2025-06-23 01:50:04.225 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 01:50:04.227 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 01:50:04.228 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 01:50:04.279 +02:00 [INF] Received HTTP response headers after 51.8863ms - 200
+2025-06-23 01:50:04.280 +02:00 [INF] End processing HTTP request after 52.2531ms - 200
+2025-06-23 01:50:04.283 +02:00 [INF] No data found in cache for key: Insurances_PIN1001
+2025-06-23 01:50:04.290 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-23 01:50:04.291 +02:00 [INF] Retrieved 1 insurances for personal identification number PIN1001.
+2025-06-23 01:50:04.291 +02:00 [INF] Setting data in cache for key: Insurances_PIN1001
+2025-06-23 01:50:04.291 +02:00 [INF] Successfully set data in cache for key: Insurances_PIN1001
+2025-06-23 01:50:04.293 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-23 01:50:04.293 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-23 01:50:04.308 +02:00 [INF] Received HTTP response headers after 14.9815ms - 200
+2025-06-23 01:50:04.308 +02:00 [INF] End processing HTTP request after 15.181ms - 200
+2025-06-23 01:50:04.308 +02:00 [INF] Retrieved 1 car insurances with details for personal identification number: PIN1001
+2025-06-23 01:50:04.308 +02:00 [INF] Retrieved 0 other insurances for personal identification number: PIN1001
+2025-06-23 01:50:04.309 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:50:04.309 +02:00 [INF] Writing value of type 'List`1' as Json.
+2025-06-23 01:50:04.310 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 01:50:04.310 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - 200 null application/json; charset=utf-8 88.7968ms
+2025-06-23 01:50:13.496 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 01:50:13.496 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:50:13.500 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-23 01:50:13.502 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-23 01:50:13.503 +02:00 [INF] Retrieved 5 insurances from the database.
+2025-06-23 01:50:13.503 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-23 01:50:13.504 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-23 01:50:13.504 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 01:50:13.504 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:50:13.504 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 01:50:13.550 +02:00 [INF] Received HTTP response headers after 46.528ms - 200
+2025-06-23 01:50:13.550 +02:00 [INF] End processing HTTP request after 46.7802ms - 200
+2025-06-23 01:50:13.551 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 01:50:13.551 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 01:50:13.551 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 01:50:13.551 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 01:50:13.551 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 55.5854ms
+2025-06-23 02:36:33.668 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 02:36:33.829 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-23 02:36:33.834 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-23 02:36:33.834 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-23 02:36:33.835 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 02:36:33.837 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-23 02:36:33.890 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-23 02:36:33.891 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 02:36:33.891 +02:00 [INF] Hosting environment: Development
+2025-06-23 02:36:33.891 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-23 02:36:34.094 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-23 02:36:34.162 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 02:36:34.169 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 75.5684ms
+2025-06-23 02:36:34.176 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-23 02:36:46.898 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - null null
+2025-06-23 02:36:46.908 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:36:47.100 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:36:47.106 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:36:47.207 +02:00 [INF] Received HTTP response headers after 99.2857ms - 200
+2025-06-23 02:36:47.208 +02:00 [INF] End processing HTTP request after 110.0232ms - 200
+2025-06-23 02:36:47.242 +02:00 [INF] No data found in cache for key: Insurances_PIN1001
+2025-06-23 02:36:47.425 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-23 02:36:47.465 +02:00 [INF] Retrieved 1 insurances for personal identification number PIN1001.
+2025-06-23 02:36:47.511 +02:00 [INF] Setting data in cache for key: Insurances_PIN1001
+2025-06-23 02:36:47.514 +02:00 [INF] Successfully set data in cache for key: Insurances_PIN1001
+2025-06-23 02:36:47.518 +02:00 [INF] No data found in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:36:47.526 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 02:36:47.527 +02:00 [INF] Feature toggle with Name ShowCarDetails retrieved successfully.
+2025-06-23 02:36:47.528 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:36:47.529 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:36:47.529 +02:00 [INF] ShowCarDetails feature toggle is enabled: true
+2025-06-23 02:36:47.530 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-23 02:36:47.530 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-23 02:36:47.601 +02:00 [INF] Received HTTP response headers after 71.0731ms - 200
+2025-06-23 02:36:47.601 +02:00 [INF] End processing HTTP request after 71.3731ms - 200
+2025-06-23 02:36:47.607 +02:00 [INF] Retrieved 1 car insurances with details for personal identification number: PIN1001
+2025-06-23 02:36:47.607 +02:00 [INF] Retrieved 0 other insurances for personal identification number: PIN1001
+2025-06-23 02:36:47.609 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:36:47.613 +02:00 [INF] Writing value of type 'List`1' as Json.
+2025-06-23 02:36:47.625 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:36:47.628 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - 200 null application/json; charset=utf-8 730.0597ms
+2025-06-23 02:36:49.374 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - null null
+2025-06-23 02:36:49.377 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:36:49.380 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:36:49.380 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:36:49.432 +02:00 [INF] Received HTTP response headers after 51.8227ms - 200
+2025-06-23 02:36:49.432 +02:00 [INF] End processing HTTP request after 52.122ms - 200
+2025-06-23 02:36:49.452 +02:00 [INF] Successfully retrieved data from cache for key: Insurances_PIN1001
+2025-06-23 02:36:49.452 +02:00 [INF] Found insurances in cache for key: Insurances_PIN1001
+2025-06-23 02:36:49.454 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:36:49.454 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:36:49.454 +02:00 [INF] ShowCarDetails feature toggle is enabled: true
+2025-06-23 02:36:49.454 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-23 02:36:49.454 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-23 02:36:49.471 +02:00 [INF] Received HTTP response headers after 17.3137ms - 200
+2025-06-23 02:36:49.472 +02:00 [INF] End processing HTTP request after 17.6162ms - 200
+2025-06-23 02:36:49.472 +02:00 [INF] Retrieved 1 car insurances with details for personal identification number: PIN1001
+2025-06-23 02:36:49.472 +02:00 [INF] Retrieved 0 other insurances for personal identification number: PIN1001
+2025-06-23 02:36:49.472 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:36:49.472 +02:00 [INF] Writing value of type 'List`1' as Json.
+2025-06-23 02:36:49.472 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:36:49.473 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - 200 null application/json; charset=utf-8 98.4096ms
+2025-06-23 02:36:55.707 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-23 02:36:55.709 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-23 02:36:55.713 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-23 02:36:55.742 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-23 02:36:55.748 +02:00 [INF] Retrieved 3 feature toggles from the database.
+2025-06-23 02:36:55.749 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-23 02:36:55.750 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-23 02:36:55.750 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:36:55.751 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-23 02:36:55.755 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-23 02:36:55.755 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 48.6231ms
+2025-06-23 02:37:08.130 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - application/json 26
+2025-06-23 02:37:08.131 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 02:37:08.163 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 02:37:08.182 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__existingToggle_UpdatedAt_3='?' (DbType = DateTime), @__existingToggle_IsEnabled_2='?' (DbType = Boolean), @__existingToggle_Description_1='?', @__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FeatureToggles" AS f
+SET "UpdatedAt" = @__existingToggle_UpdatedAt_3,
+    "IsEnabled" = @__existingToggle_IsEnabled_2,
+    "Description" = @__existingToggle_Description_1
+WHERE f."Name" = @__name_0
+2025-06-23 02:37:08.183 +02:00 [INF] Setting data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:37:08.184 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:37:08.184 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:08.184 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:08.187 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-23 02:37:08.187 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-23 02:37:08.193 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-23 02:37:08.196 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_ShowCarDetails
+2025-06-23 02:37:08.196 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:Insurances_PIN1001
+2025-06-23 02:37:08.196 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:37:08.197 +02:00 [INF] Removed All insurances cache with prefix Insurance.
+2025-06-23 02:37:08.197 +02:00 [INF] Feature toggle with ID "d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6" patched successfully.
+2025-06-23 02:37:08.197 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:37:08.197 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-23 02:37:08.198 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 02:37:08.198 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - 200 null application/json; charset=utf-8 68.0325ms
+2025-06-23 02:37:12.220 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 02:37:12.220 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:37:12.229 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-23 02:37:12.234 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-23 02:37:12.236 +02:00 [INF] Retrieved 5 insurances from the database.
+2025-06-23 02:37:12.236 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-23 02:37:12.237 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-23 02:37:12.237 +02:00 [INF] No data found in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:12.239 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 02:37:12.239 +02:00 [INF] Feature toggle with Name ShowCarDetails retrieved successfully.
+2025-06-23 02:37:12.239 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:12.239 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:12.239 +02:00 [INF] Retrieved 5 insurances, 3 car insurances, ShowCarDetails is enabled: false
+2025-06-23 02:37:12.241 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 02:37:12.247 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 02:37:12.248 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 02:37:12.331 +02:00 [INF] Received HTTP response headers after 83.8053ms - 200
+2025-06-23 02:37:12.331 +02:00 [INF] End processing HTTP request after 84.0791ms - 200
+2025-06-23 02:37:12.333 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 02:37:12.333 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:37:12.333 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 02:37:12.334 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:37:12.334 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 114.1935ms
+2025-06-23 02:37:33.857 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - null null
+2025-06-23 02:37:33.889 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:37:33.890 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:37:33.890 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:37:33.917 +02:00 [INF] Received HTTP response headers after 26.805ms - 200
+2025-06-23 02:37:33.917 +02:00 [INF] End processing HTTP request after 27.3838ms - 200
+2025-06-23 02:37:33.919 +02:00 [INF] No data found in cache for key: Insurances_PIN1001
+2025-06-23 02:37:33.921 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-23 02:37:33.922 +02:00 [INF] Retrieved 1 insurances for personal identification number PIN1001.
+2025-06-23 02:37:33.922 +02:00 [INF] Setting data in cache for key: Insurances_PIN1001
+2025-06-23 02:37:33.922 +02:00 [INF] Successfully set data in cache for key: Insurances_PIN1001
+2025-06-23 02:37:33.922 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:33.922 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:33.922 +02:00 [INF] ShowCarDetails feature toggle is enabled: false
+2025-06-23 02:37:33.922 +02:00 [INF] ShowCarDetails is disabled. Returning car insurances without car details.
+2025-06-23 02:37:33.923 +02:00 [INF] Retrieved 0 other insurances for personal identification number: PIN1001
+2025-06-23 02:37:33.923 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:37:33.923 +02:00 [INF] Writing value of type 'List`1' as Json.
+2025-06-23 02:37:33.923 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:37:33.923 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - 200 null application/json; charset=utf-8 66.2117ms
+2025-06-23 02:37:36.232 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - null null
+2025-06-23 02:37:36.233 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:37:36.236 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:37:36.236 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:37:36.250 +02:00 [INF] Received HTTP response headers after 13.7698ms - 200
+2025-06-23 02:37:36.250 +02:00 [INF] End processing HTTP request after 14.1565ms - 200
+2025-06-23 02:37:36.251 +02:00 [INF] Successfully retrieved data from cache for key: Insurances_PIN1001
+2025-06-23 02:37:36.251 +02:00 [INF] Found insurances in cache for key: Insurances_PIN1001
+2025-06-23 02:37:36.251 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:36.251 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:36.251 +02:00 [INF] ShowCarDetails feature toggle is enabled: false
+2025-06-23 02:37:36.251 +02:00 [INF] ShowCarDetails is disabled. Returning car insurances without car details.
+2025-06-23 02:37:36.251 +02:00 [INF] Retrieved 0 other insurances for personal identification number: PIN1001
+2025-06-23 02:37:36.251 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:37:36.251 +02:00 [INF] Writing value of type 'List`1' as Json.
+2025-06-23 02:37:36.252 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:37:36.252 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - 200 null application/json; charset=utf-8 19.3681ms
+2025-06-23 02:37:42.144 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - null null
+2025-06-23 02:37:42.144 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:37:42.145 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:37:42.145 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:37:42.160 +02:00 [INF] Received HTTP response headers after 15.5193ms - 200
+2025-06-23 02:37:42.161 +02:00 [INF] End processing HTTP request after 15.815ms - 200
+2025-06-23 02:37:42.161 +02:00 [INF] Successfully retrieved data from cache for key: Insurances_PIN1001
+2025-06-23 02:37:42.161 +02:00 [INF] Found insurances in cache for key: Insurances_PIN1001
+2025-06-23 02:37:42.161 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:42.161 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:42.161 +02:00 [INF] ShowCarDetails feature toggle is enabled: false
+2025-06-23 02:37:42.161 +02:00 [INF] ShowCarDetails is disabled. Returning car insurances without car details.
+2025-06-23 02:37:42.161 +02:00 [INF] Retrieved 0 other insurances for personal identification number: PIN1001
+2025-06-23 02:37:42.161 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:37:42.162 +02:00 [INF] Writing value of type 'List`1' as Json.
+2025-06-23 02:37:42.162 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:37:42.162 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - 200 null application/json; charset=utf-8 17.909ms
+2025-06-23 02:37:45.459 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 02:37:45.459 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 02:37:45.465 +02:00 [INF] No data found in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:37:45.480 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:37:45.509 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:37:45.519 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Discount", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:37:45.519 +02:00 [INF] Insurance with ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d" retrieved successfully.
+2025-06-23 02:37:45.520 +02:00 [INF] Setting data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:37:45.520 +02:00 [INF] Successfully set data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:37:45.521 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:45.521 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:45.521 +02:00 [INF] ShowCarDetails feature toggle is enabled: false
+2025-06-23 02:37:45.521 +02:00 [INF] ShowCarDetails is disabled. Returning insurance without car details.
+2025-06-23 02:37:45.521 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:37:45.521 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-23 02:37:45.521 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 02:37:45.521 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 62.2955ms
+2025-06-23 02:37:46.810 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 02:37:46.810 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 02:37:46.815 +02:00 [INF] Successfully retrieved data from cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:37:46.815 +02:00 [INF] Found insurance in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:37:46.816 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:46.816 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:46.816 +02:00 [INF] ShowCarDetails feature toggle is enabled: false
+2025-06-23 02:37:46.816 +02:00 [INF] ShowCarDetails is disabled. Returning insurance without car details.
+2025-06-23 02:37:46.816 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:37:46.816 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-23 02:37:46.816 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 02:37:46.816 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 6.8125ms
+2025-06-23 02:37:57.735 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - application/json 25
+2025-06-23 02:37:57.735 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 02:37:57.740 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 02:37:57.742 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__existingToggle_UpdatedAt_3='?' (DbType = DateTime), @__existingToggle_IsEnabled_2='?' (DbType = Boolean), @__existingToggle_Description_1='?', @__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FeatureToggles" AS f
+SET "UpdatedAt" = @__existingToggle_UpdatedAt_3,
+    "IsEnabled" = @__existingToggle_IsEnabled_2,
+    "Description" = @__existingToggle_Description_1
+WHERE f."Name" = @__name_0
+2025-06-23 02:37:57.742 +02:00 [INF] Setting data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:37:57.742 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:37:57.743 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:57.743 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:37:57.743 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-23 02:37:57.743 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-23 02:37:57.744 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-23 02:37:57.744 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:AllInsurances
+2025-06-23 02:37:57.745 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_ShowCarDetails
+2025-06-23 02:37:57.745 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:Insurances_PIN1001
+2025-06-23 02:37:57.745 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:37:57.745 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:37:57.745 +02:00 [INF] Removed All insurances cache with prefix Insurance.
+2025-06-23 02:37:57.745 +02:00 [INF] Feature toggle with ID "d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6" patched successfully.
+2025-06-23 02:37:57.745 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:37:57.745 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-23 02:37:57.745 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 02:37:57.745 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - 200 null application/json; charset=utf-8 10.5031ms
+2025-06-23 02:38:00.831 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - null null
+2025-06-23 02:38:00.832 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:38:00.833 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:38:00.834 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:38:00.847 +02:00 [INF] Received HTTP response headers after 13.6652ms - 200
+2025-06-23 02:38:00.847 +02:00 [INF] End processing HTTP request after 14.4577ms - 200
+2025-06-23 02:38:00.848 +02:00 [INF] No data found in cache for key: Insurances_PIN1001
+2025-06-23 02:38:00.849 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-23 02:38:00.850 +02:00 [INF] Retrieved 1 insurances for personal identification number PIN1001.
+2025-06-23 02:38:00.850 +02:00 [INF] Setting data in cache for key: Insurances_PIN1001
+2025-06-23 02:38:00.850 +02:00 [INF] Successfully set data in cache for key: Insurances_PIN1001
+2025-06-23 02:38:00.850 +02:00 [INF] No data found in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:00.851 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 02:38:00.851 +02:00 [INF] Feature toggle with Name ShowCarDetails retrieved successfully.
+2025-06-23 02:38:00.851 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:00.852 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:00.852 +02:00 [INF] ShowCarDetails feature toggle is enabled: true
+2025-06-23 02:38:00.852 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-23 02:38:00.852 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1001
+2025-06-23 02:38:00.855 +02:00 [INF] Received HTTP response headers after 3.0509ms - 200
+2025-06-23 02:38:00.855 +02:00 [INF] End processing HTTP request after 3.1898ms - 200
+2025-06-23 02:38:00.855 +02:00 [INF] Retrieved 1 car insurances with details for personal identification number: PIN1001
+2025-06-23 02:38:00.855 +02:00 [INF] Retrieved 0 other insurances for personal identification number: PIN1001
+2025-06-23 02:38:00.855 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:38:00.855 +02:00 [INF] Writing value of type 'List`1' as Json.
+2025-06-23 02:38:00.855 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:38:00.856 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - 200 null application/json; charset=utf-8 24.5385ms
+2025-06-23 02:38:05.259 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 02:38:05.259 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 02:38:05.260 +02:00 [INF] No data found in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:38:05.261 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:38:05.263 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:38:05.263 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Discount", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:38:05.264 +02:00 [INF] Insurance with ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d" retrieved successfully.
+2025-06-23 02:38:05.264 +02:00 [INF] Setting data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:38:05.264 +02:00 [INF] Successfully set data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:38:05.264 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:05.264 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:05.264 +02:00 [INF] ShowCarDetails feature toggle is enabled: true
+2025-06-23 02:38:05.264 +02:00 [INF] Fetching car details for insurance ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d"
+2025-06-23 02:38:05.264 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1003
+2025-06-23 02:38:05.264 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 02:38:05.265 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 02:38:05.269 +02:00 [INF] Received HTTP response headers after 4.3192ms - 200
+2025-06-23 02:38:05.269 +02:00 [INF] End processing HTTP request after 4.4776ms - 200
+2025-06-23 02:38:05.269 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:38:05.269 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-23 02:38:05.269 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 02:38:05.269 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 10.437ms
+2025-06-23 02:38:25.634 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - application/json 26
+2025-06-23 02:38:25.636 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 02:38:25.638 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 02:38:25.639 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__existingToggle_UpdatedAt_3='?' (DbType = DateTime), @__existingToggle_IsEnabled_2='?' (DbType = Boolean), @__existingToggle_Description_1='?', @__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FeatureToggles" AS f
+SET "UpdatedAt" = @__existingToggle_UpdatedAt_3,
+    "IsEnabled" = @__existingToggle_IsEnabled_2,
+    "Description" = @__existingToggle_Description_1
+WHERE f."Name" = @__name_0
+2025-06-23 02:38:25.639 +02:00 [INF] Setting data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:38:25.639 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:38:25.639 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:25.640 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:25.640 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-23 02:38:25.640 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-23 02:38:25.641 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-23 02:38:25.641 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_ShowCarDetails
+2025-06-23 02:38:25.641 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:Insurances_PIN1001
+2025-06-23 02:38:25.641 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:38:25.642 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:38:25.642 +02:00 [INF] Removed All insurances cache with prefix Insurance.
+2025-06-23 02:38:25.642 +02:00 [INF] Feature toggle with ID "d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6" patched successfully.
+2025-06-23 02:38:25.642 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:38:25.642 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-23 02:38:25.642 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 02:38:25.642 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - 200 null application/json; charset=utf-8 8.1552ms
+2025-06-23 02:38:28.975 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - null null
+2025-06-23 02:38:28.976 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:38:28.977 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:38:28.977 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:38:28.993 +02:00 [INF] Received HTTP response headers after 16.3535ms - 200
+2025-06-23 02:38:28.993 +02:00 [INF] End processing HTTP request after 16.7398ms - 200
+2025-06-23 02:38:28.994 +02:00 [INF] No data found in cache for key: Insurances_PIN1001
+2025-06-23 02:38:28.995 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-23 02:38:28.996 +02:00 [INF] Retrieved 1 insurances for personal identification number PIN1001.
+2025-06-23 02:38:28.996 +02:00 [INF] Setting data in cache for key: Insurances_PIN1001
+2025-06-23 02:38:28.996 +02:00 [INF] Successfully set data in cache for key: Insurances_PIN1001
+2025-06-23 02:38:28.996 +02:00 [INF] No data found in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:28.997 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 02:38:28.997 +02:00 [INF] Feature toggle with Name ShowCarDetails retrieved successfully.
+2025-06-23 02:38:28.997 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:28.997 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:28.997 +02:00 [INF] ShowCarDetails feature toggle is enabled: false
+2025-06-23 02:38:28.998 +02:00 [INF] ShowCarDetails is disabled. Returning car insurances without car details.
+2025-06-23 02:38:28.998 +02:00 [INF] Retrieved 0 other insurances for personal identification number: PIN1001
+2025-06-23 02:38:28.998 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:38:28.998 +02:00 [INF] Writing value of type 'List`1' as Json.
+2025-06-23 02:38:28.998 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:38:28.998 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - 200 null application/json; charset=utf-8 22.3828ms
+2025-06-23 02:38:35.941 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 02:38:35.944 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 02:38:35.946 +02:00 [INF] No data found in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:38:35.948 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:38:35.949 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:38:35.950 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Discount", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:38:35.950 +02:00 [INF] Insurance with ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d" retrieved successfully.
+2025-06-23 02:38:35.950 +02:00 [INF] Setting data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:38:35.950 +02:00 [INF] Successfully set data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:38:35.951 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:35.951 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:35.951 +02:00 [INF] ShowCarDetails feature toggle is enabled: false
+2025-06-23 02:38:35.951 +02:00 [INF] ShowCarDetails is disabled. Returning insurance without car details.
+2025-06-23 02:38:35.951 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:38:35.951 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-23 02:38:35.951 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 02:38:35.951 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 9.9454ms
+2025-06-23 02:38:43.609 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 02:38:43.610 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:38:43.613 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-23 02:38:43.614 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-23 02:38:43.615 +02:00 [INF] Retrieved 5 insurances from the database.
+2025-06-23 02:38:43.615 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-23 02:38:43.616 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-23 02:38:43.616 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:43.616 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:38:43.616 +02:00 [INF] Retrieved 5 insurances, 3 car insurances, ShowCarDetails is enabled: false
+2025-06-23 02:38:43.616 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 02:38:43.616 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 02:38:43.616 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 02:38:43.618 +02:00 [INF] Received HTTP response headers after 2.0621ms - 200
+2025-06-23 02:38:43.618 +02:00 [INF] End processing HTTP request after 2.3234ms - 200
+2025-06-23 02:38:43.620 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 02:38:43.621 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:38:43.621 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 02:38:43.622 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:38:43.622 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 13.7672ms
+2025-06-23 02:39:05.298 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 02:39:05.300 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:39:09.767 +02:00 [INF] Successfully retrieved data from cache for key: AllInsurances
+2025-06-23 02:39:09.767 +02:00 [INF] Found insurances in cache for key: AllInsurances
+2025-06-23 02:39:23.648 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:39:23.649 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:39:32.612 +02:00 [INF] Retrieved 5 insurances, 3 car insurances, ShowCarDetails is enabled: false
+2025-06-23 02:43:17.688 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 02:43:17.851 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-23 02:43:17.855 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-23 02:43:17.856 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-23 02:43:17.857 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-23 02:43:17.859 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-23 02:43:17.913 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-23 02:43:17.914 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 02:43:17.914 +02:00 [INF] Hosting environment: Development
+2025-06-23 02:43:17.914 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-23 02:43:18.050 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-23 02:43:18.116 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 02:43:18.121 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 71.9468ms
+2025-06-23 02:43:18.128 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-23 02:43:26.873 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 02:43:26.882 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:43:30.926 +02:00 [INF] Successfully retrieved data from cache for key: AllInsurances
+2025-06-23 02:43:30.926 +02:00 [INF] Found insurances in cache for key: AllInsurances
+2025-06-23 02:43:35.429 +02:00 [INF] No data found in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:43:35.609 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 02:43:35.617 +02:00 [INF] Feature toggle with Name ShowCarDetails retrieved successfully.
+2025-06-23 02:43:35.628 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:43:35.631 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:43:42.531 +02:00 [INF] Retrieved 5 insurances, 3 car insurances, ShowCarDetails is enabled: false
+2025-06-23 02:43:44.880 +02:00 [INF] ShowCarDetails is disabled. Returning insurances without car details.
+2025-06-23 02:43:47.273 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:43:47.284 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-23 02:43:47.303 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:43:47.306 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 20433.0404ms
+2025-06-23 02:43:59.195 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - null null
+2025-06-23 02:43:59.199 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:43:59.208 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:43:59.215 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1001
+2025-06-23 02:43:59.331 +02:00 [INF] Received HTTP response headers after 114.886ms - 200
+2025-06-23 02:43:59.333 +02:00 [INF] End processing HTTP request after 127.4871ms - 200
+2025-06-23 02:43:59.344 +02:00 [INF] No data found in cache for key: Insurances_PIN1001
+2025-06-23 02:43:59.403 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-23 02:43:59.437 +02:00 [INF] Retrieved 1 insurances for personal identification number PIN1001.
+2025-06-23 02:43:59.440 +02:00 [INF] Setting data in cache for key: Insurances_PIN1001
+2025-06-23 02:43:59.441 +02:00 [INF] Successfully set data in cache for key: Insurances_PIN1001
+2025-06-23 02:43:59.442 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:43:59.442 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:43:59.442 +02:00 [INF] ShowCarDetails feature toggle is enabled: false
+2025-06-23 02:43:59.442 +02:00 [INF] ShowCarDetails is disabled. Returning car insurances without car details.
+2025-06-23 02:43:59.443 +02:00 [INF] Retrieved 0 other insurances for personal identification number: PIN1001
+2025-06-23 02:43:59.443 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:43:59.443 +02:00 [INF] Writing value of type 'List`1' as Json.
+2025-06-23 02:43:59.445 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/pin/{personalIdentificationNumber}'
+2025-06-23 02:43:59.445 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/pin/PIN1001 - 200 null application/json; charset=utf-8 250.1289ms
+2025-06-23 02:44:02.451 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - null null
+2025-06-23 02:44:02.451 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 02:44:02.465 +02:00 [INF] No data found in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:44:02.492 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:44:02.525 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:44:02.536 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Discount", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-23 02:44:02.537 +02:00 [INF] Insurance with ID "01979829-5dfb-70c0-b5bd-8dd44cb19f4d" retrieved successfully.
+2025-06-23 02:44:02.537 +02:00 [INF] Setting data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:44:02.537 +02:00 [INF] Successfully set data in cache for key: Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:44:02.538 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:44:02.538 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:44:02.538 +02:00 [INF] ShowCarDetails feature toggle is enabled: false
+2025-06-23 02:44:02.538 +02:00 [INF] ShowCarDetails is disabled. Returning insurance without car details.
+2025-06-23 02:44:02.538 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:44:02.538 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-23 02:44:02.538 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/{id:guid}'
+2025-06-23 02:44:02.539 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances/01979829-5dfb-70c0-b5bd-8dd44cb19f4d - 200 null application/json; charset=utf-8 88.0756ms
+2025-06-23 02:44:04.899 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 02:44:04.899 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:44:04.905 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-23 02:44:04.910 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-23 02:44:04.911 +02:00 [INF] Retrieved 5 insurances from the database.
+2025-06-23 02:44:04.912 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-23 02:44:04.913 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-23 02:44:04.913 +02:00 [INF] Successfully retrieved data from cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:44:04.913 +02:00 [INF] Found feature toggle in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:44:04.914 +02:00 [INF] Retrieved 5 insurances, 3 car insurances, ShowCarDetails is enabled: false
+2025-06-23 02:44:04.914 +02:00 [INF] ShowCarDetails is disabled. Returning insurances without car details.
+2025-06-23 02:44:04.914 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:44:04.914 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-23 02:44:04.914 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:44:04.914 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 15.2739ms
+2025-06-23 02:44:16.028 +02:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - application/json 25
+2025-06-23 02:44:16.028 +02:00 [INF] Executing endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 02:44:16.055 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 02:44:16.070 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__existingToggle_UpdatedAt_3='?' (DbType = DateTime), @__existingToggle_IsEnabled_2='?' (DbType = Boolean), @__existingToggle_Description_1='?', @__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FeatureToggles" AS f
+SET "UpdatedAt" = @__existingToggle_UpdatedAt_3,
+    "IsEnabled" = @__existingToggle_IsEnabled_2,
+    "Description" = @__existingToggle_Description_1
+WHERE f."Name" = @__name_0
+2025-06-23 02:44:16.071 +02:00 [INF] Setting data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:44:16.072 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:44:16.072 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:44:16.072 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:44:16.075 +02:00 [INF] Successfully removed data from cache for key: AllFeatureToggles
+2025-06-23 02:44:16.075 +02:00 [INF] Removed cache for all feature toggles with key: AllFeatureToggles
+2025-06-23 02:44:16.081 +02:00 [INF] Removed featureToggles cache with prefix FeatureTogglesStatus_.
+2025-06-23 02:44:16.085 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:AllInsurances
+2025-06-23 02:44:16.085 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_ShowCarDetails
+2025-06-23 02:44:16.086 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:Insurances_PIN1001
+2025-06-23 02:44:16.086 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:FeatureToggle_d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6
+2025-06-23 02:44:16.086 +02:00 [INF] Deleted cache key by pattern: InsuranceAPI:Insurance_01979829-5dfb-70c0-b5bd-8dd44cb19f4d
+2025-06-23 02:44:16.086 +02:00 [INF] Removed All insurances cache with prefix Insurance.
+2025-06-23 02:44:16.087 +02:00 [INF] Feature toggle with ID "d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6" patched successfully.
+2025-06-23 02:44:16.087 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:44:16.089 +02:00 [INF] Writing value of type 'FeatureToggleOutput' as Json.
+2025-06-23 02:44:16.091 +02:00 [INF] Executed endpoint 'HTTP: PATCH /api/v{version:apiVersion}/featuretoggles/{name}'
+2025-06-23 02:44:16.091 +02:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5096/api/v1/featuretoggles/ShowCarDetails - 200 null application/json; charset=utf-8 63.1736ms
+2025-06-23 02:44:19.573 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-23 02:44:19.574 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:44:19.575 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-23 02:44:19.579 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-23 02:44:19.580 +02:00 [INF] Retrieved 5 insurances from the database.
+2025-06-23 02:44:19.580 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-23 02:44:19.580 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-23 02:44:19.581 +02:00 [INF] No data found in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:44:19.581 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = @__name_0
+LIMIT 1
+2025-06-23 02:44:19.582 +02:00 [INF] Feature toggle with Name ShowCarDetails retrieved successfully.
+2025-06-23 02:44:19.582 +02:00 [INF] Setting data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:44:19.582 +02:00 [INF] Successfully set data in cache for key: FeatureToggle_ShowCarDetails
+2025-06-23 02:44:19.582 +02:00 [INF] Retrieved 5 insurances, 3 car insurances, ShowCarDetails is enabled: true
+2025-06-23 02:44:19.583 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002, PIN1003
+2025-06-23 02:44:19.589 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 02:44:19.590 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-23 02:44:19.734 +02:00 [INF] Received HTTP response headers after 144.1118ms - 200
+2025-06-23 02:44:19.734 +02:00 [INF] End processing HTTP request after 144.4652ms - 200
+2025-06-23 02:44:19.739 +02:00 [INF] Retrieved 3 car insurances with details.
+2025-06-23 02:44:19.739 +02:00 [INF] Setting HTTP status code 200.
+2025-06-23 02:44:19.739 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-23 02:44:19.740 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:44:19.740 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 166.9782ms
+2025-06-23 02:44:56.983 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - application/json 223
+2025-06-23 02:44:56.986 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:44:57.003 +02:00 [INF] No data found in cache for key: InsuranceProduct_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-23 02:44:57.006 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Discount", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__id_0
+LIMIT 1
+2025-06-23 02:44:57.007 +02:00 [INF] Insurance product with ID "ca536771-42b8-4f55-8014-7e98c6c7b060" retrieved successfully.
+2025-06-23 02:44:57.007 +02:00 [INF] Setting data in cache for key: InsuranceProduct_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-23 02:44:57.007 +02:00 [INF] Successfully set data in cache for key: InsuranceProduct_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-23 02:44:57.007 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1003
+2025-06-23 02:44:57.007 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1003
+2025-06-23 02:44:57.070 +02:00 [INF] Received HTTP response headers after 62.4727ms - 200
+2025-06-23 02:44:57.070 +02:00 [INF] End processing HTTP request after 62.7165ms - 200
+2025-06-23 02:44:57.072 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1003
+2025-06-23 02:44:57.072 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1003
+2025-06-23 02:44:57.083 +02:00 [INF] Received HTTP response headers after 11.4073ms - 200
+2025-06-23 02:44:57.083 +02:00 [INF] End processing HTTP request after 11.635ms - 200
+2025-06-23 02:44:57.087 +02:00 [INF] No data found in cache for key: FeatureToggles_ApplyDiscounts
+2025-06-23 02:44:57.134 +02:00 [INF] Executed DbCommand (29ms) [Parameters=[@__names_0='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = ANY (@__names_0)
+2025-06-23 02:44:57.134 +02:00 [INF] Feature toggle(s) with Name(s) ApplyDiscounts retrieved successfully.
+2025-06-23 02:44:57.135 +02:00 [INF] Setting data in cache for key: FeatureToggles_ApplyDiscounts
+2025-06-23 02:44:57.135 +02:00 [INF] Successfully set data in cache for key: FeatureToggles_ApplyDiscounts
+2025-06-23 02:44:57.136 +02:00 [INF] Using PriceCalculator with ApplyDiscounts: true
+2025-06-23 02:44:57.138 +02:00 [INF] No data found in cache for key: PIN1003_MUS2021_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-23 02:44:57.145 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__insurance_PersonalIdentificationNumber_0='?', @__insurance_InsuredItemIdentity_1='?', @__insurance_InsuranceProductId_2='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__insurance_PersonalIdentificationNumber_0 AND i."InsuredItemIdentity" = @__insurance_InsuredItemIdentity_1 AND i."InsuranceProductId" = @__insurance_InsuranceProductId_2
+LIMIT 1
+2025-06-23 02:44:57.145 +02:00 [INF] Setting data in cache for key: PIN1003_MUS2021_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-23 02:44:57.145 +02:00 [INF] Successfully set data in cache for key: PIN1003_MUS2021_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-23 02:44:57.145 +02:00 [WRN] Insurance with the same personal identification number, insured item and insurance product already exists.
+2025-06-23 02:44:57.146 +02:00 [ERR] Failed to add insurance: Insurance with the same personal identification number, insuread item and insurance product already exists.
+2025-06-23 02:44:57.147 +02:00 [INF] Setting HTTP status code 400.
+2025-06-23 02:44:57.153 +02:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2025-06-23 02:44:57.154 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/insurances/'
+2025-06-23 02:44:57.154 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - 400 null application/problem+json 171.5029ms

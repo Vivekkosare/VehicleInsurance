@@ -1,0 +1,321 @@
+2025-06-20 17:04:57.311 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:17:27.394 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:19:26.854 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:19:40.543 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:19:47.843 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:20:21.173 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:20:21.327 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-20 17:20:21.331 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-20 17:20:21.333 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-20 17:20:21.333 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:20:21.337 +02:00 [INF] Applying migration '20250620152012_AddedFeatureToggles'.
+2025-06-20 17:20:21.363 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Insurances" ADD "DiscountApplied" boolean NOT NULL DEFAULT FALSE;
+2025-06-20 17:20:21.365 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Insurances" ADD "Price" numeric NOT NULL DEFAULT 0.0;
+2025-06-20 17:20:21.367 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "InsuranceProducts" ADD "Discount" numeric(18,2) NOT NULL DEFAULT 0.0;
+2025-06-20 17:20:21.384 +02:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "FeatureToggles" (
+    "Id" uuid NOT NULL,
+    "Name" character varying(50) NOT NULL,
+    "Description" character varying(200),
+    "IsEnabled" boolean NOT NULL DEFAULT FALSE,
+    "CreatedAt" timestamp with time zone NOT NULL DEFAULT (NOW()),
+    "UpdatedAt" timestamp with time zone NOT NULL DEFAULT (NOW()),
+    CONSTRAINT "PK_FeatureToggles" PRIMARY KEY ("Id")
+);
+2025-06-20 17:20:21.386 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FeatureToggles" ("Id", "CreatedAt", "Description", "IsEnabled", "Name")
+VALUES ('d1e2f3a4-b5c6-7d8e-9f0a-b1c2d3e4f5a6', TIMESTAMPTZ '2025-06-20T00:00:00Z', 'Enable or disable the Car details on car insurance display', TRUE, 'ShowCarDetails');
+2025-06-20 17:20:21.386 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FeatureToggles" ("Id", "CreatedAt", "Description", "Name")
+VALUES ('e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b', TIMESTAMPTZ '2025-06-20T00:00:00Z', 'Enable or disable discounts on insurance products', 'ApplyDiscounts');
+2025-06-20 17:20:21.390 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE "InsuranceProducts" SET "Discount" = 15.0
+WHERE "Id" = 'b43c53a0-1c57-4c9c-94a1-673d7db31fcf';
+2025-06-20 17:20:21.390 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE "InsuranceProducts" SET "Discount" = 5.0
+WHERE "Id" = 'ca536771-42b8-4f55-8014-7e98c6c7b060';
+2025-06-20 17:20:21.390 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE "InsuranceProducts" SET "Discount" = 10.0
+WHERE "Id" = 'def55e24-40c9-4234-825a-bbf4319fc79b';
+2025-06-20 17:20:21.391 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Insurances" SET "DiscountApplied" = FALSE, "Price" = 30.0
+WHERE "Id" = 'a1e1b2c3-d4e5-4f6a-8b7c-9d0e1f2a3b4c';
+2025-06-20 17:20:21.392 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Insurances" SET "DiscountApplied" = FALSE, "Price" = 20.0
+WHERE "Id" = 'b2e2c3d4-e5f6-4a8b-7c9d-0e1f2a3b4c5d';
+2025-06-20 17:20:21.392 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Insurances" SET "DiscountApplied" = FALSE, "Price" = 10.0
+WHERE "Id" = 'c3d4e5f6-a8b7-4c9d-0e1f-2a3b4c5d6e7f';
+2025-06-20 17:20:21.393 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_FeatureToggles_Name" ON "FeatureToggles" ("Name");
+2025-06-20 17:20:21.394 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20250620152012_AddedFeatureToggles', '9.0.2');
+2025-06-20 17:25:16.561 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:25:16.715 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-20 17:25:16.719 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-20 17:25:16.719 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-20 17:25:16.720 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:25:16.722 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-20 17:25:16.776 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-20 17:25:16.777 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-20 17:25:16.777 +02:00 [INF] Hosting environment: Development
+2025-06-20 17:25:16.778 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-20 17:25:17.126 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-20 17:25:17.183 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-20 17:25:17.189 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 64.248ms
+2025-06-20 17:25:17.205 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-20 17:25:17.214 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/favicon.ico - null null
+2025-06-20 17:25:17.214 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/favicon.ico - 404 0 null 0.8683ms
+2025-06-20 17:25:17.215 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/favicon.ico, Response status code: 404
+2025-06-20 17:25:55.319 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/vehicles - null null
+2025-06-20 17:25:55.320 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/vehicles - 404 0 null 1.2034ms
+2025-06-20 17:25:55.321 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/api/v1/vehicles, Response status code: 404
+2025-06-20 17:28:02.170 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/vehicles - null null
+2025-06-20 17:28:02.172 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/vehicles - 404 0 null 1.9515ms
+2025-06-20 17:28:02.172 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/api/v1/vehicles, Response status code: 404
+2025-06-20 17:29:10.439 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-20 17:29:10.451 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-20 17:29:10.692 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-20 17:29:10.864 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItem", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-20 17:29:10.905 +02:00 [INF] Retrieved 3 insurances from the database.
+2025-06-20 17:29:10.947 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-20 17:29:10.950 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-20 17:29:10.951 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001
+2025-06-20 17:29:10.963 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-20 17:29:10.969 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-20 17:29:11.099 +02:00 [INF] Received HTTP response headers after 129.0802ms - 200
+2025-06-20 17:29:11.101 +02:00 [INF] End processing HTTP request after 139.6529ms - 200
+2025-06-20 17:29:11.117 +02:00 [INF] Retrieved 1 car insurances with details.
+2025-06-20 17:29:11.118 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 17:29:11.122 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-20 17:29:11.130 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-20 17:29:11.132 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 694.0197ms
+2025-06-20 17:50:06.181 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:50:06.359 +02:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-20 17:50:06.363 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-20 17:50:06.366 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-20 17:50:06.367 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:50:06.371 +02:00 [INF] Applying migration '20250620154955_UpdatedInsuredItemIdentity'.
+2025-06-20 17:50:06.382 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Insurances" RENAME COLUMN "InsuredItem" TO "InsuredItemIdentity";
+2025-06-20 17:50:06.384 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Insurances" SET "InsuredItemIdentity" = 'ABC1234'
+WHERE "Id" = 'a1e1b2c3-d4e5-4f6a-8b7c-9d0e1f2a3b4c';
+2025-06-20 17:50:06.384 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Insurances" SET "InsuredItemIdentity" = 'Bob Smith'
+WHERE "Id" = 'b2e2c3d4-e5f6-4a8b-7c9d-0e1f2a3b4c5d';
+2025-06-20 17:50:06.385 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Insurances" SET "InsuredItemIdentity" = 'Bruno the Dog'
+WHERE "Id" = 'c3d4e5f6-a8b7-4c9d-0e1f-2a3b4c5d6e7f';
+2025-06-20 17:50:06.385 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20250620154955_UpdatedInsuredItemIdentity', '9.0.2');
+2025-06-20 18:33:29.821 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 18:33:29.989 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-20 18:33:29.993 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-20 18:33:29.993 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-20 18:33:29.994 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 18:33:29.995 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-20 18:33:30.045 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-20 18:33:30.046 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-20 18:33:30.046 +02:00 [INF] Hosting environment: Development
+2025-06-20 18:33:30.046 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-20 18:33:30.264 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-20 18:33:30.392 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-20 18:33:30.401 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/favicon.ico - null null
+2025-06-20 18:33:30.402 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/favicon.ico - 404 0 null 0.3825ms
+2025-06-20 18:33:30.397 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 133.9591ms
+2025-06-20 18:33:30.409 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/favicon.ico, Response status code: 404
+2025-06-20 18:33:30.409 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-20 18:33:39.127 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - application/json 215
+2025-06-20 18:33:39.134 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/insurances/'
+2025-06-20 18:33:39.400 +02:00 [INF] Setting HTTP status code 400.
+2025-06-20 18:33:39.410 +02:00 [INF] Writing value of type 'HttpValidationProblemDetails' as Json.
+2025-06-20 18:33:39.421 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/insurances/'
+2025-06-20 18:33:39.422 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - 400 null application/problem+json 295.178ms
+2025-06-20 18:36:02.846 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - application/json 223
+2025-06-20 18:36:02.847 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/insurances/'
+2025-06-20 18:36:08.167 +02:00 [INF] No data found in cache for key: InsuranceProduct_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-20 18:36:08.337 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Code", i."CreatedAt", i."Discount", i."Name", i."Price", i."UpdatedAt"
+FROM "InsuranceProducts" AS i
+WHERE i."Id" = @__id_0
+LIMIT 1
+2025-06-20 18:36:08.368 +02:00 [INF] Insurance product with ID "ca536771-42b8-4f55-8014-7e98c6c7b060" retrieved successfully.
+2025-06-20 18:36:08.411 +02:00 [INF] Setting data in cache for key: InsuranceProduct_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-20 18:36:08.415 +02:00 [INF] Successfully set data in cache for key: InsuranceProduct_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-20 18:36:15.074 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/customers/PIN1002
+2025-06-20 18:36:15.082 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/customers/PIN1002
+2025-06-20 18:36:15.216 +02:00 [INF] Received HTTP response headers after 132.6994ms - 200
+2025-06-20 18:36:15.218 +02:00 [INF] End processing HTTP request after 147.064ms - 200
+2025-06-20 18:36:26.689 +02:00 [INF] Start processing HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1002
+2025-06-20 18:36:26.690 +02:00 [INF] Sending HTTP request GET http://localhost:5059/api/v1/vehicles/personal/PIN1002
+2025-06-20 18:36:26.759 +02:00 [INF] Received HTTP response headers after 68.964ms - 200
+2025-06-20 18:36:26.759 +02:00 [INF] End processing HTTP request after 70.521ms - 200
+2025-06-20 18:36:44.648 +02:00 [INF] No data found in cache for key: FeatureToggles_ApplyDiscounts
+2025-06-20 18:36:44.725 +02:00 [INF] Executed DbCommand (35ms) [Parameters=[@__names_0='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+WHERE f."Name" = ANY (@__names_0)
+2025-06-20 18:36:44.726 +02:00 [INF] Feature toggle(s) with Name(s) ApplyDiscounts retrieved successfully.
+2025-06-20 18:36:44.730 +02:00 [INF] Setting data in cache for key: FeatureToggles_ApplyDiscounts
+2025-06-20 18:36:44.732 +02:00 [INF] Successfully set data in cache for key: FeatureToggles_ApplyDiscounts
+2025-06-20 18:36:58.249 +02:00 [INF] Using PriceCalculator with ApplyDiscounts: false
+2025-06-20 18:37:36.031 +02:00 [INF] No data found in cache for key: PIN1002_XYZ5678_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-20 18:37:36.116 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[@__insurance_PersonalIdentificationNumber_0='?', @__insurance_InsuredItemIdentity_1='?', @__insurance_InsuranceProductId_2='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+WHERE i."PersonalIdentificationNumber" = @__insurance_PersonalIdentificationNumber_0 AND i."InsuredItemIdentity" = @__insurance_InsuredItemIdentity_1 AND i."InsuranceProductId" = @__insurance_InsuranceProductId_2
+LIMIT 1
+2025-06-20 18:37:36.117 +02:00 [WRN] Attempted to set null value in cache for key: PIN1002_XYZ5678_ca536771-42b8-4f55-8014-7e98c6c7b060
+2025-06-20 18:37:36.200 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?', @p5='?', @p6='?' (DbType = Decimal), @p7='?' (DbType = DateTime), @p8='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Insurances" ("Id", "DiscountApplied", "EndDate", "InsuranceProductId", "InsuredItemIdentity", "PersonalIdentificationNumber", "Price", "StartDate", "UpdatedAt")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "CreatedAt";
+2025-06-20 18:37:36.230 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt"
+FROM "Insurances" AS i
+WHERE i."Id" = @__p_0
+LIMIT 1
+2025-06-20 18:37:36.233 +02:00 [INF] Insurance with ID "01978e33-e904-7163-bdd8-ab7d4b9c125d" created successfully.
+2025-06-20 18:37:37.902 +02:00 [INF] Insurance with ID "01978e33-e904-7163-bdd8-ab7d4b9c125d" added successfully.
+2025-06-20 18:37:40.433 +02:00 [INF] Setting HTTP status code 201.
+2025-06-20 18:37:40.440 +02:00 [INF] Writing value of type 'InsuranceOutput' as Json.
+2025-06-20 18:37:40.447 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/insurances/'
+2025-06-20 18:37:40.451 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5096/api/v1/insurances/ - 201 null application/json; charset=utf-8 97605.8784ms
+2025-06-20 18:45:56.924 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-20 18:45:56.929 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 404 0 null 5.9075ms
+2025-06-20 18:45:56.931 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/api/v1/featuretoggles, Response status code: 404
+2025-06-20 18:45:59.068 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-20 18:45:59.069 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 404 0 null 0.3037ms
+2025-06-20 18:45:59.069 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/api/v1/featuretoggles, Response status code: 404
+2025-06-20 18:46:15.009 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/insurances - null null
+2025-06-20 18:46:15.010 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-20 18:46:15.022 +02:00 [INF] No data found in cache for key: AllInsurances
+2025-06-20 18:46:15.081 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."CreatedAt", i."DiscountApplied", i."EndDate", i."InsuranceProductId", i."InsuredItemIdentity", i."PersonalIdentificationNumber", i."Price", i."StartDate", i."UpdatedAt", i0."Id", i0."Code", i0."CreatedAt", i0."Discount", i0."Name", i0."Price", i0."UpdatedAt"
+FROM "Insurances" AS i
+INNER JOIN "InsuranceProducts" AS i0 ON i."InsuranceProductId" = i0."Id"
+2025-06-20 18:46:15.084 +02:00 [INF] Retrieved 4 insurances from the database.
+2025-06-20 18:46:15.089 +02:00 [INF] Setting data in cache for key: AllInsurances
+2025-06-20 18:46:15.089 +02:00 [INF] Successfully set data in cache for key: AllInsurances
+2025-06-20 18:46:15.090 +02:00 [INF] Fetching car registrations for personal identification numbers: PIN1001, PIN1002
+2025-06-20 18:46:15.099 +02:00 [INF] Start processing HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-20 18:46:15.099 +02:00 [INF] Sending HTTP request POST http://localhost:5059/api/v1/vehicles/personal/
+2025-06-20 18:46:15.238 +02:00 [INF] Received HTTP response headers after 138.6803ms - 200
+2025-06-20 18:46:15.238 +02:00 [INF] End processing HTTP request after 139.3179ms - 200
+2025-06-20 18:46:15.241 +02:00 [INF] Retrieved 2 car insurances with details.
+2025-06-20 18:46:15.241 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 18:46:15.242 +02:00 [INF] Writing value of type 'Concat2Iterator`1' as Json.
+2025-06-20 18:46:15.246 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/insurances/'
+2025-06-20 18:46:15.246 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/insurances - 200 null application/json; charset=utf-8 236.8257ms
+2025-06-20 18:47:38.343 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 18:47:38.507 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-20 18:47:38.511 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-20 18:47:38.512 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-20 18:47:38.512 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 18:47:38.514 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-20 18:47:38.567 +02:00 [INF] Now listening on: http://localhost:5096
+2025-06-20 18:47:38.568 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-20 18:47:38.568 +02:00 [INF] Hosting environment: Development
+2025-06-20 18:47:38.568 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/InsuranceAPI
+2025-06-20 18:47:38.956 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/weatherforecast - null null
+2025-06-20 18:47:39.067 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-20 18:47:39.094 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/weatherforecast - 404 0 null 139.0627ms
+2025-06-20 18:47:39.100 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5096/weatherforecast, Response status code: 404
+2025-06-20 18:47:49.396 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - null null
+2025-06-20 18:47:49.403 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-20 18:47:49.590 +02:00 [INF] No data found in cache for key: AllFeatureToggles
+2025-06-20 18:47:49.704 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."Description", f."IsEnabled", f."Name", f."UpdatedAt"
+FROM "FeatureToggles" AS f
+2025-06-20 18:47:49.728 +02:00 [INF] Retrieved 2 feature toggles from the database.
+2025-06-20 18:47:49.768 +02:00 [INF] Setting data in cache for key: AllFeatureToggles
+2025-06-20 18:47:49.772 +02:00 [INF] Successfully set data in cache for key: AllFeatureToggles
+2025-06-20 18:47:49.774 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 18:47:49.777 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-20 18:47:49.787 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/featuretoggles/'
+2025-06-20 18:47:49.790 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5096/api/v1/featuretoggles - 200 null application/json; charset=utf-8 393.6215ms

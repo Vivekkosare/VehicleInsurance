@@ -13,11 +13,11 @@ If the person has CAR Insurance, while showing the details. The API endpoint sho
 
 However, the Car details display can be enabled or disabled by a feature toggle called `ShowCarDetails`
 
-SOME EXTRA FEATURES HAVE BEEN ADDED TO API LIKE `DISCOUNTS` USING FEATURE TOGGLES
+**SOME EXTRA FEATURES HAVE BEEN ADDED TO INSURANCE API LIKE `DISCOUNTS` USING FEATURE TOGGLES**
 
 While creating or adding insurance, Disounts can be applied on the insurance prices with a feature toggle called `ApplyDiscounts`
 
-When `ApplyDiscounts : true`, then there will be `5% on CAR`, `10% on HEALTH` and `15% on PET` discounts applied on the insurances.
+When `ApplyDiscounts : true`, then there will be discounts of `5% on CAR`, `10% on HEALTH` and `15% on PET` applied on the insurances.
 
 ---
 

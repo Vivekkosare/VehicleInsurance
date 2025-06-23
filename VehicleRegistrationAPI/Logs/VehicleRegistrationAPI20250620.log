@@ -1,0 +1,234 @@
+2025-06-20 17:23:31.242 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:23:31.400 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-20 17:23:31.404 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-20 17:23:31.405 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-20 17:23:31.406 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:23:31.407 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-20 17:23:31.459 +02:00 [INF] Now listening on: http://localhost:5059
+2025-06-20 17:23:31.461 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-20 17:23:31.461 +02:00 [INF] Hosting environment: Development
+2025-06-20 17:23:31.461 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/VehicleRegistrationAPI
+2025-06-20 17:23:33.585 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers - null null
+2025-06-20 17:23:33.667 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-20 17:23:33.670 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/customers/'
+2025-06-20 17:23:33.990 +02:00 [INF] No data found in cache for key: AllCustomers
+2025-06-20 17:23:33.990 +02:00 [INF] Cache miss for all customers, retrieving from database.
+2025-06-20 17:23:34.110 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+2025-06-20 17:23:34.137 +02:00 [INF] Retrieved 5 customers from the database.
+2025-06-20 17:23:34.185 +02:00 [INF] Setting data in cache for key: AllCustomers
+2025-06-20 17:23:34.190 +02:00 [INF] Successfully set data in cache for key: AllCustomers
+2025-06-20 17:23:34.190 +02:00 [INF] Cached all customers for future requests.
+2025-06-20 17:23:34.190 +02:00 [INF] 5 customers retrieved successfully.
+2025-06-20 17:23:34.192 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 17:23:34.194 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-20 17:23:34.210 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/customers/'
+2025-06-20 17:23:34.212 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers - 200 null application/json; charset=utf-8 628.0455ms
+2025-06-20 17:25:25.872 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:25:26.037 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-20 17:25:26.042 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-20 17:25:26.042 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-20 17:25:26.043 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 17:25:26.045 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-20 17:25:26.094 +02:00 [INF] Now listening on: http://localhost:5059
+2025-06-20 17:25:26.095 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-20 17:25:26.095 +02:00 [INF] Hosting environment: Development
+2025-06-20 17:25:26.095 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/VehicleRegistrationAPI
+2025-06-20 17:25:26.212 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers - null null
+2025-06-20 17:25:26.364 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-20 17:25:26.367 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/customers/'
+2025-06-20 17:25:26.581 +02:00 [INF] Successfully retrieved data from cache for key: AllCustomers
+2025-06-20 17:25:26.581 +02:00 [INF] Retrieved all customers from cache.
+2025-06-20 17:25:26.581 +02:00 [INF] 5 customers retrieved successfully.
+2025-06-20 17:25:26.583 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 17:25:26.584 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-20 17:25:26.597 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/customers/'
+2025-06-20 17:25:26.599 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers - 200 null application/json; charset=utf-8 387.8943ms
+2025-06-20 17:28:50.459 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/vehicles - null null
+2025-06-20 17:28:50.462 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/vehicles/'
+2025-06-20 17:28:54.493 +02:00 [INF] No data found in cache for key: AllVehicles
+2025-06-20 17:28:54.493 +02:00 [INF] Retrieving all vehicles from the database.
+2025-06-20 17:28:54.690 +02:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year", c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Vehicles" AS v
+INNER JOIN "Customers" AS c ON v."OwnerId" = c."Id"
+2025-06-20 17:28:54.752 +02:00 [INF] Setting data in cache for key: AllVehicles
+2025-06-20 17:28:54.757 +02:00 [INF] Successfully set data in cache for key: AllVehicles
+2025-06-20 17:28:54.757 +02:00 [INF] Cached 3 vehicles for future requests.
+2025-06-20 17:28:54.757 +02:00 [INF] 3 vehicles retrieved successfully.
+2025-06-20 17:28:54.757 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 17:28:54.758 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-20 17:28:54.761 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/vehicles/'
+2025-06-20 17:28:54.763 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/vehicles - 200 null application/json; charset=utf-8 4304.5187ms
+2025-06-20 17:29:10.989 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5059/api/v1/vehicles/personal/ - application/json; charset=utf-8 null
+2025-06-20 17:29:10.990 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/vehicles/personal/'
+2025-06-20 17:29:11.006 +02:00 [INF] No data found in cache for key: VehiclesByPersonIds_PIN1001
+2025-06-20 17:29:11.007 +02:00 [INF] Retrieving vehicles for personal identification numbers PIN1001 from the database.
+2025-06-20 17:29:11.093 +02:00 [INF] Executed DbCommand (34ms) [Parameters=[@__personIds_PersonalIdentificationNumbers_0='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year", c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Vehicles" AS v
+INNER JOIN "Customers" AS c ON v."OwnerId" = c."Id"
+WHERE c."PersonalIdentificationNumber" = ANY (@__personIds_PersonalIdentificationNumbers_0)
+2025-06-20 17:29:11.094 +02:00 [INF] Setting data in cache for key: VehiclesByPersonIds_PIN1001
+2025-06-20 17:29:11.095 +02:00 [INF] Successfully set data in cache for key: VehiclesByPersonIds_PIN1001
+2025-06-20 17:29:11.095 +02:00 [INF] Cached vehicles for personal identification numbers PIN1001.
+2025-06-20 17:29:11.095 +02:00 [INF] 1 vehicles retrieved for the provided personal identification numbers.
+2025-06-20 17:29:11.095 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 17:29:11.095 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-20 17:29:11.096 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/vehicles/personal/'
+2025-06-20 17:29:11.096 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5059/api/v1/vehicles/personal/ - 200 null application/json; charset=utf-8 107.4662ms
+2025-06-20 18:33:18.841 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 18:33:18.993 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-20 18:33:18.997 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-20 18:33:18.998 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-20 18:33:18.998 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 18:33:19.000 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-20 18:33:19.050 +02:00 [INF] Now listening on: http://localhost:5059
+2025-06-20 18:33:19.051 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-20 18:33:19.051 +02:00 [INF] Hosting environment: Development
+2025-06-20 18:33:19.051 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/VehicleRegistrationAPI
+2025-06-20 18:33:20.119 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers - null null
+2025-06-20 18:33:20.199 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-20 18:33:20.218 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/customers/'
+2025-06-20 18:33:20.521 +02:00 [INF] No data found in cache for key: AllCustomers
+2025-06-20 18:33:20.521 +02:00 [INF] Cache miss for all customers, retrieving from database.
+2025-06-20 18:33:20.634 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+2025-06-20 18:33:20.660 +02:00 [INF] Retrieved 5 customers from the database.
+2025-06-20 18:33:20.703 +02:00 [INF] Setting data in cache for key: AllCustomers
+2025-06-20 18:33:20.707 +02:00 [INF] Successfully set data in cache for key: AllCustomers
+2025-06-20 18:33:20.707 +02:00 [INF] Cached all customers for future requests.
+2025-06-20 18:33:20.707 +02:00 [INF] 5 customers retrieved successfully.
+2025-06-20 18:33:20.709 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 18:33:20.711 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-20 18:33:20.724 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/customers/'
+2025-06-20 18:33:20.727 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers - 200 null application/json; charset=utf-8 608.768ms
+2025-06-20 18:36:15.107 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers/PIN1002 - null null
+2025-06-20 18:36:15.111 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/customers/{personalIdentificationNumber}'
+2025-06-20 18:36:15.122 +02:00 [INF] No data found in cache for key: CustomerByPIN_PIN1002
+2025-06-20 18:36:15.122 +02:00 [INF] Retrieving customer with personalIdentificationNumber PIN1002 from database.
+2025-06-20 18:36:15.209 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+WHERE c."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+LIMIT 1
+2025-06-20 18:36:15.210 +02:00 [INF] Customer with personalIdentificationNumber PIN1002 retrieved successfully.
+2025-06-20 18:36:15.211 +02:00 [INF] Setting data in cache for key: CustomerByPIN_PIN1002
+2025-06-20 18:36:15.211 +02:00 [INF] Successfully set data in cache for key: CustomerByPIN_PIN1002
+2025-06-20 18:36:15.211 +02:00 [INF] Cached customer with personalIdentificationNumber PIN1002 for future requests.
+2025-06-20 18:36:15.211 +02:00 [INF] Customer with personal identification number PIN1002 retrieved successfully.
+2025-06-20 18:36:15.211 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 18:36:15.212 +02:00 [INF] Writing value of type 'CustomerOutput' as Json.
+2025-06-20 18:36:15.212 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/customers/{personalIdentificationNumber}'
+2025-06-20 18:36:15.213 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers/PIN1002 - 200 null application/json; charset=utf-8 105.8537ms
+2025-06-20 18:36:26.691 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/personal/PIN1002 - null null
+2025-06-20 18:36:26.692 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/vehicles/personal/{personalIdentificationNumber}'
+2025-06-20 18:36:26.695 +02:00 [INF] No data found in cache for key: VehiclesByPIN_PIN1002
+2025-06-20 18:36:26.695 +02:00 [INF] Retrieving vehicles for personal identification number PIN1002 from the database.
+2025-06-20 18:36:26.738 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__personalIdentificationNumber_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year", c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Vehicles" AS v
+INNER JOIN "Customers" AS c ON v."OwnerId" = c."Id"
+WHERE c."PersonalIdentificationNumber" = @__personalIdentificationNumber_0
+2025-06-20 18:36:26.754 +02:00 [INF] Setting data in cache for key: VehiclesByPIN_PIN1002
+2025-06-20 18:36:26.754 +02:00 [INF] Successfully set data in cache for key: VehiclesByPIN_PIN1002
+2025-06-20 18:36:26.754 +02:00 [INF] Cached vehicles for personal identification number PIN1002.
+2025-06-20 18:36:26.755 +02:00 [INF] 1 vehicles retrieved for personal identification number PIN1002.
+2025-06-20 18:36:26.755 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 18:36:26.756 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-20 18:36:26.758 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/vehicles/personal/{personalIdentificationNumber}'
+2025-06-20 18:36:26.759 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/vehicles/personal/PIN1002 - 200 null application/json; charset=utf-8 67.4202ms
+2025-06-20 18:46:15.138 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5059/api/v1/vehicles/personal/ - application/json; charset=utf-8 null
+2025-06-20 18:46:15.141 +02:00 [INF] Executing endpoint 'HTTP: POST /api/v{version:apiVersion}/vehicles/personal/'
+2025-06-20 18:46:15.162 +02:00 [INF] No data found in cache for key: VehiclesByPersonIds_PIN1001_PIN1002
+2025-06-20 18:46:15.163 +02:00 [INF] Retrieving vehicles for personal identification numbers PIN1001, PIN1002 from the database.
+2025-06-20 18:46:15.235 +02:00 [INF] Executed DbCommand (36ms) [Parameters=[@__personIds_PersonalIdentificationNumbers_0='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."Color", v."CreatedAt", v."Make", v."Model", v."Name", v."OwnerId", v."RegistrationDate", v."RegistrationNumber", v."UpdatedAt", v."Year", c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Vehicles" AS v
+INNER JOIN "Customers" AS c ON v."OwnerId" = c."Id"
+WHERE c."PersonalIdentificationNumber" = ANY (@__personIds_PersonalIdentificationNumbers_0)
+2025-06-20 18:46:15.237 +02:00 [INF] Setting data in cache for key: VehiclesByPersonIds_PIN1001_PIN1002
+2025-06-20 18:46:15.237 +02:00 [INF] Successfully set data in cache for key: VehiclesByPersonIds_PIN1001_PIN1002
+2025-06-20 18:46:15.237 +02:00 [INF] Cached vehicles for personal identification numbers PIN1001, PIN1002.
+2025-06-20 18:46:15.237 +02:00 [INF] 2 vehicles retrieved for the provided personal identification numbers.
+2025-06-20 18:46:15.238 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 18:46:15.238 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-20 18:46:15.238 +02:00 [INF] Executed endpoint 'HTTP: POST /api/v{version:apiVersion}/vehicles/personal/'
+2025-06-20 18:46:15.238 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5059/api/v1/vehicles/personal/ - 200 null application/json; charset=utf-8 100.482ms
+2025-06-20 18:47:45.784 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 18:47:45.942 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-06-20 18:47:45.947 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-06-20 18:47:45.948 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-06-20 18:47:45.948 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-06-20 18:47:45.950 +02:00 [INF] No migrations were applied. The database is already up to date.
+2025-06-20 18:47:46.000 +02:00 [INF] Now listening on: http://localhost:5059
+2025-06-20 18:47:46.001 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-20 18:47:46.001 +02:00 [INF] Hosting environment: Development
+2025-06-20 18:47:46.001 +02:00 [INF] Content root path: /Users/vivekkosare/Development/VehicleInsurance/VehicleRegistrationAPI
+2025-06-20 18:47:46.130 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5059/api/v1/customers - null null
+2025-06-20 18:47:46.256 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-06-20 18:47:46.261 +02:00 [INF] Executing endpoint 'HTTP: GET /api/v{version:apiVersion}/customers/'
+2025-06-20 18:47:46.507 +02:00 [INF] No data found in cache for key: AllCustomers
+2025-06-20 18:47:46.507 +02:00 [INF] Cache miss for all customers, retrieving from database.
+2025-06-20 18:47:46.607 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."Email", c."Name", c."PersonalIdentificationNumber", c."PhoneNumber", c."UpdatedAt"
+FROM "Customers" AS c
+2025-06-20 18:47:46.631 +02:00 [INF] Retrieved 5 customers from the database.
+2025-06-20 18:47:46.673 +02:00 [INF] Setting data in cache for key: AllCustomers
+2025-06-20 18:47:46.677 +02:00 [INF] Successfully set data in cache for key: AllCustomers
+2025-06-20 18:47:46.677 +02:00 [INF] Cached all customers for future requests.
+2025-06-20 18:47:46.678 +02:00 [INF] 5 customers retrieved successfully.
+2025-06-20 18:47:46.679 +02:00 [INF] Setting HTTP status code 200.
+2025-06-20 18:47:46.681 +02:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-06-20 18:47:46.692 +02:00 [INF] Executed endpoint 'HTTP: GET /api/v{version:apiVersion}/customers/'
+2025-06-20 18:47:46.695 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5059/api/v1/customers - 200 null application/json; charset=utf-8 565.7852ms
