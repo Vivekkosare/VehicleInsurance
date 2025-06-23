@@ -212,19 +212,30 @@ docker-compose up --build
 ---
 
 ## Running Locally
-1. Clone the repository with command 
-   `git clone https://github.com/Vivekkosare/VehicleInsurance.git`
-2. After the repository is cloned, run `cd VehicleInsurance`
-3. Ensure Docker Desktop is running
-4. Run:
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/Vivekkosare/VehicleInsurance.git
+   cd VehicleInsurance
+   ```
+2. **Start Docker Desktop:**
+   - Make sure Docker Desktop is running before continuing.
+3. **Build and start all services:**
    ```sh
    docker-compose up --build
    ```
-5. Once the build is succeeded run:
+   This will build the images and start all containers (APIs, PostgreSQL, Redis) in the correct order.
+4. **(Optional) Restart containers after build:**
+   If you want to ensure a clean start after building, you can stop and restart:
    ```sh
+   docker-compose down
    docker-compose up
    ```
-4. Use the provided Postman collection (`VehicleInsurance.postman_collection.json`) to test endpoints
+5. **Test the APIs:**
+   - Use the provided [Postman collection](https://github.com/Vivekkosare/VehicleInsurance/blob/main/VehicleInsurance.postman_collection.json) to test all endpoints.
+   - Both APIs will be available at:
+     - VehicleRegistrationAPI: [http://localhost:5059](http://localhost:5059)
+     - InsuranceAPI: [http://localhost:5096](http://localhost:5096)
 
 ---
 
