@@ -272,7 +272,7 @@ namespace InsuranceAPI.Features.FeatureManagement.Repositories
         /// </summary>
         public async Task RemoveCacheForFeatureTogglesByNamesPrefixAsync()
         {
-            var prefix = "FeatureTogglesStatus_";
+            var prefix = "FeatureToggle";
             // Remove the cache for vehicles by personal identification numbers
             await _cache.ClearByPatternAsync($"{prefix}*");
             _logger.LogInformation($"Removed featureToggles cache with prefix {prefix}.");
