@@ -57,7 +57,7 @@ When `ApplyDiscounts : true`, then there will be discounts of `5% on CAR`, `10% 
 - **Strategy Pattern**: There are two strategy classes:
   - `DefaultPriceCalculator`: Calculates the standard price without any discount.
   - `DiscountedPriceCalculator`: Calculates the price by applying a discount percentage, where the discount value is stored in the database for each insurance type.
-- **Factory Pattern**: A factory is used to select and instantiate the appropriate discount calculation strategy at runtime based on the insurance type.
+- **Factory Pattern**: A factory is used to select and instantiate the appropriate discount calculation strategy at runtime based on the `ApplyDiscounts` feature toggle.
 - This approach makes the discount logic extensible, testable, and easy to maintain, allowing new discount strategies to be added with minimal changes to existing code.
 
 ---
