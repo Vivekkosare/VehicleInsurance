@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xunit;
 using Moq;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
@@ -10,8 +6,6 @@ using InsuranceAPI.Features.Insurance.Entities;
 using InsuranceAPI.Data;
 using VehicleInsurance.Shared.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.InMemory;
-using System.Linq;
 using VehicleInsurance.Shared.DTOs;
 
 namespace InsuranceAPI.Tests
@@ -44,7 +38,7 @@ namespace InsuranceAPI.Tests
             {
                 Id = Guid.NewGuid(),
                 PersonalIdentificationNumber = "123",
-                InsuredItem = "Car",
+                InsuredItemIdentity = "Car",
                 InsuranceProductId = Guid.NewGuid()
             };
 
@@ -68,7 +62,7 @@ namespace InsuranceAPI.Tests
             {
                 new Insurance { Id = Guid.NewGuid(),
                 PersonalIdentificationNumber = pin,
-                InsuredItem = "Car",
+                InsuredItemIdentity = "Car",
                 InsuranceProductId = Guid.NewGuid()
             } };
 

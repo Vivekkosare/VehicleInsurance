@@ -3,6 +3,7 @@ using System;
 using InsuranceAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsuranceAPI.Migrations
 {
     [DbContext(typeof(InsuranceDbContext))]
-    partial class InsuranceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250620154955_UpdatedInsuredItemIdentity")]
+    partial class UpdatedInsuredItemIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

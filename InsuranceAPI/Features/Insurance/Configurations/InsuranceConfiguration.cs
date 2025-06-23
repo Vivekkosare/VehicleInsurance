@@ -61,7 +61,7 @@ public class InsuranceConfiguration : IEntityTypeConfiguration<Entities.Insuranc
                 EndDate = DateTime.SpecifyKind(new DateTime(2025, 1, 1), DateTimeKind.Utc),
                 CreatedAt = DateTime.SpecifyKind(new DateTime(2024, 1, 1), DateTimeKind.Utc),
                 UpdatedAt = DateTime.SpecifyKind(new DateTime(2024, 1, 1), DateTimeKind.Utc),
-                InsuredItem = "Car"
+                InsuredItemIdentity = "ABC1234"
             },
             new Entities.Insurance
             {
@@ -74,7 +74,7 @@ public class InsuranceConfiguration : IEntityTypeConfiguration<Entities.Insuranc
                 EndDate = DateTime.SpecifyKind(new DateTime(2025, 2, 1), DateTimeKind.Utc),
                 CreatedAt = DateTime.SpecifyKind(new DateTime(2024, 2, 1), DateTimeKind.Utc),
                 UpdatedAt = DateTime.SpecifyKind(new DateTime(2024, 2, 1), DateTimeKind.Utc),
-                InsuredItem = "Health"
+                InsuredItemIdentity = "Bob Smith"
             },
             new Entities.Insurance
             {
@@ -87,7 +87,7 @@ public class InsuranceConfiguration : IEntityTypeConfiguration<Entities.Insuranc
                 EndDate = DateTime.SpecifyKind(new DateTime(2025, 3, 1), DateTimeKind.Utc),
                 CreatedAt = DateTime.SpecifyKind(new DateTime(2024, 3, 1), DateTimeKind.Utc),
                 UpdatedAt = DateTime.SpecifyKind(new DateTime(2024, 3, 1), DateTimeKind.Utc),
-                InsuredItem = "Pet"
+                InsuredItemIdentity = "Bruno the Dog"
             }
         );
     }

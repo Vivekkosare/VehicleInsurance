@@ -12,7 +12,8 @@ namespace InsuranceAPI.Features.FeatureManagement.Extensions
             return new FeatureToggle
             {
                 Name = input.Name,
-                IsEnabled = input.IsEnabled
+                Description = input.Description ?? string.Empty, // Default to empty string if null
+                IsEnabled = input.IsEnabled ?? false
             };
         }
 
@@ -20,26 +21,20 @@ namespace InsuranceAPI.Features.FeatureManagement.Extensions
         {
             if (toggle == null) throw new ArgumentNullException(nameof(toggle));
 
-            return new FeatureToggleInput(toggle.Name, toggle.Description, toggle.IsEnabled);
+            return new FeatureToggleInput(toggle.Name ?? string.Empty, toggle.Description ?? string.Empty, toggle.IsEnabled);
         }
         
         public static FeatureToggleOutput ToFeatureToggleOutput(this FeatureToggle toggle)
         {
             if (toggle == null) throw new ArgumentNullException(nameof(toggle));
 
-            return new FeatureToggleOutput(toggle.Id, toggle.Name, toggle.Description, toggle.IsEnabled);
+            return new FeatureToggleOutput(toggle.Id, toggle.Name ?? string.Empty, toggle.Description ?? string.Empty, toggle.IsEnabled);
         }
 
         public static List<string> ToFeatureToggleNames(this FeatureToggleNameInput input)
         {
             if (input == null) throw new ArgumentNullException(nameof(input));
             return input.Names ?? throw new ArgumentNullException(nameof(input.Names), "Feature toggle names cannot be null.");
-        }
-
-        public static FeatureToggleNameOutput ToFeatureToggleNameOutput(this IEnumerable<bool> togglesStatus)
-        {
-            if (togglesStatus == null) throw new ArgumentNullException(nameof(togglesStatus));
-            return new FeatureToggleNameOutput(togglesStatus.ToList());
         }
     }
 

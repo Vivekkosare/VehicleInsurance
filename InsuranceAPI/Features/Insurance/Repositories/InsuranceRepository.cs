@@ -36,7 +36,7 @@ IConfiguration _config) : IInsuranceRepository
 
     private async Task<Entities.Insurance?> GetExistingInsuranceAsync(Entities.Insurance insurance)
     {
-        string insuraceCacheKey = $"{insurance.PersonalIdentificationNumber}_{insurance.InsuredItem}_{insurance.InsuranceProductId}";
+        string insuraceCacheKey = $"{insurance.PersonalIdentificationNumber}_{insurance.InsuredItemIdentity}_{insurance.InsuranceProductId}";
         var existingInsuranceFromCache = await _cache.GetAsync<Entities.Insurance>(insuraceCacheKey);
         if (existingInsuranceFromCache.IsSuccess)
         {
@@ -45,7 +45,7 @@ IConfiguration _config) : IInsuranceRepository
         }
         var existingInsurance = await _dbContext.Insurances.Include(i => i.InsuranceProduct)
                                      .FirstOrDefaultAsync(i => i.PersonalIdentificationNumber == insurance.PersonalIdentificationNumber &&
-                                     i.InsuredItem == insurance.InsuredItem &&
+                                     i.InsuredItemIdentity == insurance.InsuredItemIdentity &&
                                      i.InsuranceProductId == insurance.InsuranceProductId);
         await _cache.SetAsync(insuraceCacheKey, existingInsurance, _cacheTimeout);
         return existingInsurance;

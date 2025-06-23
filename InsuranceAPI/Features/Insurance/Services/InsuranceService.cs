@@ -6,6 +6,7 @@ using VehicleInsurance.Shared.DTOs;
 using InsuranceAPI.Features.Insurance.Pricing;
 using InsuranceAPI.Features.FeatureManagement.Services;
 using InsuranceAPI.Features.FeatureManagement.DTOs;
+using InsuranceAPI.Features.Insurance.Entities;
 namespace InsuranceAPI.Features.Insurance.Services;
 
 public class InsuranceService(IInsuranceRepository _insuranceRepo,
@@ -37,24 +38,29 @@ IPriceCalculatorFactory _priceCalculatorFactory) : IInsuranceService
                 return Result<InsuranceOutput>.Failure("Customer not found for the provided personal identification number.");
             }
 
-            //Check if the insurace code is CAR and if so, fetch car details
-            // from the Vehicle Registration API using the personal identification number
-            if (insuranceProduct.Value.Code == "CAR")
+            //Validate the car registration number if the insurance product is CAR
+            var registrationValidationResult = await ValidateRegistrationNumberIfCarInsuranceAsync(insuranceInput, insuranceProduct.Value);
+            if (!registrationValidationResult.IsSuccess)
             {
-                var carDetails = await _apiClient.GetCarRegistrationAsync(insuranceInput.PersonalIdentificationNumber);
-                if (carDetails == null)
-                {
-                    _logger.LogWarning("Car details not found for personal identification number: {PersonalIdentificationNumber}", insuranceInput.PersonalIdentificationNumber);
-                    return Result<InsuranceOutput>.Failure("Car details not found for the provided personal identification number.");
-                }
+                _logger.LogError("Car registration validation failed: {Error}", registrationValidationResult.Error);
+                return Result<InsuranceOutput>.Failure(registrationValidationResult.Error ?? "Car registration validation failed.");
             }
 
-            //Get feature toggles status
-            var featureToggleNamesInput = new FeatureToggleNameInput(new List<string> { "ShowCarDetails", "ApplyDiscounts" });
-            var featureTogglesResult = await _featureManagementService.GetFeatureTogglesByNamesAsync(featureToggleNamesInput);
+            //Get the price based on the feature toggle
+            var insurancePriceWithDiscounts = await GetInsurancePriceBasedOnFeatureToggleAsync(insuranceProduct.Value);
+            if (!insurancePriceWithDiscounts.IsSuccess)
+            {
+                _logger.LogError("Failed to calculate insurance price: {Error}", insurancePriceWithDiscounts.Error);
+                return Result<InsuranceOutput>.Failure(insurancePriceWithDiscounts.Error ?? "Failed to calculate insurance price.");
+            }
 
             //Add the insurance to the repository
             var insuranceEntity = insuranceInput.ToEntity();
+
+            //Assign the calculted price to the insurance entity based on the applyDiscounts feature toggle
+            insuranceEntity.Price = insurancePriceWithDiscounts.Value.Price;
+            insuranceEntity.DiscountApplied = insurancePriceWithDiscounts.Value.DiscountApplied;
+
             var newInsurance = await _insuranceRepo.AddInsuranceAsync(insuranceEntity);
             if (!newInsurance.IsSuccess || newInsurance.Value == null)
             {
@@ -71,6 +77,64 @@ IPriceCalculatorFactory _priceCalculatorFactory) : IInsuranceService
             _logger.LogError(ex, "An error occurred while adding the insurance.");
             return Result<InsuranceOutput>.Failure("An error occurred while adding the insurance.");
         }
+    }
+
+    /// <summary>
+    /// Retrieves the insurance price based on the feature toggle.
+    /// This method checks if the 'ApplyDiscounts' feature toggle is enabled and uses the appropriate price calculator.
+    /// </summary>
+    /// <param name="insuranceProduct">The insurance product for which the price is to be calculated.</param>
+    private async Task<Result<InsurancePriceWithDiscountDto>> GetInsurancePriceBasedOnFeatureToggleAsync(InsuranceProduct insuranceProduct)
+    {
+        //Get feature toggles
+        var featureToggleNamesInput = new FeatureToggleNameInput(new List<string> { "ApplyDiscounts" });
+        var featureTogglesResult = await _featureManagementService.GetFeatureTogglesByNamesAsync(featureToggleNamesInput);
+        if (!featureTogglesResult.IsSuccess)
+        {
+            _logger.LogError("Failed to retrieve feature toggles: {Error}", featureTogglesResult.Error);
+            return Result<InsurancePriceWithDiscountDto>.Failure(featureTogglesResult.Error ?? "Failed to retrieve feature toggles.");
+        }
+
+        //Get ApplyDiscounts feature toggle from the result
+        bool applyDiscounts = featureTogglesResult.Value.First(ft => ft.Name == "ApplyDiscounts").IsEnabled;
+
+        //Get PriceCalculator based on ApplyDiscounts feature toggle
+        _logger.LogInformation("Using PriceCalculator with ApplyDiscounts: {ApplyDiscounts}", applyDiscounts);
+        var priceCalculator = _priceCalculatorFactory.GetPriceCalculator(applyDiscounts);
+
+        //Assign the calculted price to the insurance entity based on the applyDiscounts feature toggle
+        var insuracePrice = priceCalculator.CalculatePrice(insuranceProduct);
+        // return Result<object>.Success(insuracePrice);
+        return Result<InsurancePriceWithDiscountDto>.Success(new InsurancePriceWithDiscountDto(insuracePrice, applyDiscounts));
+    }
+
+
+    /// <summary>
+    /// Validates the car registration number if the insurance product is CAR.
+    /// This method checks if the car registration number provided in the insurance input matches any of the car details
+    /// retrieved from the Vehicle Registration API.
+    /// </summary>
+    private async Task<Result<bool>> ValidateRegistrationNumberIfCarInsuranceAsync(InsuranceInput insuranceInput, InsuranceProduct insuranceProduct)
+    {
+        if (insuranceProduct.Code == "CAR")
+        {
+            var carDetails = await _apiClient.GetCarRegistrationAsync(insuranceInput.PersonalIdentificationNumber);
+            if (carDetails == null)
+            {
+                _logger.LogWarning("Car details not found for personal identification number: {PersonalIdentificationNumber}",
+                    insuranceInput.PersonalIdentificationNumber);
+                return Result<bool>.Failure("Car details not found for the provided personal identification number.");
+            }
+            //Check if the car registration number is provided
+            bool isCarRegistrationNumberValid = carDetails.Any(cd =>
+                String.Equals(cd.RegistrationNumber, insuranceInput.InsuredItemIdentity, StringComparison.OrdinalIgnoreCase));
+            if (!isCarRegistrationNumberValid)
+            {
+                _logger.LogError("Invalid car registration number: {InsuredItemIdentity}", insuranceInput.InsuredItemIdentity);
+                return Result<bool>.Failure("Invalid car registration number provided.");
+            }
+        }
+        return Result<bool>.Success(true);
     }
 
     /// <summary>
@@ -100,6 +164,19 @@ IPriceCalculatorFactory _priceCalculatorFactory) : IInsuranceService
                     insuranceValue.Select(i => i.ToOutput()));
             }
 
+            var showCarDetails = await GetShowCarDetailsFeatureToggleAsync();
+
+            _logger.LogInformation("Retrieved {Count} insurances, {CarCount} car insurances, ShowCarDetails is enabled: {IsEnabled}",
+                insuranceValue.Count(), carInsurances.Count(), showCarDetails.IsEnabled);
+
+            if (showCarDetails.IsEnabled == false)
+            {
+                _logger.LogInformation("ShowCarDetails is disabled. Returning insurances without car details.");
+                // If the ShowCarDetails feature toggle is disabled, return insurances without car details
+                return Result<IEnumerable<InsuranceOutput>>.Success(
+                    insuranceValue.Select(i => i.ToOutput()));
+            }
+
             //Make an Http call to Vehicle Registration API to get car details for Car insurances
             IEnumerable<CarDto> carDetails = await CallAPIForCarRegistrationsAsync(carInsurances);
 
@@ -121,6 +198,21 @@ IPriceCalculatorFactory _priceCalculatorFactory) : IInsuranceService
             return Result<IEnumerable<InsuranceOutput>>.Failure($"An error occurred while retrieving insurances. {ex}");
         }
 
+    }
+
+    /// <summary>
+    /// Retrieves the feature toggle for showing car details.
+    /// This method checks if the 'ShowCarDetails' feature toggle is enabled.
+    /// </summary>
+    private async Task<FeatureToggleOutput> GetShowCarDetailsFeatureToggleAsync()
+    {
+        var showCarDetailsFeatureToggle = await _featureManagementService.GetFeatureToggleByNameAsync("ShowCarDetails");
+        if (!showCarDetailsFeatureToggle.IsSuccess)
+        {
+            _logger.LogError("Failed to retrieve ShowCarDetails feature toggle: {Error}", showCarDetailsFeatureToggle.Error);
+            throw new Exception("Failed to retrieve ShowCarDetails feature toggle.");
+        }
+        return showCarDetailsFeatureToggle.Value;
     }
 
     /// <summary>
@@ -172,7 +264,7 @@ IPriceCalculatorFactory _priceCalculatorFactory) : IInsuranceService
     /// Retrieves an insurance record by its unique identifier.
     /// </summary>
     /// <param name="id">The unique identifier of the insurance record.</param>
-    public async Task<Result<Entities.Insurance>> GetInsuranceByIdAsync(Guid id)
+    public async Task<Result<InsuranceOutput>> GetInsuranceByIdAsync(Guid id)
     {
         try
         {
@@ -181,16 +273,39 @@ IPriceCalculatorFactory _priceCalculatorFactory) : IInsuranceService
             if (!insurance.IsSuccess)
             {
                 _logger.LogError("Failed to retrieve insurance by ID {Id}: {Error}", id, insurance.Error);
-                return Result<Entities.Insurance>.Failure(insurance.Error ?? "Failed to retrieve insurance.");
+                return Result<InsuranceOutput>.Failure(insurance.Error ?? "Failed to retrieve insurance.");
             }
-            _logger.LogInformation("Successfully retrieved insurance by ID {Id}", id);
-            return Result<Entities.Insurance>.Success(insurance.Value);
+            if (insurance.Value.InsuranceProduct.Code == "CAR")
+            {
+                var carInsurances = new List<Entities.Insurance> { insurance.Value };
+                var showCarDetails = await GetShowCarDetailsFeatureToggleAsync();
+                _logger.LogInformation("ShowCarDetails feature toggle is enabled: {IsEnabled}", showCarDetails.IsEnabled);
+                if (!showCarDetails.IsEnabled)
+                {
+                    _logger.LogInformation("ShowCarDetails is disabled. Returning insurance without car details.");
+                    return Result<InsuranceOutput>.Success(insurance.Value.ToOutput());
+                }
+
+                //If the ShowCarDetails feature toggle is enabled, fetch car details for the car insurances
+                _logger.LogInformation("Fetching car details for insurance ID {Id}", id);
+
+                //Make an Http call to Vehicle Registration API to get car details for Car insurances
+                IEnumerable<CarDto> carDetails = await CallAPIForCarRegistrationsAsync(carInsurances);
+
+                //Get car insurances with their corresponding car details
+                var insurancesWithCars = GetCarInsurances(carDetails, carInsurances);
+                return Result<InsuranceOutput>.Success(insurance.Value.ToOutput() with
+                {
+                    Car = insurancesWithCars.FirstOrDefault()?.Car
+                });
+            }
+            return Result<InsuranceOutput>.Success(insurance.Value.ToOutput());
 
         }
         catch (System.Exception)
         {
             _logger.LogError("An error occurred while retrieving the insurance by ID {Id}", id);
-            return Result<Entities.Insurance>.Failure("An error occurred while retrieving the insurance.");
+            return Result<InsuranceOutput>.Failure("An error occurred while retrieving the insurance.");
         }
     }
 
@@ -241,6 +356,16 @@ IPriceCalculatorFactory _priceCalculatorFactory) : IInsuranceService
         List<Entities.Insurance> carInsurances, string personalIdentificationNumber)
     {
         var responses = new List<InsuranceOutput>();
+
+        var showCarDetails = await GetShowCarDetailsFeatureToggleAsync();
+
+        _logger.LogInformation("ShowCarDetails feature toggle is enabled: {IsEnabled}", showCarDetails.IsEnabled);
+
+        if (!showCarDetails.IsEnabled)
+        {
+            _logger.LogInformation("ShowCarDetails is disabled. Returning car insurances without car details.");
+            return carInsurances.Select(i => i.ToOutput());
+        }
         var carDetails = await _apiClient.GetCarRegistrationAsync(personalIdentificationNumber);
 
         if (carDetails == null)
@@ -253,7 +378,7 @@ IPriceCalculatorFactory _priceCalculatorFactory) : IInsuranceService
         {
             var carDetail = carDetails.FirstOrDefault(cd =>
                 cd.Owner.PersonalIdentificationNumber == insurance.PersonalIdentificationNumber &&
-                cd.RegistrationNumber == insurance.InsuredItem);
+                cd.RegistrationNumber == insurance.InsuredItemIdentity);
 
             var insuranceOutput = insurance.ToOutput() with { Car = carDetail };
             responses.Add(insuranceOutput);

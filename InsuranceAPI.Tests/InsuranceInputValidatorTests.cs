@@ -13,12 +13,13 @@ public class InsuranceInputValidatorTests
     [Fact]
     public void Should_Fail_When_InsuredItem_Is_Empty()
     {
+        // Test with empty string
         var input = new InsuranceInput(Guid.NewGuid(),
-                        _personalIdentificationNumber, "", DateTime.Today,
+                        _personalIdentificationNumber, string.Empty, DateTime.Today,
                         DateTime.Today.AddDays(1));
         var result = _validator.Validate(input);
         Assert.False(result.IsValid);
-        Assert.Contains(result.Errors, e => e.PropertyName == "InsuredItem");
+        Assert.Contains(result.Errors, e => e.PropertyName == "InsuredItemIdentity");
     }
 
     [Fact]

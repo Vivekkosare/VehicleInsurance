@@ -11,7 +11,8 @@ public static class InsuranceExtensions
             product.Id,
             product.Name,
             product.Code,
-            product.Price
+            product.Price,
+            product.DiscountPercentage
         );
     }
 
@@ -32,7 +33,9 @@ public static class InsuranceExtensions
         return new InsuranceOutput(
             insurance.Id,
             insurance.PersonalIdentificationNumber,
-            insurance.InsuranceProduct?.ToOutput() ?? new InsuranceProductOutput(Guid.Empty, string.Empty, string.Empty, 0),
+            insurance.InsuranceProduct?.ToOutput() ?? new InsuranceProductOutput(Guid.Empty, string.Empty, string.Empty, 0, 0),
+            insurance.Price,
+            insurance.DiscountApplied,
             insurance.StartDate,
             insurance.EndDate,
             null
@@ -45,7 +48,7 @@ public static class InsuranceExtensions
         {
             InsuranceProductId = request.InsuranceProductId,
             PersonalIdentificationNumber = request.PersonalIdentificationNumber,
-            InsuredItem = request.InsuredItem,
+            InsuredItemIdentity = request.InsuredItemIdentity,
             StartDate = request.StartDate,
             EndDate = request.EndDate
         };
@@ -56,7 +59,7 @@ public static class InsuranceExtensions
         {
             InsuranceProductId = product.Id,
             PersonalIdentificationNumber = request.PersonalIdentificationNumber,
-            InsuredItem = request.InsuredItem,
+            InsuredItemIdentity = request.InsuredItemIdentity,
             StartDate = request.StartDate,
             EndDate = request.EndDate
         };

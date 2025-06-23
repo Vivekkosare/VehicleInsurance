@@ -1,5 +1,8 @@
+using InsuranceAPI.Features.FeatureManagement.DTOs;
+using InsuranceAPI.Features.FeatureManagement.Services;
 using InsuranceAPI.Features.Insurance.DTOs;
 using InsuranceAPI.Features.Insurance.Entities;
+using InsuranceAPI.Features.Insurance.Pricing;
 using InsuranceAPI.Features.Insurance.Repositories;
 using InsuranceAPI.Features.Insurance.Services;
 using InsuranceAPI.HttpClients;
@@ -14,6 +17,8 @@ namespace InsuranceAPI.Tests
         private readonly Mock<IInsuranceRepository> _repoMock;
         private readonly Mock<ICarRegistrationAPIClient> _apiClientMock;
         private readonly Mock<ILogger<InsuranceService>> _loggerMock;
+        private readonly Mock<IFeatureManagementService> _featureManagementServiceMock;
+        private readonly Mock<IPriceCalculatorFactory> _priceCalculatorFactoryMock;
         private readonly InsuranceService _service;
 
         public InsuranceServiceTests()
@@ -21,7 +26,9 @@ namespace InsuranceAPI.Tests
             _repoMock = new Mock<IInsuranceRepository>();
             _apiClientMock = new Mock<ICarRegistrationAPIClient>();
             _loggerMock = new Mock<ILogger<InsuranceService>>();
-            _service = new InsuranceService(_repoMock.Object, _apiClientMock.Object, _loggerMock.Object);
+            _featureManagementServiceMock = new Mock<IFeatureManagementService>();
+            _priceCalculatorFactoryMock = new Mock<IPriceCalculatorFactory>();
+            _service = new InsuranceService(_repoMock.Object, _apiClientMock.Object, _loggerMock.Object, _featureManagementServiceMock.Object, _priceCalculatorFactoryMock.Object);
         }
 
         private static OwnerDto CreateOwnerDto(string pin)
@@ -56,7 +63,7 @@ namespace InsuranceAPI.Tests
             var input = new InsuranceInput(Guid.NewGuid(), "123", "Car", DateTime.UtcNow, DateTime.UtcNow.AddYears(1));
             var product = new InsuranceProduct { Id = input.InsuranceProductId, Code = "CAR" };
             var customer = CreateCustomerOutput(input.PersonalIdentificationNumber);
-            var carDto = CreateCarDto(input.InsuredItem, input.PersonalIdentificationNumber);
+            var carDto = CreateCarDto(input.InsuredItemIdentity, input.PersonalIdentificationNumber);
 
             // Setup mocks
             _repoMock.Setup(r => r.GetInsuranceProductByIdAsync(input.InsuranceProductId)).ReturnsAsync(Result<InsuranceProduct>.Success(product));
@@ -66,9 +73,22 @@ namespace InsuranceAPI.Tests
                 new Insurance { Id = Guid.NewGuid(),
                     InsuranceProduct = product,
                     PersonalIdentificationNumber = input.PersonalIdentificationNumber,
-                    InsuredItem = input.InsuredItem,
+                    InsuredItemIdentity = input.InsuredItemIdentity,
+                    Price = 100.0m, // Assuming a fixed price for simplicity
+                    DiscountApplied = false,
                     StartDate = input.StartDate,
                     EndDate = input.EndDate }));
+            _featureManagementServiceMock.Setup(f => f.GetFeatureTogglesByNamesAsync(It.IsAny<FeatureToggleNameInput>()))
+                .ReturnsAsync(Result<IEnumerable<FeatureToggleOutput>>.Success(new[]
+                {
+                    new FeatureToggleOutput(Guid.NewGuid(), "ApplyDiscounts", string.Empty, false)
+                }));
+            _featureManagementServiceMock.Setup(f => f.GetFeatureToggleByNameAsync(It.IsAny<string>()))
+                .ReturnsAsync(Result<FeatureToggleOutput>.Success(new FeatureToggleOutput(Guid.NewGuid(), "ShowCarDetails", string.Empty, false)));
+
+            var priceCalculatorMock = new Mock<IPriceCalculator>();
+            priceCalculatorMock.Setup(p => p.CalculatePrice(It.IsAny<InsuranceProduct>())).Returns(100.0m);
+            _priceCalculatorFactoryMock.Setup(f => f.GetPriceCalculator(It.IsAny<bool>())).Returns(priceCalculatorMock.Object);
 
             // call the add insurance method
             var result = await _service.AddInsuranceAsync(input);
@@ -89,7 +109,7 @@ namespace InsuranceAPI.Tests
                 new Insurance { Id = Guid.NewGuid(),
                 InsuranceProduct = product,
                 PersonalIdentificationNumber = pin,
-                InsuredItem = "Car",
+                InsuredItemIdentity = "Car",
                 StartDate = DateTime.UtcNow,
                 EndDate = DateTime.UtcNow.AddYears(1)
                 } };
@@ -100,6 +120,8 @@ namespace InsuranceAPI.Tests
             _apiClientMock.Setup(a => a.GetCustomerByPersonalIdentificationNumberAsync(pin)).ReturnsAsync(customer);
             _repoMock.Setup(r => r.GetInsurancesByPersonalIdentificationNumberAsync(pin)).ReturnsAsync(Result<IEnumerable<Insurance>>.Success(insurances));
             _apiClientMock.Setup(a => a.GetCarRegistrationAsync(pin)).ReturnsAsync(new List<CarDto> { carDto });
+            _featureManagementServiceMock.Setup(f => f.GetFeatureToggleByNameAsync(It.IsAny<string>()))
+                .ReturnsAsync(Result<FeatureToggleOutput>.Success(new FeatureToggleOutput(Guid.NewGuid(), "ShowCarDetails", string.Empty, false)));
 
             // Call the method to get insurances by personal identification number
             var result = await _service.GetInsurancesByPersonalIdentificationNumberAsync(pin);
@@ -120,13 +142,15 @@ namespace InsuranceAPI.Tests
                 new Insurance { Id = Guid.NewGuid(),
                 InsuranceProduct = product,
                 PersonalIdentificationNumber = "123",
-                InsuredItem = "Car",
+                InsuredItemIdentity = "Car",
                 StartDate = DateTime.UtcNow,
                 EndDate = DateTime.UtcNow.AddYears(1)
                 } };
             var carDto = CreateCarDto("Car", "123");
             _repoMock.Setup(r => r.GetAllInsurancesAsync()).ReturnsAsync(Result<IEnumerable<Insurance>>.Success(insurances));
             _apiClientMock.Setup(a => a.GetCarRegistrationsByPersonIdsAsync(It.IsAny<PersonIdentifiersRequest>())).ReturnsAsync(new List<CarDto> { carDto });
+            _featureManagementServiceMock.Setup(f => f.GetFeatureToggleByNameAsync(It.IsAny<string>()))
+                .ReturnsAsync(Result<FeatureToggleOutput>.Success(new FeatureToggleOutput(Guid.NewGuid(), "ShowCarDetails", string.Empty, false)));
 
             // Call the method to get all insurances
             var result = await _service.GetAllInsurancesAsync();

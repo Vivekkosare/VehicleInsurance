@@ -24,8 +24,8 @@ public class InsuranceInputValidator : AbstractValidator<InsuranceInput>
             .NotEmpty().WithMessage("End date is required.")
             .GreaterThan(x => x.StartDate).WithMessage("End date must be after start date.");
 
-        RuleFor(x => x.InsuredItem)
-            .NotEmpty().WithMessage("Insured item is required.")
-            .MaximumLength(100).WithMessage("Insured item must be at most 100 characters.");
+        RuleFor(x => x.InsuredItemIdentity)
+            .NotEmpty().WithMessage("InsuredItem must not be empty.")
+            .MaximumLength(100).WithMessage("Insured item identity must be at most 100 characters.");
     }
 }

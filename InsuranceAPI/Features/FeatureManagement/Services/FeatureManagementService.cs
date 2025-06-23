@@ -1,5 +1,4 @@
 using InsuranceAPI.Features.FeatureManagement.DTOs;
-using InsuranceAPI.Features.FeatureManagement.Entities;
 using InsuranceAPI.Features.FeatureManagement.Extensions;
 using InsuranceAPI.Features.FeatureManagement.Repositories;
 using VehicleInsurance.Shared.DTOs;
@@ -91,49 +90,69 @@ namespace InsuranceAPI.Features.FeatureManagement.Services
             }
         }
 
-        public async Task<Result<FeatureToggleNameOutput>> GetFeatureTogglesByNamesAsync(FeatureToggleNameInput input)
+        public async Task<Result<FeatureToggleOutput>> GetFeatureToggleByNameAsync(string name)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    _logger.LogError("Feature toggle name is empty");
+                    return await Task.FromResult(Result<FeatureToggleOutput>.Failure("Feature toggle name cannot be empty."));
+                }
+                var featureToggle = await _repo.GetFeatureToggleByNameAsync(name);
+                if (!featureToggle.IsSuccess || featureToggle.Value == null)
+                    return await Task.FromResult(Result<FeatureToggleOutput>.Failure(featureToggle.Error ?? "Feature toggle not found."));
+
+                return Result<FeatureToggleOutput>.Success(featureToggle.Value.ToFeatureToggleOutput());
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving feature toggle by name");
+                return Result<FeatureToggleOutput>.Failure("An error occurred while retrieving the feature toggle.");
+            }
+        }
+
+        public async Task<Result<IEnumerable<FeatureToggleOutput>>> GetFeatureTogglesByNamesAsync(FeatureToggleNameInput input)
         {
             try
             {
                 if (input is null || input.Names is null || !input.Names.Any())
                 {
                     _logger.LogError("Feature toggle names input is null or empty");
-                    return Result<FeatureToggleNameOutput>.Failure("Feature toggle names cannot be null or empty.");
+                    return Result<IEnumerable<FeatureToggleOutput>>.Failure("Feature toggle names cannot be null or empty.");
                 }
                 var featureToggleNames = input.ToFeatureToggleNames();
-                var featureTogglesStatus = await _repo.GetFeatureTogglesByNamesAsync(featureToggleNames);
-                if (!featureTogglesStatus.IsSuccess)
+                var featureToggles = await _repo.GetFeatureTogglesByNamesAsync(featureToggleNames);
+                if (!featureToggles.IsSuccess)
                 {
-                    _logger.LogError("Error retrieving feature toggles by names: {Error}", featureTogglesStatus.Error);
-                    return Result<FeatureToggleNameOutput>.Failure(featureTogglesStatus.Error);
+                    _logger.LogError("Error retrieving feature toggles by names: {Error}", featureToggles.Error);
+                    return Result<IEnumerable<FeatureToggleOutput>>.Failure(featureToggles.Error);
                 }
-                return Result<FeatureToggleNameOutput>.Success(featureTogglesStatus.Value.ToFeatureToggleNameOutput());
+                return Result<IEnumerable<FeatureToggleOutput>>.Success(featureToggles.Value.Select(ft => ft.ToFeatureToggleOutput()));
             }
             catch (System.Exception ex)
             {
                 _logger.LogError(ex, "Error checking if feature toggle is enabled");
-                return Result<FeatureToggleNameOutput>.Failure("An error occurred while checking if the feature toggle is enabled.");
+                return Result<IEnumerable<FeatureToggleOutput>>.Failure("An error occurred while checking if the feature toggle is enabled.");
             }
         }
 
-        public async Task<Result<FeatureToggleOutput>> PatchFeatureToggleAsync(Guid id, FeatureToggleInput featureToggleInput)
+        public async Task<Result<FeatureToggleOutput>> PatchFeatureToggleAsync(string name, FeatureTogglePatchDto featureTogglePatchDto)
         {
             try
             {
-                if (id == Guid.Empty)
+                if (string.IsNullOrWhiteSpace(name))
                 {
-                    _logger.LogError("Feature toggle id is empty");
-                    return Result<FeatureToggleOutput>.Failure("Feature toggle id cannot be empty.");
+                    _logger.LogError("Feature toggle name is empty");
+                    return Result<FeatureToggleOutput>.Failure("Feature toggle name cannot be empty.");
                 }
-                if (featureToggleInput is null)
+                if (featureTogglePatchDto is null)
                 {
                     _logger.LogError("Feature toggle input is null");
                     return Result<FeatureToggleOutput>.Failure("Feature toggle input cannot be null.");
                 }
-                var featureToggle = featureToggleInput.ToFeatureToggle();
-                featureToggle.Id = id;
-                var updatedFeatureToggle = await _repo.PatchFeatureToggleAsync(id, featureToggle);
-                
+                var updatedFeatureToggle = await _repo.PatchFeatureToggleAsync(name, featureTogglePatchDto);
+
                 return updatedFeatureToggle.IsSuccess && updatedFeatureToggle.Value != null
                     ? Result<FeatureToggleOutput>.Success(updatedFeatureToggle.Value.ToFeatureToggleOutput())
                     : Result<FeatureToggleOutput>.Failure(updatedFeatureToggle.Error ?? "Feature toggle not found.");

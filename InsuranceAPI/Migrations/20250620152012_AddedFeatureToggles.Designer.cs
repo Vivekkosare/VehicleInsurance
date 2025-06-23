@@ -3,6 +3,7 @@ using System;
 using InsuranceAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsuranceAPI.Migrations
 {
     [DbContext(typeof(InsuranceDbContext))]
-    partial class InsuranceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250620152012_AddedFeatureToggles")]
+    partial class AddedFeatureToggles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,7 +113,7 @@ namespace InsuranceAPI.Migrations
                     b.Property<Guid>("InsuranceProductId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("InsuredItemIdentity")
+                    b.Property<string>("InsuredItem")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -147,7 +150,7 @@ namespace InsuranceAPI.Migrations
                             DiscountApplied = false,
                             EndDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             InsuranceProductId = new Guid("ca536771-42b8-4f55-8014-7e98c6c7b060"),
-                            InsuredItemIdentity = "ABC1234",
+                            InsuredItem = "Car",
                             PersonalIdentificationNumber = "PIN1001",
                             Price = 30m,
                             StartDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -160,7 +163,7 @@ namespace InsuranceAPI.Migrations
                             DiscountApplied = false,
                             EndDate = new DateTime(2025, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             InsuranceProductId = new Guid("def55e24-40c9-4234-825a-bbf4319fc79b"),
-                            InsuredItemIdentity = "Bob Smith",
+                            InsuredItem = "Health",
                             PersonalIdentificationNumber = "PIN1002",
                             Price = 20m,
                             StartDate = new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -173,7 +176,7 @@ namespace InsuranceAPI.Migrations
                             DiscountApplied = false,
                             EndDate = new DateTime(2025, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             InsuranceProductId = new Guid("b43c53a0-1c57-4c9c-94a1-673d7db31fcf"),
-                            InsuredItemIdentity = "Bruno the Dog",
+                            InsuredItem = "Pet",
                             PersonalIdentificationNumber = "PIN1003",
                             Price = 10m,
                             StartDate = new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc),

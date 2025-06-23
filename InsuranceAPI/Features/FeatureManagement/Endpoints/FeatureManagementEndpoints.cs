@@ -80,6 +80,29 @@ namespace InsuranceAPI.Features.FeatureManagement.Endpoints
 
 
             /// <summary>
+            /// Get a feature toggle by its name.
+            /// </summary>
+            /// <param name="name">The name of the feature toggle.</param>
+            /// <returns>The feature toggle if found, otherwise a 404 Not Found response.</returns>
+            /// <response code="200">Returns the feature toggle.</response>
+            /// <response code="404">If the feature toggle with the specified name is not found.</response>
+            /// <response code="500">If an error occurs while retrieving the feature toggle.</response>
+            group.MapGet("/{name}", async (string name, [FromServices] IFeatureManagementService service) =>
+            {
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    return Results.BadRequest("Feature toggle name cannot be empty.");
+                }
+                var result = await service.GetFeatureToggleByNameAsync(name);
+                return result.IsSuccess ? Results.Ok(result.Value) : Results.Problem(result.Error);
+            })
+            .WithName("GetFeatureToggleByName")
+            .Produces<FeatureToggleOutput>(StatusCodes.Status200OK)
+            .ProducesProblem(StatusCodes.Status404NotFound)
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
+
+
+            /// <summary>
             /// Get a feature toggle by its ID.
             /// </summary>
             /// <param name="id">The unique identifier of the feature toggle.</param>
@@ -87,7 +110,7 @@ namespace InsuranceAPI.Features.FeatureManagement.Endpoints
             /// <response code="200">Returns the feature toggle.</response>
             /// <response code="404">If the feature toggle with the specified ID is not found.</response>
             /// <response code="500">If an error occurs while retrieving the feature toggle.</response>
-            group.MapPost("/feature-toggles/by-names", async ([FromBody] FeatureToggleNameInput input,
+            group.MapPost("/by-names", async ([FromBody] FeatureToggleNameInput input,
             [FromServices] IFeatureManagementService service,
             [FromServices] IValidator<FeatureToggleNameInput> validator) =>
             {
@@ -135,17 +158,17 @@ namespace InsuranceAPI.Features.FeatureManagement.Endpoints
             /// <response code="400">If the input data is invalid.</response>
             /// <response code="404">If the feature toggle with the specified ID is not found.</response>
             /// <response code="500">If an error occurs while updating the feature toggle.</response>
-            group.MapPut("/{id:guid}", async (Guid id, [FromBody] FeatureToggleInput featureToggleInput,
+            group.MapPatch("/{name}", async (string name, [FromBody] FeatureTogglePatchDto featureTogglePatchDto,
             [FromServices] IFeatureManagementService service,
-            [FromServices] IValidator<FeatureToggleInput> validator) =>
+            [FromServices] IValidator<FeatureTogglePatchDto> validator) =>
             {
-                var validationResult = await validator.ValidateAsync(featureToggleInput);
+                var validationResult = await validator.ValidateAsync(featureTogglePatchDto);
                 if (!validationResult.IsValid)
                 {
                     return Results.ValidationProblem(validationResult.ToDictionary());
                 }
 
-                var result = await service.PatchFeatureToggleAsync(id, featureToggleInput);
+                var result = await service.PatchFeatureToggleAsync(name, featureTogglePatchDto);
                 return result.IsSuccess ? Results.Ok(result.Value) : Results.Problem(result.Error);
             })
             .WithName("UpdateFeatureToggle")

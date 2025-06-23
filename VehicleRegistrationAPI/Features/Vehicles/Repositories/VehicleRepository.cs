@@ -382,7 +382,7 @@ ICacheService _cache) : IVehicleRepository
             _logger.LogError("Personal identification numbers cannot be null or empty.");
         }
         // Check if the vehicles exist in the cache first
-        var cacheKey = $"VehiclesByPersonIds_{string.Join(",", personIds.PersonalIdentificationNumbers)}";
+        var cacheKey = $"VehiclesByPersonIds_{string.Join("_", personIds.PersonalIdentificationNumbers)}";
         var vehiclesInCache = await _cache.GetAsync<IEnumerable<Vehicle>>(cacheKey);
         if (vehiclesInCache.IsSuccess && vehiclesInCache.Value != null)
         {

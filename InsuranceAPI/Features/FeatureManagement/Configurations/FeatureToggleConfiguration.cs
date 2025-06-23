@@ -27,6 +27,8 @@ public class FeatureToggleConfiguration : IEntityTypeConfiguration<FeatureToggle
 
         builder.Property(ft => ft.IsEnabled)
             .HasColumnName("IsEnabled")
+            .HasColumnType("boolean")
+            .HasConversion<bool>()
             .IsRequired()
             .HasDefaultValue(false);
 
@@ -42,9 +44,11 @@ public class FeatureToggleConfiguration : IEntityTypeConfiguration<FeatureToggle
             .HasColumnType("timestamp with time zone")
             .HasDefaultValueSql("NOW()")
             .ValueGeneratedOnUpdate();
+
         builder.HasIndex(ft => ft.Name)
             .IsUnique()
             .HasDatabaseName("IX_FeatureToggles_Name");
+
         builder.HasData(
             new FeatureToggle
             {
@@ -52,8 +56,8 @@ public class FeatureToggleConfiguration : IEntityTypeConfiguration<FeatureToggle
                 Name = "ShowCarDetails",
                 Description = "Enable or disable the Car details on car insurance display",
                 IsEnabled = true,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.SpecifyKind(new DateTime(2025, 6, 20), DateTimeKind.Utc),
+                UpdatedAt = DateTime.SpecifyKind(new DateTime(2025, 6, 20), DateTimeKind.Utc)
             },
             new FeatureToggle
             {
@@ -61,8 +65,8 @@ public class FeatureToggleConfiguration : IEntityTypeConfiguration<FeatureToggle
                 Name = "ApplyDiscounts",
                 Description = "Enable or disable discounts on insurance products",
                 IsEnabled = false,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.SpecifyKind(new DateTime(2025, 6, 20), DateTimeKind.Utc),
+                UpdatedAt = DateTime.SpecifyKind(new DateTime(2025, 6, 20), DateTimeKind.Utc)
             }
         );
     }
