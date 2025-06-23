@@ -228,6 +228,12 @@ docker-compose up --build
 
 ---
 
+## Postman Collection
+- The [VehicleInsurance.postman_collection.json](https://github.com/Vivekkosare/VehicleInsurance/blob/main/VehicleInsurance.postman_collection.json) file contains ready-to-use requests for all endpoints in both APIs.
+- Update the URLs if you change the default ports.
+
+---
+
 ## Running the GitHub Actions Workflow Locally
 You can run the CI pipeline locally using [`act`](https://github.com/nektos/act):
 
@@ -238,12 +244,6 @@ You can run the CI pipeline locally using [`act`](https://github.com/nektos/act)
    act -P ubuntu-latest=catthehacker/ubuntu:act-latest
    ```
    This will execute the workflow in a local Docker container, simulating GitHub Actions.
-
----
-
-## Postman Collection
-- The `VehicleInsurance.postman_collection.json` file contains ready-to-use requests for all endpoints in both APIs.
-- Update the URLs if you change the default ports.
 
 ---
 
